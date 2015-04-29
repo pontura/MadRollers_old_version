@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{AFD7987B-340F-B015-4B46-C7BBB245441E}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_3;UNITY_4_6;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\About.cs" />
+     <Compile Include="Assets\AddFacebookAccount.cs" />
+     <Compile Include="Assets\AreaSet.cs" />
+     <Compile Include="Assets\Bomb.cs" />
+     <Compile Include="Assets\Breakable.cs" />
+     <Compile Include="Assets\BreakableFloor.cs" />
+     <Compile Include="Assets\BurnableItem.cs" />
+     <Compile Include="Assets\CharacterBehavior.cs" />
+     <Compile Include="Assets\CharacterCollisions.cs" />
+     <Compile Include="Assets\CharacterControls.cs" />
+     <Compile Include="Assets\CharacterFloorCollitions.cs" />
+     <Compile Include="Assets\CharactersManager.cs" />
+     <Compile Include="Assets\CheckPoint.cs" />
+     <Compile Include="Assets\CompetitionButton.cs" />
+     <Compile Include="Assets\CompetitionSelection.cs" />
+     <Compile Include="Assets\Continue.cs" />
+     <Compile Include="Assets\Data.cs" />
+     <Compile Include="Assets\DataController.cs" />
+     <Compile Include="Assets\Decoration.cs" />
+     <Compile Include="Assets\DecorationManager.cs" />
+     <Compile Include="Assets\DestroyByTags.cs" />
+     <Compile Include="Assets\DisposableObject.cs" />
+     <Compile Include="Assets\DroppableSceneObject.cs" />
+     <Compile Include="Assets\Dropper.cs" />
+     <Compile Include="Assets\EnemyBehavior.cs" />
+     <Compile Include="Assets\EnemyBlindBehavior.cs" />
+     <Compile Include="Assets\EnemyCar.cs" />
+     <Compile Include="Assets\EnemyPart.cs" />
+     <Compile Include="Assets\EnemyPathRunnerBehavior.cs" />
+     <Compile Include="Assets\EnemyRunnerBehavior.cs" />
+     <Compile Include="Assets\EnemyTankBehavior.cs" />
+     <Compile Include="Assets\EnergyBar.cs" />
+     <Compile Include="Assets\Events.cs" />
+     <Compile Include="Assets\FBHolder.cs" />
+     <Compile Include="Assets\FPSMeter.cs" />
+     <Compile Include="Assets\FXExplotion.cs" />
+     <Compile Include="Assets\Facebook\Scripts\AndroidFacebook.cs" />
+     <Compile Include="Assets\Facebook\Scripts\AndroidFacebookLoader.cs" />
+     <Compile Include="Assets\Facebook\Scripts\CanvasFacebookLoader.cs" />
+     <Compile Include="Assets\Facebook\Scripts\EditorFacebook.cs" />
+     <Compile Include="Assets\Facebook\Scripts\EditorFacebookAccessToken.cs" />
+     <Compile Include="Assets\Facebook\Scripts\EditorFacebookLoader.cs" />
+     <Compile Include="Assets\Facebook\Scripts\FB.cs" />
+     <Compile Include="Assets\Facebook\Scripts\FBAppRequestsFilterGroup.cs" />
+     <Compile Include="Assets\Facebook\Scripts\FBScreen.cs" />
+     <Compile Include="Assets\Facebook\Scripts\FBSettings.cs" />
+     <Compile Include="Assets\Facebook\Scripts\IOSFacebook.cs" />
+     <Compile Include="Assets\Facebook\Scripts\IOSFacebookLoader.cs" />
+     <Compile Include="Assets\Facebook\Scripts\NativeDialogModes.cs" />
+     <Compile Include="Assets\FacebookScene.cs" />
+     <Compile Include="Assets\Fade.cs" />
+     <Compile Include="Assets\Floor.cs" />
+     <Compile Include="Assets\FloorManager.cs" />
+     <Compile Include="Assets\Flying.cs" />
+     <Compile Include="Assets\FlyingBehavior.cs" />
+     <Compile Include="Assets\FollowCharacter.cs" />
+     <Compile Include="Assets\FriendButton.cs" />
+     <Compile Include="Assets\FullRotation.cs" />
+     <Compile Include="Assets\GUI\levelSelector\LevelsButton.cs" />
+     <Compile Include="Assets\Game.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Components\GA_Tracker.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\ComboBox.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleBall.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleController.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleFloor.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleHighScore.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleManager.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleMoveWithPlayer.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleTarget.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Examples\Scripts\GA_ExampleWall.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_AdSupport.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Archive.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Business.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_ContinuationManager.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_CustomAdTrigger.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_DataPoint.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Debug.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Design.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Error.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_FacebookSDK.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_GUIHelper.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_GameObjectManager.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_GenericInfo.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Gui.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatMapDataFilter.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatMapDataFilterBase.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatMapRenderer.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_HeatmapData.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Histogram.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_MiniJson.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Queue.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Request.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_ServerFieldTypes.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Settings.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_SpecialEvents.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Submit.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_SystemTracker.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_Tracking.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\GA_User.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\MD5.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Framework\Scripts\MD5Wrapper.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\ConvertFloatToLowestCurrencyUnit.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\QueueEndSubmit.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\QueueForceSubmit.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendBusinessEvent.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendDesignEvent.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendErrorEvent.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SendUserEvent.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomArea.cs" />
+     <Compile Include="Assets\GameAnalytics\Plugins\Playmaker\SetCustomUserID.cs" />
+     <Compile Include="Assets\GameBackground.cs" />
+     <Compile Include="Assets\GameCamera.cs" />
+     <Compile Include="Assets\GameMenu.cs" />
+     <Compile Include="Assets\GrabbableMissile.cs" />
+     <Compile Include="Assets\Gui.cs" />
+     <Compile Include="Assets\GuiCamera.cs" />
+     <Compile Include="Assets\GuiTutorial.cs" />
+     <Compile Include="Assets\Hiscores.cs" />
+     <Compile Include="Assets\HiscoresControlller.cs" />
+     <Compile Include="Assets\IgnoreCollisions.cs" />
+     <Compile Include="Assets\Inputs\InputJoystick.cs" />
+     <Compile Include="Assets\Inputs\InputKeyboard.cs" />
+     <Compile Include="Assets\Inputs\InputManager.cs" />
+     <Compile Include="Assets\Inputs\InputMobile.cs" />
+     <Compile Include="Assets\Inputs\InputType.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_New.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_Translate.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\UI\CFX_Demo_GTButton.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\UI\CFX_Demo_GTToggle.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_InspectorHelp.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_ShurikenThreadFix.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Spawn System\CFX_SpawnSystem.cs" />
+     <Compile Include="Assets\JetPack.cs" />
+     <Compile Include="Assets\Jump.cs" />
+     <Compile Include="Assets\JustForFun.cs" />
+     <Compile Include="Assets\LandingPage.cs" />
+     <Compile Include="Assets\Level.cs" />
+     <Compile Include="Assets\LevelComplete.cs" />
+     <Compile Include="Assets\LevelSelector.cs" />
+     <Compile Include="Assets\LevelSignal.cs" />
+     <Compile Include="Assets\ListenerDispatcher.cs" />
+     <Compile Include="Assets\MainMenuActions.cs" />
+     <Compile Include="Assets\MaterialsChanger.cs" />
+     <Compile Include="Assets\Md5Test.cs" />
+     <Compile Include="Assets\Mission.cs" />
+     <Compile Include="Assets\MissionButton.cs" />
+     <Compile Include="Assets\MissionScene.cs" />
+     <Compile Include="Assets\MissionSignal.cs" />
+     <Compile Include="Assets\Missions.cs" />
+     <Compile Include="Assets\MissionsTopPanel.cs" />
+     <Compile Include="Assets\MmoCharacter.cs" />
+     <Compile Include="Assets\Mortal.cs" />
+     <Compile Include="Assets\MusicManager.cs" />
+     <Compile Include="Assets\ObjectPool.cs" />
+     <Compile Include="Assets\Parachute.cs" />
+     <Compile Include="Assets\ParticlesSceneObject.cs" />
+     <Compile Include="Assets\Pinche.cs" />
+     <Compile Include="Assets\PincheDientes.cs" />
+     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\PlayerBehavior.cs" />
+     <Compile Include="Assets\ProfilePicture.cs" />
+     <Compile Include="Assets\ProgressBar.cs" />
+     <Compile Include="Assets\Projectil.cs" />
+     <Compile Include="Assets\RainManager.cs" />
+     <Compile Include="Assets\RandomPosition.cs" />
+     <Compile Include="Assets\Ranking.cs" />
+     <Compile Include="Assets\RegistryScreen.cs" />
+     <Compile Include="Assets\Robot.cs" />
+     <Compile Include="Assets\SceneObject.cs" />
+     <Compile Include="Assets\SceneObjectsBehavior.cs" />
+     <Compile Include="Assets\ScoreSignal.cs" />
+     <Compile Include="Assets\Shadow.cs" />
+     <Compile Include="Assets\Shooter.cs" />
+     <Compile Include="Assets\SimpleLogin.cs" />
+     <Compile Include="Assets\Stars.cs" />
+     <Compile Include="Assets\Subibaja.cs" />
+     <Compile Include="Assets\TangentSolver.cs" />
+     <Compile Include="Assets\TextureChanger.cs" />
+     <Compile Include="Assets\Tracker.cs" />
+     <Compile Include="Assets\UserData.cs" />
+     <Compile Include="Assets\Util.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\Agent.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\CameraMove.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\FPS.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\Football.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\GameManager.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\MoveElement_Chunk.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\Player.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\PlayerCamera.cs" />
+     <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\Spawner.cs" />
+     <Compile Include="Assets\VoicesManager.cs" />
+     <Compile Include="Assets\WeakPlatform.cs" />
+     <Compile Include="Assets\Weapon.cs" />
+     <Compile Include="Assets\areas\Area.cs" />
+     <Compile Include="Assets\areas\AreasManager.cs" />
+     <Compile Include="Assets\iTween\Plugins\iTween.cs" />
+     <Compile Include="Assets\iTween\Sample\MoveSample.cs" />
+     <Compile Include="Assets\iTween\Sample\RotateSample.cs" />
+     <Compile Include="Assets\iTween\Sample\SampleInfo.cs" />
+     <Compile Include="Assets\sceneObjects\scripts\Bumper.cs" />
+     <Compile Include="Assets\sceneObjects\scripts\GrabbableItem.cs" />
+     <Compile Include="Assets\sceneObjects\scripts\GrabbableJetPAck.cs" />
+     <Compile Include="Assets\sceneObjects\scripts\MoveObject.cs" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Bump_Specular_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_background.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Cutout_Specular_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_Multiply_Double.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Blend_Vertex_Alpha_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Blend_Detail.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Diffuse.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Cutout_Reflective.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Bump.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Specular.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
+     <None Include="Assets\Plugins\Android\facebook\proguard-project.txt" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Blend_Decal_Anim_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Reflective_Specular_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Cutout_Reflective.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ShowAlphaChannel.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolidOverlay.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_usersettingsfragment.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowConeTap.shader" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_AlphaBlended_Premultiply_Global.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_ShadowPass_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_Addative_Soft.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SunShaftsComposite.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_Addative_Multiply_Global.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparentOverlay.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Projector_Light_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Blend_Detail_Anim.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-es\strings.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Flare_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionCurves.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Cutout_Diffuse.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ScreenSpaceAmbientObscurance.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_top_button.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\Unlit_Terra_3Tex.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-iw\strings.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\NFAA.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Cutout_Reflective_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Blend_Detail.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_3Tex.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Specular.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Blend_Detail_Anim.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Detail_Anim_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_Multiply_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Projector_Muliply.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Bump_Reflective.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Anim.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\styles.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_Addative_Soft_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_Addative.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Diffuse_Anim_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\MotionBlur.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Bump_Specular.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Blend_Decal.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBloom.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Transparent_Blend_Vertex_Alpha_Anim_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\strings.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowCompose.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Detail_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\SSAA.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Cutout_SoftEdge_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Transparent_Blend_Detail_Anim_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\RadialBlur.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Baked\Specular.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Blend_Vertex_Alpha_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Bump_Reflective_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Specular_Anim.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\Unlit_Terra_2Tex.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Blend_Detail_Anim_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_search_box.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Specular_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ContrastComposite.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_ShadowPass_Cutout.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAAPreset3.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Bump.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Transparent_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\FisheyeShader.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Baked\Diffuse.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\Unlit_Terra_4Tex.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Decal_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Bump_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Apply.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Specular.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\frag_ao.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_AlphaBlended_Premultiply.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Specular_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Functions.cginc" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_section_header.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_loginbutton_silver.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Reflective_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Bump_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_tooltip_bubble.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Cutout_Diffuse_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-ldpi\dimens.xml" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Invert.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_AlphaBlended.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Fragment.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Diffuse_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Reflective.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Blend_Decal.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Reflective.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\Camera-DepthNormalTexture.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Defines.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Vertex_Alpha_Anim_Global.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Blend_Vertex_Alpha_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Specular_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector_background_transition.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Base.cginc" />
+     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar_stub.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Struct.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Blend_Vertex_Alpha_Anim_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Bump_Specular.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBlur.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Reflective_Specular.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Anim.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Reflective_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ConvertDepth.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionCurvesSimple.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderYUV.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Specular_Anim_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Anim_Global.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft VColor.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowEffectDownsample.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CreaseApply.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_4Tex.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Cutout_Reflective_Global.shader" />
+     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Hidden.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_3Tex_Specular.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Detail_Anim_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ChromaticAberrationShader.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Flare.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_Addative_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\build.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\Unlit_Terra_3Tex_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Projector_Muliply_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlobalFog.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Decal_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_AlphaBlended_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_checkbox.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-he\strings.xml" />
+     <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_Multiply.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionSelective.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_ShadowPass_Cutout_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Diffuse_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\Bokeh34.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Decal_Anim_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Anim_Global.shader" />
+     <None Include="Assets\Fonts\blueCard\blueCard_80.fnt" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Cutout_SoftEdge.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CameraMotionBlurDX11.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\Unlit_Terra_2Tex_Global.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
+     <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlurEffectConeTaps.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CameraMotionBlur.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Blend_Decal_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Blend_Detail_Anim.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\DLAA.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Transparent_Reflective_Global.shader" />
+     <None Include="Assets\iTween\Documentation.txt" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_activity_circle_row.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseAndGrainDX11.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like_selected.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_Multiply_Double_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Projector_Light.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_4Tex_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_3Tex_Specular_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\MotionBlurClear.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Vertex_Alpha_Anim_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_Addative_Multiply.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionEffect.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GrayscaleEffect.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SepiaToneEffect.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\TwirlEffect.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\VortexEffect.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Reflective.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
+     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Bump_Specular_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_3Tex_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Cutout.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseAndGrain.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_item_background.xml" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Specular_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Blend_Decal_Anim.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\VignettingShader.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\Unlit_Terra_4Tex_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Tonemapper.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Reflective.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Blend_Decal_Anim.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Variables.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Cutout_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
+     <None Include="Assets\GameAnalytics\Plugins\Android\Android_Readme.txt" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_blue.xml" />
+     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX4 Readme.txt" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Transparent_Blend_Decal_Anim_Global.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_like.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Vertex_Alpha_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Cutout_Specular.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\EdgeDetectNormals.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Baked\Diffuse_Emissive.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Blend_Vertex_Alpha_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\PrepareSunShaftsBlur.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\Blend.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_button.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_ShadowPass.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Vertex_Alpha_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\AndroidManifest.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Blend_Detail_Anim.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_usersettingsfragment_background_gradient.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Specular_Anim_Global.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_image.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\Camera-DepthTexture.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SimpleClear.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Transparent_Anim_Anim.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Reflective_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Blend_Decal_Anim.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA3Console.shader" />
+     <None Include="Assets\Materials\bitmaps\typing.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Decal_Anim_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Shadow.cginc" />
+     <None Include="Assets\Plugins\Android\facebook\res\values-xhdpi\dimens.xml" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Detail_Global.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Vertex.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Anim.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector.xml" />
+     <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="IFacebook">
+ <HintPath>D:/_projects/MadRollers_46/Assets/Facebook/Scripts/IFacebook.dll</HintPath>
+ </Reference>
+ <Reference Include="VacuumShaders.CurvedWorld">
+ <HintPath>D:/_projects/MadRollers_46/Assets/VacuumShaders/Curved World/Scripts/VacuumShaders.CurvedWorld.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{BFEE562A-2AF5-0532-C6BD-0304D621019B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{0366ECBE-01EC-5299-DA8F-8FC06E4ED158}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

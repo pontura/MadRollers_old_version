@@ -1,0 +1,521 @@
+fileFormatVersion: 2
+guid: 204b6f41a4f66e54f8f90ece70972680
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: arm1_l
+    100002: arm1_r
+    100004: arm2_l
+    100006: arm2_r
+    100008: arm2_r_0
+    100010: Armature
+    100012: //RootNode
+    100014: foot_l
+    100016: foot_r
+    100018: hat
+    100020: head
+    100022: leg1_l
+    100024: leg1_r
+    100026: leg2_l
+    100028: leg2_r
+    100030: arm1_l_0
+    100032: arm1_r_0
+    100034: arm2_l_0
+    100036: arm2_r_1
+    100038: Armature_001
+    100040: foot_l_0
+    100042: foot_r_0
+    100044: hat_0
+    100046: head_0
+    100048: leg1_l_0
+    100050: leg1_r_0
+    100052: leg2_l_0
+    100054: leg2_r_0
+    400000: arm1_l
+    400002: arm1_r
+    400004: arm2_l
+    400006: arm2_r
+    400008: arm2_r_0
+    400010: Armature
+    400012: //RootNode
+    400014: foot_l
+    400016: foot_r
+    400018: hat
+    400020: head
+    400022: leg1_l
+    400024: leg1_r
+    400026: leg2_l
+    400028: leg2_r
+    400030: arm1_l_0
+    400032: arm1_r_0
+    400034: arm2_l_0
+    400036: arm2_r_1
+    400038: Armature_001
+    400040: foot_l_0
+    400042: foot_r_0
+    400044: hat_0
+    400046: head_0
+    400048: leg1_l_0
+    400050: leg1_r_0
+    400052: leg2_l_0
+    400054: leg2_r_0
+    4300000: arm2_r
+    7400000: Default Take
+    7400002: enemyDie
+    7400004: enemyIdle
+    7400006: enemyJump
+    7400008: enemyRun
+    7400010: enemyWaitJump
+    7400012: enemyWalk
+    7400014: run
+    7400016: enemyRun0
+    7400018: enemyDieBack
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: arm2_r
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: enemyDie
+      takeName: enemyDie
+      firstFrame: -1
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm2_r
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/head
+        weight: 1
+      - path: Armature/head/arm1_l
+        weight: 1
+      - path: Armature/head/arm1_l/arm2_l
+        weight: 1
+      - path: Armature/head/arm1_r
+        weight: 1
+      - path: Armature/head/arm1_r/arm2_r_0
+        weight: 1
+      - path: Armature/head/hat
+        weight: 1
+      - path: Armature/head/leg1_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l/foot_l
+        weight: 1
+      - path: Armature/head/leg1_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r/foot_r
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: enemyIdle
+      takeName: enemyIdle
+      firstFrame: -1
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm2_r
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/head
+        weight: 1
+      - path: Armature/head/arm1_l
+        weight: 1
+      - path: Armature/head/arm1_l/arm2_l
+        weight: 1
+      - path: Armature/head/arm1_r
+        weight: 1
+      - path: Armature/head/arm1_r/arm2_r_0
+        weight: 1
+      - path: Armature/head/hat
+        weight: 1
+      - path: Armature/head/leg1_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l/foot_l
+        weight: 1
+      - path: Armature/head/leg1_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r/foot_r
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: enemyJump
+      takeName: enemyJump
+      firstFrame: -1
+      lastFrame: 63
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm2_r
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/head
+        weight: 1
+      - path: Armature/head/arm1_l
+        weight: 1
+      - path: Armature/head/arm1_l/arm2_l
+        weight: 1
+      - path: Armature/head/arm1_r
+        weight: 1
+      - path: Armature/head/arm1_r/arm2_r_0
+        weight: 1
+      - path: Armature/head/hat
+        weight: 1
+      - path: Armature/head/leg1_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l/foot_l
+        weight: 1
+      - path: Armature/head/leg1_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r/foot_r
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: enemyRun
+      takeName: enemyRun
+      firstFrame: -1
+      lastFrame: 18
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm2_r
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/head
+        weight: 1
+      - path: Armature/head/arm1_l
+        weight: 1
+      - path: Armature/head/arm1_l/arm2_l
+        weight: 1
+      - path: Armature/head/arm1_r
+        weight: 1
+      - path: Armature/head/arm1_r/arm2_r_0
+        weight: 1
+      - path: Armature/head/hat
+        weight: 1
+      - path: Armature/head/leg1_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l/foot_l
+        weight: 1
+      - path: Armature/head/leg1_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r/foot_r
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: enemyWaitJump
+      takeName: enemyWaitJump
+      firstFrame: -1
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm2_r
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/head
+        weight: 1
+      - path: Armature/head/arm1_l
+        weight: 1
+      - path: Armature/head/arm1_l/arm2_l
+        weight: 1
+      - path: Armature/head/arm1_r
+        weight: 1
+      - path: Armature/head/arm1_r/arm2_r_0
+        weight: 1
+      - path: Armature/head/hat
+        weight: 1
+      - path: Armature/head/leg1_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l/foot_l
+        weight: 1
+      - path: Armature/head/leg1_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r/foot_r
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: enemyWalk
+      takeName: enemyWalk
+      firstFrame: -1
+      lastFrame: 26
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm2_r
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/head
+        weight: 1
+      - path: Armature/head/arm1_l
+        weight: 1
+      - path: Armature/head/arm1_l/arm2_l
+        weight: 1
+      - path: Armature/head/arm1_r
+        weight: 1
+      - path: Armature/head/arm1_r/arm2_r_0
+        weight: 1
+      - path: Armature/head/hat
+        weight: 1
+      - path: Armature/head/leg1_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l/foot_l
+        weight: 1
+      - path: Armature/head/leg1_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r/foot_r
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: enemyDieBack
+      takeName: enemyDieBack
+      firstFrame: -1
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm2_r
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/head
+        weight: 1
+      - path: Armature/head/arm1_l
+        weight: 1
+      - path: Armature/head/arm1_l/arm2_l
+        weight: 1
+      - path: Armature/head/arm1_r
+        weight: 1
+      - path: Armature/head/arm1_r/arm2_r_0
+        weight: 1
+      - path: Armature/head/hat
+        weight: 1
+      - path: Armature/head/leg1_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l
+        weight: 1
+      - path: Armature/head/leg1_l/leg2_l/foot_l
+        weight: 1
+      - path: Armature/head/leg1_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r
+        weight: 1
+      - path: Armature/head/leg1_r/leg2_r/foot_r
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 1
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
