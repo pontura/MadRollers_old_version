@@ -8,6 +8,9 @@ public class SimpleLogin : MonoBehaviour {
     Text nameLabel;
     [SerializeField]
     Text passLabel;
+    [SerializeField]
+    Text emailField;
+    
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class SimpleLogin : MonoBehaviour {
     }
     void RegistryOk()
     {
-        Data.Instance.GetComponent<DataController>().CreateUser(nameLabel.text, "0", Data.Instance.userData.hiscore);        
+        Data.Instance.GetComponent<DataController>().CreateUser(nameLabel.text, "0", Data.Instance.userData.hiscore, emailField.text, passLabel.text);        
     }
     public void Back()
     {

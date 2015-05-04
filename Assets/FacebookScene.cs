@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class FacebookScene : MonoBehaviour {
     
     public ProfilePicture profilePicture;
+    public GameObject MyAvatar;
     public GameObject FB_Username;
 
     public GameObject ButtonCompite;
@@ -45,9 +46,13 @@ public class FacebookScene : MonoBehaviour {
             profilePicture.setPictre(Data.Instance.userData.facebookId);
 
             ButtonCompite.SetActive(false);
-            Vector3 pos = ButtonPlay.transform.localPosition;
-            pos.y = -165;
-            ButtonPlay.transform.localPosition = pos;
+            //Vector3 pos = ButtonPlay.transform.localPosition;
+            //pos.y = -165;
+            //ButtonPlay.transform.localPosition = pos;
+        }
+        else
+        {
+            MyAvatar.SetActive(false);
         }
     }
     void OnFacebookUserLoaded(string id)

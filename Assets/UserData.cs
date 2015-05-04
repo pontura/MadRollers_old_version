@@ -8,6 +8,8 @@ public class UserData : MonoBehaviour {
     public int hiscore;
     public string username;
     public string facebookId;
+    public string email;
+    public string password;
 
     public int score;
     public int missionScore;
@@ -17,25 +19,52 @@ public class UserData : MonoBehaviour {
 	public void Init () {
         data = Data.Instance;
         data.events.OnSetUserData += OnSetUserData;
-        data.events.OnHiscore += OnHiscore;
+      //  data.events.OnHiscore += OnHiscore;
         data.events.OnListenerDispatcher += OnListenerDispatcher;
         data.events.OnScoreOn += OnScoreOn;
         data.events.OnGameStart += OnGameStart;
-        data.events.OnAvatarDie += OnAvatarDie;
         data.events.OnSetStarsToMission += OnSetStarsToMission;
         data.events.OnFacebookUserLoaded += OnFacebookUserLoaded;
 
-        //RESET ID:
-       // PlayerPrefs.SetInt("userId", 0);
-        //PlayerPrefs.SetInt("facebookId", 0);
+        //  RESET ID:
+        //  PlayerPrefs.SetInt("userId", 0);
+        //  PlayerPrefs.SetString("facebookId", "");
+       // PlayerPrefs.SetInt("hiscore", 0);
 
-        username = PlayerPrefs.GetString("username");
-        userId = PlayerPrefs.GetInt("userId");
-        hiscore = PlayerPrefs.GetInt("hiscore");
-        facebookId = PlayerPrefs.GetString("facebookId");
+        if (!Application.isWebPlayer)
+        {
+            Debug.Log("CARGA DATOS de PlayerPrefs");
+            username = PlayerPrefs.GetString("username");
+            userId = PlayerPrefs.GetInt("userId");
+            hiscore = PlayerPrefs.GetInt("hiscore");
+            facebookId = PlayerPrefs.GetString("facebookId");
+        }
 
         SetStars();
 	}
+    private int fromWebLogs = 0;
+    public void ReceiveFacebookUserNameFromWeb(string _username)
+    {
+        this.username = _username;
+        fromWebLogs++;
+        if (fromWebLogs > 2) BothUserIdAndNameFromWeb();
+    }
+    public void ReceiveFacebookUserIdFromWeb(string _facebookId)
+    {
+        this.facebookId = _facebookId;
+        fromWebLogs++;
+        if (fromWebLogs > 2) BothUserIdAndNameFromWeb();
+    }
+    public void ReceiveFacebookEmailFromWeb(string _email)
+    {
+        this.email = _email;
+        fromWebLogs++;
+        if (fromWebLogs > 2) BothUserIdAndNameFromWeb();
+    }
+    void BothUserIdAndNameFromWeb()
+    {
+        Data.Instance.GetComponent<DataController>().CheckIfFacebookIdExists(facebookId);
+    }
     public bool isPlayerDataLogged()
     {
         if (userId > 0 ) return true;
@@ -99,20 +128,10 @@ public class UserData : MonoBehaviour {
         missionScore += newScore;
         data.events.OnSetFinalScore(pos, score);
     }
-    public void OnAvatarDie(CharacterBehavior cb)
+    public void OnHiscore(int _hiscore)
     {
-        Debug.Log("OnAvatarDie");
-
-        if (hiscore < score)
-        {
-           // hiscore = score;
-            data.events.OnHiscore(hiscore);
-        }
-
-    }
-    public void OnHiscore(int hiscore)
-    {
-       PlayerPrefs.SetInt("hiscore", hiscore);
+        this.hiscore = _hiscore;
+        PlayerPrefs.SetInt("hiscore", _hiscore);    
     }
     public void resetProgress()
     {
@@ -123,5 +142,9 @@ public class UserData : MonoBehaviour {
             stars[a-1] = 0;
             a++;
         }
+        PlayerPrefs.SetInt("userId", 0);
+        PlayerPrefs.SetString("facebookId", "");
+        PlayerPrefs.SetString("username", "");
+        PlayerPrefs.SetInt("hiscore", 0);
     }
 }

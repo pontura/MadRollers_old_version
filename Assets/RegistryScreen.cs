@@ -26,7 +26,14 @@ public class RegistryScreen : MonoBehaviour {
     }
     public void FacebookLogin()
     {
-        Data.Instance.GetComponentInChildren<FBHolder>().Login();
+        // Si estas en la web y te llegó el facebook id anteriormente:
+        if (Data.Instance.userData.facebookId != "")
+            OnFacebookNewUserLogged(Data.Instance.userData.facebookId);
+        if (Application.isWebPlayer)
+            Application.ExternalCall("FBLogin");
+        else
+            Data.Instance.GetComponentInChildren<FBHolder>().Login();
+
     }
     public void SimpleLogin()
     {

@@ -14,12 +14,14 @@ public class DataController : MonoBehaviour
 
     public void Init()
     {
+
         Data.Instance.events.OnHiscore += OnHiscore;
         GetHiscores();
       //  Data.Instance.events.OnFacebookUserLoaded += OnFacebookUserLoaded;
     }
     void OnHiscore(int score)
     {
+        Debug.Log("save hiscore: " + score + " userid: " + GetComponent<UserData>().userId);
         StartCoroutine(PostScores(GetComponent<UserData>().userId, score));
     }
     public void CheckIfFacebookIdExists(string facebookId)
@@ -49,14 +51,15 @@ public class DataController : MonoBehaviour
                 string userName = userData[1];
                 int userId = System.Int32.Parse(userData[2]);
                 int hiscore = System.Int32.Parse(userData[3]);
+                string email = userData[4];
 
-                SetUserData(userName, facebookId, userId, hiscore);
+                SetUserData(userName, facebookId, userId, hiscore, email);
                 
             }
             catch
             {
-                Data.Instance.events.OnFacebookNewUserLogged(facebookId);
-                Debug.Log("DATA CONTROLLER: CheckIfUserExistsOnLocalDB error");
+                Data.Instance.GetComponent<DataController>().CreateUserByFacebookID(facebookId);
+                Debug.Log("New user!");
               //  CreateUser(GetComponent<UserData>().username, facebookId, GetComponent<UserData>().hiscore);
             }
         }
@@ -64,18 +67,18 @@ public class DataController : MonoBehaviour
     public void CreateUserByFacebookID(string facebookId)
     {
         UserData userData = GetComponent<UserData>();
-        StartCoroutine(CreateUserRoutine(userData.username, facebookId, userData.hiscore));
+        StartCoroutine(CreateUserRoutine(userData.username, facebookId, userData.hiscore, userData.email, userData.password));
     }
     //creo el user en la base local:
-    public void CreateUser(string username, string facebookId, int hiscore)
+    public void CreateUser(string username, string facebookId, int hiscore, string email, string password)
     {
-        StartCoroutine(CreateUserRoutine( username,  facebookId,  hiscore));
+        StartCoroutine(CreateUserRoutine(username, facebookId, hiscore, email, password));
     }
-    IEnumerator CreateUserRoutine(string username, string facebookId, int hiscore)
+    IEnumerator CreateUserRoutine(string username, string facebookId, int hiscore, string email, string password)
     {
         username = username.Replace(" ", "_");
         string hash = Md5Test.Md5Sum(username + facebookId + secretKey);
-        string post_url = createUser_URL + "facebookId=" + facebookId + "&username=" + username + "&hiscore=" + hiscore.ToString() + "&hash=" + hash;
+        string post_url = createUser_URL + "facebookId=" + facebookId + "&username=" + username + "&hiscore=" + hiscore.ToString() + "&email=" + email + "&password=" + password + "&hash=" + hash;
         print("CreateUser : " + post_url);
         WWW hs_post = new WWW(post_url);
         yield return hs_post;
@@ -85,11 +88,11 @@ public class DataController : MonoBehaviour
         {
             print("user agregado: " + hs_post.text);
             int userId = int.Parse(hs_post.text);
-            SetUserData(username, facebookId, userId, hiscore);
+            SetUserData(username, facebookId, userId, hiscore, email);
         }
     }
     
-    void SetUserData(string userName, string facebookID, int userId, int hiscore)
+    void SetUserData(string userName, string facebookID, int userId, int hiscore, string email)
     {
         Data.Instance.events.OnSetUserData(userName, userId, hiscore, true);
     }

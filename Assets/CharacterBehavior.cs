@@ -49,6 +49,8 @@ public class CharacterBehavior : MonoBehaviour {
     public GameObject model;
 	public Data data;
     private Missions missions;
+
+    public TextureChanger textureChanger;
 	
 	// Use this for initialization
 	void Start () {
@@ -189,6 +191,8 @@ public class CharacterBehavior : MonoBehaviour {
     {
         if (state == states.CRASH) return;
 
+        textureChanger.Dead();
+
         GetComponent<AudioSource>().clip = FXCrash;
         GetComponent<AudioSource>().Play();
 
@@ -204,7 +208,7 @@ public class CharacterBehavior : MonoBehaviour {
     }
     IEnumerator waitToFall()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         Die();
     }
 	public void Die()

@@ -30,7 +30,7 @@ public class GameCamera : MonoBehaviour
     void Start()
     {
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
-      //  Data.Instance.events.OnAvatarCrash += OnAvatarDie;
+        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         if (Data.Instance.mode == Data.modes.ACCELEROMETER)
         {
 			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
@@ -38,7 +38,7 @@ public class GameCamera : MonoBehaviour
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnAvatarCrash -= OnAvatarDie;
+        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
     }
     public void Init() 
@@ -106,9 +106,23 @@ public class GameCamera : MonoBehaviour
 
        // if (charactersManager.getTotalCharacters() > 1) setCameraRotationX(45); else setCameraRotationX(40);
 	}
-
+    public void OnAvatarCrash(CharacterBehavior player)
+    {
+        if (state == states.END) return;
+        print("OnAvatarCrash");
+        state = states.END;
+        iTween.MoveTo(gameObject, iTween.Hash(
+            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 2.3f, transform.localPosition.z + 2.1f),
+            "time", 1.5f,
+            "easetype", iTween.EaseType.easeInCubic,
+            "looktarget", player.transform,
+            "axis", "x"
+            ));
+    }
     public void OnAvatarDie(CharacterBehavior player)
 	{
+        if (state == states.END) return;
+        print("OnAvatarDie");
         state = states.END;
         iTween.MoveTo(gameObject, iTween.Hash(
             "position", new Vector3(transform.localPosition.x, transform.localPosition.y+3f, transform.localPosition.z-3.5f),

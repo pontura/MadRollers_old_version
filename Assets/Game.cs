@@ -54,9 +54,15 @@ public class Game : MonoBehaviour {
     public void ResetLevel()
 	{
         Data.Instance.events.OnResetLevel();
-        //StartCoroutine (restart ());
         Data.Instance.replays++;
-        if (Data.Instance.replays == Data.Instance.totalReplays)
+
+        if (Data.Instance.userData.hiscore < Data.Instance.userData.score)
+        {
+            Data.Instance.userData.OnHiscore(Data.Instance.userData.score);
+            Data.Instance.events.OnHiscore(Data.Instance.userData.score);
+            Application.LoadLevel("NewHiscore");
+            Data.Instance.replays = 0;
+        } else if (Data.Instance.replays == Data.Instance.totalReplays)
             GotoContinue();
         else
             Fade.LoadLevel("Game", 1, 1, Color.black);

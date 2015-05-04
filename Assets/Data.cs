@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Data : MonoBehaviour {
-
+    
     public int levelUnlockedID = 0;
 	public int missionActive = 0;
     public int totalReplays = 3;
@@ -18,8 +18,8 @@ public class Data : MonoBehaviour {
     public VoicesManager voicesManager;
 
     public bool DEBUG;
-   
 
+    
     public enum modes
     {
         ACCELEROMETER,
@@ -48,7 +48,7 @@ public class Data : MonoBehaviour {
         userData = GetComponent<UserData>();
         userData.Init();
 
-        //if (!userData.isPlayerDataLogged() || userData.facebookId == "")
+        if (!Application.isWebPlayer)
             GetComponentInChildren<FBHolder>().Init();
 
         GetComponent<MusicManager>().Init();
@@ -63,6 +63,9 @@ public class Data : MonoBehaviour {
             levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked");
         }
         voicesManager.Init();
+
+        if (Application.isWebPlayer)
+            Application.ExternalCall("OnUnityReady");
 	}
 
     

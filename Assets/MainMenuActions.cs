@@ -5,8 +5,10 @@ using System.Collections;
 public class MainMenuActions : MonoBehaviour {
 
     public Text PlayLabel;
+    public Text DebugText;
 
 	void Start () {
+        DebugText.text = "username: " + Data.Instance.userData.username + " - id: " + Data.Instance.userData.facebookId + " - id: " + Data.Instance.userData.userId;
         Data.Instance.GetComponent<Tracker>().TrackScreen("Main Menu");
         Data.Instance.events.OnInterfacesStart();
 
