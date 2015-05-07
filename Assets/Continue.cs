@@ -9,6 +9,7 @@ public class Continue : MonoBehaviour {
 	private int num = 9;
 	public Text countdown_txt;
 	private float speed = 0.5f;
+    private bool clicked;
 	
 	IEnumerator WaitAndDo(float time, DelayedMethod method)
 	{
@@ -22,6 +23,7 @@ public class Continue : MonoBehaviour {
 		if(num==0)
 		{
             Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+            clicked = true;
 			return;
 		}
 		countdown_txt.text = num.ToString();
@@ -29,12 +31,15 @@ public class Continue : MonoBehaviour {
 	}	
 
 	void Start () {
+        clicked = false;
 		StartCoroutine(WaitAndDo(speed, DoStuff));
 	}
 
 	void Update () {
+        if (clicked) return;
         if (Input.anyKeyDown)
         {
+            clicked = true;
             StopCoroutine("WaitAndDo");
             Fade.LoadLevel("Game", 1, 1, Color.black);
 		}
