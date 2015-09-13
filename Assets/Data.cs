@@ -56,7 +56,7 @@ public class Data : MonoBehaviour {
         GetComponent<Missions>().Init();
         GetComponent<DataController>().Init();
 
-        if (Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
             DEBUG = false;
             mode = modes.ACCELEROMETER;

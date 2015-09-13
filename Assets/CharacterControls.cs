@@ -10,15 +10,15 @@ public class CharacterControls : MonoBehaviour {
     private float rotationZ = 0;
     private float turnSpeed = 2.8f;
     private float speedX = 9f;
-    private bool android;
+    private bool mobileController;
     private bool ControlsEnabled = false;
     private CharactersManager charactersManager;
 
 	void Start () {
         characterBehavior = GetComponent<CharacterBehavior>();
         player = GetComponent<Player>();
-        if (Application.platform == RuntimePlatform.Android)
-            android = true;
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            mobileController = true;
         StartCoroutine(enabledMovements());
 
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
@@ -43,7 +43,7 @@ public class CharacterControls : MonoBehaviour {
 
        // if (!ControlsEnabled) return;
 
-        if (android)
+        if (mobileController)
             moveByAccelerometer();
         else
             moveByKeyboard();

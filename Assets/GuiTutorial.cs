@@ -31,9 +31,9 @@ public class GuiTutorial : MonoBehaviour {
 
     private CharactersManager charactersManager;
 
-    private bool isAndroid()
+    private bool isMobile()
     {
-        if (Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
             return true;
         return false;
     }
@@ -93,7 +93,7 @@ public class GuiTutorial : MonoBehaviour {
     }
     private void showHelp()
     {
-        if (isAndroid())
+        if (isMobile())
         {
             if (state == states.JUMP)
                 StartCoroutine(Play(helpSprite.GetComponent<Animation>(), "HelpSignalOn", false));
@@ -116,7 +116,7 @@ public class GuiTutorial : MonoBehaviour {
     {
         if (!canDisplaySignal()) return;
 
-        if (isAndroid())
+        if (isMobile())
         {
             if (state == states.JUMP || state == states.DOUBLEJUMP)
                 animateButton(buttonJump);
@@ -205,7 +205,7 @@ public class GuiTutorial : MonoBehaviour {
 
             Game.Instance.Pause();
 
-            if (isAndroid())
+            if (isMobile())
             {
                 if (state == states.JUMP)
                     helpSprite.enabled = true;

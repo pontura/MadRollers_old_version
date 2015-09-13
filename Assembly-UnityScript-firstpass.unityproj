@@ -89,7 +89,6 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Reflective_Specular_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Cutout_Reflective.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ShowAlphaChannel.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolidOverlay.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowConeTap.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_AlphaBlended_Premultiply_Global.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
@@ -97,7 +96,6 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_Addative_Soft.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_Addative_Multiply_Global.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparentOverlay.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Projector_Light_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Blend_Detail_Anim.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Flare_Global.shader" />
@@ -111,7 +109,6 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_3Tex.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Transparent_Specular.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Blend_Detail_Anim.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapSolid.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Detail_Anim_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_Multiply_Global.shader" />
@@ -158,7 +155,6 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Bump_Global.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\ODL_Specular.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\Framework\Shaders\GA_HeatMapTransparent.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\frag_ao.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_AlphaBlended_Premultiply.shader" />
@@ -179,7 +175,6 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Defines.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Vertex_Alpha_Anim_Global.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\Readme_WebPlayer.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Blend_Vertex_Alpha_Anim.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Specular_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Base.cginc" />
@@ -218,7 +213,6 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Blend_Decal_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Particles_AlphaBlended_Global.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\iOS\iOS_Readme.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Particles_Multiply.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionSelective.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_ShadowPass_Cutout_Global.shader" />
@@ -259,7 +253,6 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\VortexEffect.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Transparent_Reflective.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\WebPlayer\crossdomain.xml" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_2Tex_Bump_Specular_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain\ODL_Terra_Diffuse_3Tex_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit.shader" />
@@ -277,7 +270,6 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Variables.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Cutout_Global.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
-     <None Include="Assets\GameAnalytics\Plugins\Android\Android_Readme.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX4 Readme.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\Unlit_Transparent_Blend_Decal_Anim_Global.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrection3DLut.shader" />
