@@ -357,7 +357,6 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\Bokeh34.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Blend_Decal_Anim_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Transparent_Anim_Global.shader" />
-     <None Include="Assets\Fonts\blueCard\blueCard_80.fnt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Default\Unlit_Cutout_SoftEdge.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
