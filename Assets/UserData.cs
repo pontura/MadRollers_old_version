@@ -94,9 +94,10 @@ public class UserData : MonoBehaviour {
             PlayerPrefs.SetInt("hiscore", _hiscore);
         }
     }
-    void OnFacebookUserLoaded(string _facebookID)
+    void OnFacebookUserLoaded(string _facebookID, string _username)
     {
-        facebookId = _facebookID;
+        this.username = _username;
+        this.facebookId = _facebookID;
         PlayerPrefs.SetString("facebookId", _facebookID);
     }
 
@@ -138,13 +139,9 @@ public class UserData : MonoBehaviour {
         int a = 1;
         foreach (int star in stars)
         {
-            PlayerPrefs.SetInt("stars_level_" + a, 0);
             stars[a-1] = 0;
             a++;
         }
-        PlayerPrefs.SetInt("userId", 0);
-        PlayerPrefs.SetString("facebookId", "");
-        PlayerPrefs.SetString("username", "");
-        PlayerPrefs.SetInt("hiscore", 0);
+        PlayerPrefs.DeleteAll();
     }
 }

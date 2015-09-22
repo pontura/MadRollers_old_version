@@ -40,5 +40,12 @@ public class MainMenuActions : MonoBehaviour {
             Fade.LoadLevel("AddFacebookLogin", 1, 1, Color.black);
         }
     }
+    public void Logout()
+    {
+        if(FB.IsLoggedIn)
+            FB.Logout();
+        PlayerPrefs.DeleteAll();
+        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+    }
 
 }

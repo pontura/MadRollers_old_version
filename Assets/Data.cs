@@ -45,7 +45,6 @@ public class Data : MonoBehaviour {
 		//setAvatarUpgrades();
         levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked");
         events = GetComponent<Events>();
-        userData = GetComponent<UserData>();
         userData.Init();
 
         if (!Application.isWebPlayer)
@@ -54,7 +53,8 @@ public class Data : MonoBehaviour {
         GetComponent<MusicManager>().Init();
         GetComponent<Tracker>().Init();
         GetComponent<Missions>().Init();
-        GetComponent<DataController>().Init();
+
+        //GetComponent<DataController>().Init();
 
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {

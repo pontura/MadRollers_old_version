@@ -5,7 +5,7 @@ public class Events : MonoBehaviour {
 
     public System.Action<string> OnFacebookNewUserLogged = delegate { };
     public System.Action OnFacebookIdAdded = delegate { };
-    public System.Action<string> OnFacebookUserLoaded = delegate { };
+    public System.Action<string, string> OnFacebookUserLoaded = delegate { };
     public System.Action<string, int, int, bool> OnSetUserData = delegate { };
 
     public System.Action OnHiscoresLoaded = delegate { };

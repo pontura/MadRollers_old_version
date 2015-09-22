@@ -44,9 +44,12 @@ public class FBHolder : MonoBehaviour
             return;
         }
         profile = Util.DeserializeJSONProfile(result.Text);
-        //username = profile["name"];
+       
+        string username = profile["name"];
+        Data.Instance.userData.username = username;
+
         string facebookId = profile["id"];
-        Data.Instance.events.OnFacebookUserLoaded(facebookId);
+        Data.Instance.events.OnFacebookUserLoaded(facebookId, username);
     }
     void AuthCalback(FBResult result)
     {

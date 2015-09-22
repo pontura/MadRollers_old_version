@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 public class DataController : MonoBehaviour
 {
     private string secretKey = "mySecretKey";
-    const string URL = "https://www.madrollers.com/";
+    const string URL = "http://www.pontura.com/madrollers/";
     private string getUserIdByFacebookId_URL = URL + "getUserIdByFacebookId.php?";
     private string createUser_URL = URL + "createUser.php?";
     private string addFacebookId = URL + "addFacebookId.php?";
@@ -14,10 +14,8 @@ public class DataController : MonoBehaviour
 
     public void Init()
     {
-
         Data.Instance.events.OnHiscore += OnHiscore;
         GetHiscores();
-      //  Data.Instance.events.OnFacebookUserLoaded += OnFacebookUserLoaded;
     }
     void OnHiscore(int score)
     {
@@ -33,7 +31,8 @@ public class DataController : MonoBehaviour
     {
         if (facebookId == "0")
             yield break;
-        print("__________sigio: facebookId: " + facebookId);
+        
+        //print("__________sigio: facebookId: " + facebookId);
 
         string post_url = getUserIdByFacebookId_URL + "facebookId=" + facebookId;
         print("OnFacebook : " + post_url);
@@ -88,7 +87,7 @@ public class DataController : MonoBehaviour
         {
             print("user agregado: " + hs_post.text);
             int userId = int.Parse(hs_post.text);
-            SetUserData(username, facebookId, userId, hiscore, email);
+            SetUserData(Data.Instance.userData.username, facebookId, userId, hiscore, email);
         }
     }
     

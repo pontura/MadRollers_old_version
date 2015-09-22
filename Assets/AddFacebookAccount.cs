@@ -17,7 +17,7 @@ public class AddFacebookAccount : MonoBehaviour {
     {
         Data.Instance.GetComponentInChildren<FBHolder>().Login();
     }    
-    void OnFacebookUserLoaded(string facebookID)
+    void OnFacebookUserLoaded(string facebookID, string username)
     {
         Data.Instance.GetComponent<DataController>().AddFacebookIdToExistingAccount( Data.Instance.GetComponent<UserData>().userId,  facebookID);
     }
