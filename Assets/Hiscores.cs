@@ -6,7 +6,15 @@ using System.Text.RegularExpressions;
 
 public class Hiscores : MonoBehaviour {
 
-    public List<Hiscore> hiscores;
+    public List<LevelHiscore> levels;
+
+    [Serializable]
+    public class LevelHiscore
+    {
+        [SerializeField]
+        public List<Hiscore> hiscore;
+        public int id;
+    }
 
     [Serializable]
     public class Hiscore
@@ -17,7 +25,11 @@ public class Hiscores : MonoBehaviour {
         public int score;
     }
 
-    public void Init(string receivedData)
+    void Start()
+    {
+        SocialEvents.OnHiscoresLoaded += OnHiscoresLoaded;
+    }
+    void OnHiscoresLoaded(string receivedData)
     {
         Debug.Log("Sores Init: " + receivedData);
 
@@ -30,9 +42,9 @@ public class Hiscores : MonoBehaviour {
             hiscore.facebookID = userData[0];
             hiscore.username = userData[1];
             hiscore.score = int.Parse(userData[2]);
-            hiscores.Add(hiscore);
+          //  hiscores.Add(hiscore);
         }
 
-        Data.Instance.events.OnHiscoresLoaded();
+      //  SocialEvents.OnHiscoresLoaded();
     }
 }

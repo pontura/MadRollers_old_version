@@ -28,13 +28,13 @@ public class FacebookScene : MonoBehaviour {
         }
         else
         {
-            Data.Instance.events.OnFacebookUserLoaded += OnFacebookUserLoaded;
+            SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
             SetActive(false);
         }
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnFacebookUserLoaded -= OnFacebookUserLoaded;
+       SocialEvents.OnFacebookUserLoaded -= OnFacebookUserLoaded;
     }
     void SetActive(bool isLoggedIn)
     {
@@ -44,7 +44,7 @@ public class FacebookScene : MonoBehaviour {
             hiscore.text = Data.Instance.userData.hiscore.ToString();
             profilePicture.setPictre(Data.Instance.userData.facebookId);
 
-            ButtonCompite.SetActive(false);
+           // ButtonCompite.SetActive(false);
         }
         else
         {

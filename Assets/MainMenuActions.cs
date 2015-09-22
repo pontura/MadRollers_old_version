@@ -6,6 +6,7 @@ public class MainMenuActions : MonoBehaviour {
 
     public Text PlayLabel;
     public Text DebugText;
+    public ProfilePicture WinnerPicture;
 
 	void Start () {
         DebugText.text = "username: " + Data.Instance.userData.username + " - id: " + Data.Instance.userData.facebookId + " - id: " + Data.Instance.userData.userId;
@@ -18,15 +19,22 @@ public class MainMenuActions : MonoBehaviour {
         FacebookScene facebookScene = GetComponent<FacebookScene>();
 
         facebookScene.Init( Data.Instance.userData.isPlayerDataLogged() );
-    }    
+    }
+    public void Compite()
+    {
+        Data.Instance.playMode = Data.PlayModes.COMPETITION;
+        Data.Instance.LoadLevel("Competitions");
+        Data.Instance.levelUnlockedID = Data.Instance.competitions.GetUnlockedLevel();
+    }
     public void MissionsScene()
     {
+        Data.Instance.playMode = Data.PlayModes.STORY;
         Fade.LoadLevel("LevelSelector", 1, 1, Color.black);
+        Data.Instance.levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
     }
     public void Registry()
     {
-        UserData userData = Data.Instance.GetComponent<UserData>();
-        if (userData.userId == 0)
+        if (Data.Instance.userData.userId == 0)
             Fade.LoadLevel("Registry", 1, 1, Color.black);
     }
     public void About()

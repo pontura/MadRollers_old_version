@@ -14,11 +14,11 @@ public class SimpleLogin : MonoBehaviour {
 
     void Start()
     {
-        Data.Instance.events.OnSetUserData += OnSetUserData;
+        SocialEvents.OnSetUserData += OnSetUserData;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnSetUserData -= OnSetUserData;
+        SocialEvents.OnSetUserData -= OnSetUserData;
     }
     void OnSetUserData(string id, int facebookId, int hiscore, bool saveIt)
     {
@@ -31,7 +31,7 @@ public class SimpleLogin : MonoBehaviour {
     }
     void RegistryOk()
     {
-        Data.Instance.GetComponent<DataController>().CreateUser(nameLabel.text, "0", Data.Instance.userData.hiscore, emailField.text, passLabel.text);        
+        Social.Instance.dataController.CreateUser(nameLabel.text, "0", Data.Instance.userData.hiscore, emailField.text, passLabel.text);        
     }
     public void Back()
     {

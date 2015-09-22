@@ -3,22 +3,23 @@ using System.Collections;
 
 public class Events : MonoBehaviour {
 
-    public System.Action<string> OnFacebookNewUserLogged = delegate { };
-    public System.Action OnFacebookIdAdded = delegate { };
-    public System.Action<string, string> OnFacebookUserLoaded = delegate { };
-    public System.Action<string, int, int, bool> OnSetUserData = delegate { };
+    //public System.Action<string> OnFacebookNewUserLogged = delegate { };
+    //public System.Action OnFacebookIdAdded = delegate { };
+    //public System.Action<string, string> OnFacebookUserLoaded = delegate { };
+    //public System.Action<string, int, int, bool> OnSetUserData = delegate { };
 
-    public System.Action OnHiscoresLoaded = delegate { };
-    public System.Action OnGameStart= delegate { };
-    public System.Action<bool> OnGamePaused = delegate { };
+    //public System.Action OnHiscoresLoaded = delegate { };
 
-    public System.Action<int> OnHiscore = delegate { };
-    public System.Action<int> OnMissionStart = delegate { };
+    //public System.Action<int> OnHiscore = delegate { };   
+ 
     public System.Action OnInterfacesStart = delegate { };
+    public System.Action OnGameStart = delegate { };
+    public System.Action<bool> OnGamePaused = delegate { };
 
     public System.Action<int, int> OnSetStarsToMission = delegate { };
     
     public void MissionStart(int levelID) { OnMissionStart(levelID); }
+    public System.Action<int> OnMissionStart = delegate { };
 
     public System.Action<int> OnMissionComplete = delegate { };
     public void MissionComplete() { OnMissionComplete(Data.Instance.missionActive); }    

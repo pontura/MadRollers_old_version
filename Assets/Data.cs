@@ -8,18 +8,32 @@ public class Data : MonoBehaviour {
     public int totalReplays = 3;
     public int replays = 0;
 
+    [HideInInspector]
     public UserData userData;
-
+    [HideInInspector]
     public Events events;
+    [HideInInspector]
     public ObjectPool sceneObjectsPool;
+    [HideInInspector]
+    public Missions missions;
+    [HideInInspector]
+    public Competitions competitions;
+
     static Data mInstance = null;
+
     public modes mode;
 
+    [HideInInspector]
     public VoicesManager voicesManager;
 
     public bool DEBUG;
 
-    
+    public PlayModes playMode;
+    public enum PlayModes
+    {
+        STORY,
+        COMPETITION
+    }
     public enum modes
     {
         ACCELEROMETER,
@@ -39,12 +53,22 @@ public class Data : MonoBehaviour {
         }
     }
 	void Start () {
-
+        if (Application.loadedLevelName != "01LandingPage")
+        {
+            Application.LoadLevel("01LandingPage");
+            return;
+        }
         mInstance = this;
 		DontDestroyOnLoad(this);
+        
+
 		//setAvatarUpgrades();
-        levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked");
+        levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
         events = GetComponent<Events>();
+        missions = GetComponent<Missions>();
+        competitions = GetComponent<Competitions>();
+
+        competitions.Init();
         userData.Init();
 
         if (!Application.isWebPlayer)
@@ -66,24 +90,35 @@ public class Data : MonoBehaviour {
 
         if (Application.isWebPlayer)
             Application.ExternalCall("OnUnityReady");
-	}
-
-    
+	}    
 	public void setMission(int num)
 	{
-        print("Set mission " + num + "   levelUnlockedID: " + levelUnlockedID);
+        print("MODE: " + playMode + " Set NEW mission " + num + "   levelUnlockedID: " + levelUnlockedID);
         replays = 0;
-        if (num > levelUnlockedID)
+
+        levelUnlockedID = num - 1;
+        missionActive = num;
+
+        if (playMode == PlayModes.COMPETITION)
         {
-            PlayerPrefs.SetInt("levelUnlocked", num-1);
-            levelUnlockedID = num - 1;
+            SocialEvents.OnMissionReady(num);
         }
-		missionActive = num;
+        else
+        {
+            if (num > levelUnlockedID)
+            {
+                PlayerPrefs.SetInt("levelUnlocked_0", num - 1);        
+            }
+        }
 	}
     public void resetProgress()
     {
-        PlayerPrefs.SetInt("levelUnlocked", 0);
+        PlayerPrefs.DeleteAll();
         levelUnlockedID = 0;
         userData.resetProgress();
+    }
+    public void LoadLevel(string levelName)
+    {
+        Fade.LoadLevel(levelName, 0.5f, 0.5f, Color.black);
     }
 }

@@ -7,6 +7,7 @@ public class Missions : MonoBehaviour {
     public Mission test_area;
 
 	public Mission[] missions;
+    public Competitions competitions;
 	public int MissionActiveID = 0;
 
     public Mission MissionActive;
@@ -45,15 +46,13 @@ public class Missions : MonoBehaviour {
         data.events.OnListenerDispatcher -= OnListenerDispatcher;
     }
     private void OnListenerDispatcher(string message)
-    {
-        
+    {        
        if (message == "ShowMissionName")
-            activateMissionByListener();
-        
+            activateMissionByListener();        
     }
 	public void Init (int _MissionActiveID, Level level) {
 
-
+       
         data.events.OnListenerDispatcher += OnListenerDispatcher;
         state = states.INACTIVE; 
 
@@ -66,9 +65,6 @@ public class Missions : MonoBehaviour {
         name_txt = level.missionName;
         desc_txt = level.missionDesc;
 
-
-
-
         if (data.DEBUG && test_area)
         {
             MissionActive = test_area;
@@ -76,10 +72,18 @@ public class Missions : MonoBehaviour {
         }
         else
         {
-            MissionActive = missions[MissionActiveID];
+          //  print("busca : " + MissionActiveID);
+            MissionActive = GetActualMissions()[MissionActiveID];
             MissionActive.reset();
         }
 	}
+    public Mission[] GetActualMissions()
+    {
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+            return competitions.GetMissions();
+        else return missions;
+
+    }
 	public AreasManager getAreasManager()
 	{
 		return MissionActive.GetComponent<AreasManager>();
@@ -91,11 +95,11 @@ public class Missions : MonoBehaviour {
 	}
 	public void StartNext()
 	{
-        if (MissionActiveID == missions.Length)
+        if (MissionActiveID == GetActualMissions().Length)
         {
-            MissionActiveID = Random.Range(2, 18);
+            MissionActiveID = Random.Range(2, GetActualMissions().Length-1);
         }
-		MissionActive = missions[MissionActiveID];
+        MissionActive = GetActualMissions()[MissionActiveID];
 		MissionActive.reset();
 		MissionActiveID++;
 	}

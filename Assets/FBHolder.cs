@@ -49,7 +49,7 @@ public class FBHolder : MonoBehaviour
         Data.Instance.userData.username = username;
 
         string facebookId = profile["id"];
-        Data.Instance.events.OnFacebookUserLoaded(facebookId, username);
+       SocialEvents.OnFacebookUserLoaded(facebookId, username);
     }
     void AuthCalback(FBResult result)
     {

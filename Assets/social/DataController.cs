@@ -14,7 +14,7 @@ public class DataController : MonoBehaviour
 
     public void Init()
     {
-        Data.Instance.events.OnHiscore += OnHiscore;
+        SocialEvents.OnHiscore += OnHiscore;
         GetHiscores();
     }
     void OnHiscore(int score)
@@ -57,7 +57,7 @@ public class DataController : MonoBehaviour
             }
             catch
             {
-                Data.Instance.GetComponent<DataController>().CreateUserByFacebookID(facebookId);
+                Social.Instance.dataController.CreateUserByFacebookID(facebookId);
                 Debug.Log("New user!");
               //  CreateUser(GetComponent<UserData>().username, facebookId, GetComponent<UserData>().hiscore);
             }
@@ -93,7 +93,7 @@ public class DataController : MonoBehaviour
     
     void SetUserData(string userName, string facebookID, int userId, int hiscore, string email)
     {
-        Data.Instance.events.OnSetUserData(userName, userId, hiscore, true);
+        SocialEvents.OnSetUserData(userName, userId, hiscore, true);
     }
     IEnumerator PostScores(int userId, int hiscore)
     {
@@ -124,7 +124,7 @@ public class DataController : MonoBehaviour
             Debug.Log("addFacebookID ERROR" + hs_post.error);
         else
         {
-            Data.Instance.events.OnFacebookIdAdded();
+            SocialEvents.OnFacebookIdAdded();
         }
     }
 
@@ -143,7 +143,7 @@ public class DataController : MonoBehaviour
             print("There was an error in getting hiscores: " + receivedData.error);
         else
         {
-            Data.Instance.GetComponent<Hiscores>().Init(receivedData.text);
+            SocialEvents.OnHiscoresLoaded(receivedData.text);
         }
     }
 
@@ -166,7 +166,7 @@ public class DataController : MonoBehaviour
     //            string score = userData[2];
     //        }
 
-    //        Data.Instance.events.OnHiscoresLoaded();
+    //        SocialEvents.OnHiscoresLoaded();
     //    }
 
     //}

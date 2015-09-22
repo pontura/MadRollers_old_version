@@ -61,6 +61,7 @@
      <Compile Include="Assets\CheckPoint.cs" />
      <Compile Include="Assets\CompetitionButton.cs" />
      <Compile Include="Assets\CompetitionSelection.cs" />
+     <Compile Include="Assets\Competitions.cs" />
      <Compile Include="Assets\Continue.cs" />
      <Compile Include="Assets\Data.cs" />
      <Compile Include="Assets\Decoration.cs" />
@@ -149,7 +150,6 @@
      <Compile Include="Assets\Md5Test.cs" />
      <Compile Include="Assets\Mission.cs" />
      <Compile Include="Assets\MissionButton.cs" />
-     <Compile Include="Assets\MissionScene.cs" />
      <Compile Include="Assets\MissionSignal.cs" />
      <Compile Include="Assets\Missions.cs" />
      <Compile Include="Assets\MissionsTopPanel.cs" />
@@ -170,6 +170,7 @@
      <Compile Include="Assets\RainManager.cs" />
      <Compile Include="Assets\RandomPosition.cs" />
      <Compile Include="Assets\Ranking.cs" />
+     <Compile Include="Assets\RankingLine.cs" />
      <Compile Include="Assets\RegistryScreen.cs" />
      <Compile Include="Assets\Robot.cs" />
      <Compile Include="Assets\SceneObject.cs" />

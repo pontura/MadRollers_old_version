@@ -18,13 +18,13 @@ public class UserData : MonoBehaviour {
 
 	public void Init () {
         data = Data.Instance;
-        data.events.OnSetUserData += OnSetUserData;
+        SocialEvents.OnSetUserData += OnSetUserData;
       //  data.events.OnHiscore += OnHiscore;
         data.events.OnListenerDispatcher += OnListenerDispatcher;
         data.events.OnScoreOn += OnScoreOn;
         data.events.OnGameStart += OnGameStart;
         data.events.OnSetStarsToMission += OnSetStarsToMission;
-        data.events.OnFacebookUserLoaded += OnFacebookUserLoaded;
+        SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
 
         //  RESET ID:
         //  PlayerPrefs.SetInt("userId", 0);
@@ -63,7 +63,7 @@ public class UserData : MonoBehaviour {
     }
     void BothUserIdAndNameFromWeb()
     {
-        Data.Instance.GetComponent<DataController>().CheckIfFacebookIdExists(facebookId);
+        Social.Instance.dataController.CheckIfFacebookIdExists(facebookId);
     }
     public bool isPlayerDataLogged()
     {
@@ -103,6 +103,8 @@ public class UserData : MonoBehaviour {
 
     void OnSetStarsToMission(int missionId, int starsQty)
     {
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
+
         if (stars[missionId - 1] < starsQty)
         {
             PlayerPrefs.SetInt("stars_level_" + missionId, starsQty);

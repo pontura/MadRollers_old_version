@@ -3,7 +3,11 @@ using System.Collections;
 
 public class Social : MonoBehaviour {
 
+    
     static Social mInstance = null;
+
+    [HideInInspector]
+    public DataController dataController;
 
     public static Social Instance
     {
@@ -19,6 +23,8 @@ public class Social : MonoBehaviour {
     void Start()
     {
         mInstance = this;
-        GetComponent<DataController>().Init();
+        DontDestroyOnLoad(this);
+        dataController = GetComponent<DataController>();
+        dataController.Init();
     }
 }

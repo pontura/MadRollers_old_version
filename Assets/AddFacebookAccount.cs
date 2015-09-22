@@ -5,13 +5,13 @@ public class AddFacebookAccount : MonoBehaviour {
 
     void Start()
     {
-        Data.Instance.events.OnFacebookUserLoaded += OnFacebookUserLoaded;
-        Data.Instance.events.OnFacebookIdAdded += OnFacebookIdAdded;
+       SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
+        SocialEvents.OnFacebookIdAdded += OnFacebookIdAdded;
     }
     public void OnDestroy()
     {
-        Data.Instance.events.OnFacebookUserLoaded -= OnFacebookUserLoaded;
-        Data.Instance.events.OnFacebookIdAdded -= OnFacebookIdAdded;
+       SocialEvents.OnFacebookUserLoaded -= OnFacebookUserLoaded;
+        SocialEvents.OnFacebookIdAdded -= OnFacebookIdAdded;
     }
     public void AddAccount()
     {
@@ -19,7 +19,7 @@ public class AddFacebookAccount : MonoBehaviour {
     }    
     void OnFacebookUserLoaded(string facebookID, string username)
     {
-        Data.Instance.GetComponent<DataController>().AddFacebookIdToExistingAccount( Data.Instance.GetComponent<UserData>().userId,  facebookID);
+        Social.Instance.dataController.AddFacebookIdToExistingAccount( Data.Instance.GetComponent<UserData>().userId,  facebookID);
     }
     void OnFacebookIdAdded()
     {

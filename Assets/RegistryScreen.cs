@@ -5,25 +5,25 @@ public class RegistryScreen : MonoBehaviour {
 
     void Start()
     {
-        Data.Instance.events.OnFacebookUserLoaded += OnFacebookUserLoaded;
-        Data.Instance.events.OnFacebookNewUserLogged += OnFacebookNewUserLogged;
+        SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
+        SocialEvents.OnFacebookNewUserLogged += OnFacebookNewUserLogged;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnFacebookUserLoaded -= OnFacebookUserLoaded;
-        Data.Instance.events.OnFacebookNewUserLogged -= OnFacebookNewUserLogged;
+        SocialEvents.OnFacebookUserLoaded -= OnFacebookUserLoaded;
+        SocialEvents.OnFacebookNewUserLogged -= OnFacebookNewUserLogged;
     }
     void OnFacebookUserLoaded(string id, string username)
     {
-        Data.Instance.GetComponent<DataController>().CheckIfFacebookIdExists(id);
-        // trae: Data.Instance.events.OnFacebookNewUserLogged += OnFacebookNewUserLogged;
+        Social.Instance.dataController.CheckIfFacebookIdExists(id);
+        // trae: SocialEvents.OnFacebookUserLoaded += OnFacebookNewUserLogged;
 
         Back();
     }
     void OnFacebookNewUserLogged(string facebookID)
     {
         print("__________OnFacebookNewUserLogged");
-       // Data.Instance.GetComponent<DataController>().CreateUserByFacebookID(facebookID);
+       // Social.Instance.dataController.CreateUserByFacebookID(facebookID);
     }
     public void FacebookLogin()
     {

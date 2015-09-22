@@ -4,15 +4,15 @@ using System.Collections;
 public class AreasManager : MonoBehaviour {
 
 	public Area startingArea;
-	public int num = 0;
+    private int num = 0;
 
-	public Area[] testingAreas;	
-	public AreaSet testingAreaSet;	
+    //public Area[] testingAreas;	
+    //public AreaSet testingAreaSet;	
 
 	public AreaSet[] areaSets;
-	public Area[] skyAreas;
+	//public Area[] skyAreas;
 
-	public int activeAreaSetID = 1;
+	private int activeAreaSetID = 1;
 
 	private AreaSet areaSet;
 
@@ -44,7 +44,6 @@ public class AreasManager : MonoBehaviour {
 		//camera.setOrientation( areaSet.getCameraOrientation(), 23);
 	}
 	public Area getRandomArea (bool startingArea) {
-
         num++;
 
         if (!areaSet)
@@ -58,22 +57,23 @@ public class AreasManager : MonoBehaviour {
 		{
 			area = getStartingArea();
 			num = 0;
-		} else 
-		if(testingAreas.Length > 0)
-			area = testingAreas[Random.Range(0, testingAreas.Length)];
-		else
-		if(testingAreaSet)
-		{
-			areaSet = testingAreaSet;
-			area = areaSet.getArea();
-			changeCameraOrientation();
-		}
+		} 
 		else
 		{
             if (activeAreaSetID < areaSets.Length && num >= areaSet.totalAreasInSet)
             {
-                setNewAreaSet();
-                activeAreaSetID++;
+                if (Data.Instance.missions.MissionActive.isCompetition && Data.Instance.competitions.GetUnlockedLevel() > 4)
+                {
+                    int totalAreaSets = Data.Instance.missions.GetActualMissions().Length;                   
+                    activeAreaSetID = Random.Range(0,totalAreaSets);
+                    print("___________totalAreaSets: " + totalAreaSets + " activeAreaSetID: " + activeAreaSetID);
+                    setNewAreaSet();                   
+                }
+                else
+                {
+                    setNewAreaSet();
+                    activeAreaSetID++;
+                }
                 num = 0;
             }
            
@@ -82,8 +82,8 @@ public class AreasManager : MonoBehaviour {
 		return area;
 	}
 	public Area getRandomSkyArea () {
-		Area area;
-		area = skyAreas[Random.Range(0, skyAreas.Length)];
+		Area area = null;
+		//area = skyAreas[Random.Range(0, skyAreas.Length)];
 		return area;
 	}
 	public Area getStartingArea()
