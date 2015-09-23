@@ -102,7 +102,7 @@ public class Player : MonoBehaviour {
    public void OnMissionStart(int missionID)
    {
 
-       if (Data.Instance.DEBUG)
+       if (Data.Instance.DEBUG || Data.Instance.playMode == Data.PlayModes.COMPETITION)
        {
            canJump = true;
            canShoot = true;

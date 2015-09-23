@@ -27,6 +27,7 @@ public class Ranking : MonoBehaviour {
             RankingLine newObj = Instantiate(rankingLine) as RankingLine;
             newObj.Init(hiscore.username, hiscore.score, hiscore.facebookID);
             newObj.transform.SetParent(container.transform);
+            newObj.transform.localScale = Vector3.one;
         }
     }
 }

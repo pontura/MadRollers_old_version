@@ -147,4 +147,8 @@ public class Hiscores : MonoBehaviour {
     {
         return levels[0].myScore;
     }
+    public void Reset()
+    {
+        levels[0].myScore = 0;
+    }
 }

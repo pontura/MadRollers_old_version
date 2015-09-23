@@ -39,14 +39,17 @@ public class GuiTutorial : MonoBehaviour {
     }
 	void Start () 
     {
+        
         DoubleJumpHelpSprite.enabled = false;
-        helpSprite.enabled = false;
-        buttonJump.enabled = false;
-        buttonShoot.enabled = false;
+        helpSprite.enabled = false;       
         helpJumpSpriteKeyboard.enabled = false;
-
         ShootHelpSprite.enabled = false;
         helpShootSpriteKeyboard.enabled = false;
+
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
+
+        buttonJump.enabled = false;
+        buttonShoot.enabled = false;
         
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarJump += OnAvatarJump;

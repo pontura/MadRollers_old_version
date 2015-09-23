@@ -139,6 +139,10 @@ public class UserData : MonoBehaviour {
     }
     public void resetProgress()
     {
+        FB.Logout();
+        userId = 0;
+        facebookId = "";
+        username = "";
         int a = 1;
         foreach (int star in stars)
         {

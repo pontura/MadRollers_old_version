@@ -13,6 +13,12 @@ public class MissionSignal : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         AllMissions = Data.Instance.GetComponent<Missions>();
 
         Data.Instance.events.OnMissionComplete += OnMissionComplete;

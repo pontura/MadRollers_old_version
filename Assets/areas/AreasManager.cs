@@ -46,6 +46,7 @@ public class AreasManager : MonoBehaviour {
 	public Area getRandomArea (bool startingArea) {
         num++;
 
+        print(areaSet + "areaSets.Length: " + areaSets.Length + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
         if (!areaSet)
         {
             areaSet = areaSets[0];
@@ -60,13 +61,14 @@ public class AreasManager : MonoBehaviour {
 		} 
 		else
 		{
-            if (activeAreaSetID < areaSets.Length && num >= areaSet.totalAreasInSet)
+            //if (activeAreaSetID < areaSets.Length && num >= areaSet.totalAreasInSet)
+            if (num >= areaSet.totalAreasInSet)
             {
-                if (Data.Instance.missions.MissionActive.isCompetition && Data.Instance.competitions.GetUnlockedLevel() > 4)
+                if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
                 {
-                    int totalAreaSets = Data.Instance.missions.GetActualMissions().Length;                   
-                    activeAreaSetID = Random.Range(0,totalAreaSets);
-                   // print("___________totalAreaSets: " + totalAreaSets + " activeAreaSetID: " + activeAreaSetID);
+                   // int totalAreaSets = Data.Instance.missions.GetActualMissions().Length;
+                    print("__________________SI ");
+                    activeAreaSetID = Random.Range(0, areaSet.totalAreasInSet);
                     setNewAreaSet();                   
                 }
                 else

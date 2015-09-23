@@ -21,6 +21,7 @@ public class GameMenu : MonoBehaviour {
     }
     public void ChangeLevels()
     {
+        SocialEvents.OnGetHiscores(1);
         Game.Instance.GotoLevelSelector();
     }
     private void Reset()

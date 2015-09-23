@@ -64,7 +64,13 @@ public class Missions : MonoBehaviour {
 
         name_txt = level.missionName;
         desc_txt = level.missionDesc;
-
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+        {
+           // MissionActiveID = 0;
+            MissionActive = Data.Instance.competitions.competitions[0].missions[0];
+            MissionActive.reset();
+            MissionActiveID = 0;  
+        } else
         if (data.DEBUG && test_area)
         {
             MissionActive = test_area;
@@ -72,15 +78,8 @@ public class Missions : MonoBehaviour {
         }
         else
         {
-          //  print("busca : " + MissionActiveID);
             MissionActive = GetActualMissions()[MissionActiveID];
             MissionActive.reset();
-        }
-
-        if (MissionActive.isCompetition)
-        {
-            _MissionActiveID = Random.Range(1, GetActualMissions().Length + 1);
-          //  print("_________bUSCA MISION RNDOM: " + _MissionActiveID);
         }
 
 
@@ -103,6 +102,15 @@ public class Missions : MonoBehaviour {
 	}
 	public void StartNext()
 	{
+        
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+        {
+            print("____TERMINO LA MISION EN MODO COMPETENCIA");
+            MissionActiveID = 0;
+            MissionActive.reset();
+            return;
+        }
+        else
         if (MissionActiveID == GetActualMissions().Length)
         {
             MissionActiveID = Random.Range(2, GetActualMissions().Length-1);
