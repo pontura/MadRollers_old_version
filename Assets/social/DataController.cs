@@ -10,17 +10,24 @@ public class DataController : MonoBehaviour
     private string createUser_URL = URL + "createUser.php?";
     private string addFacebookId = URL + "addFacebookId.php?";
     private string addScore_URL = URL + "setHiscore.php?";
-    private string getHighscores_URL = URL + "getHiscores.php";
+    private string getHighscores_URL = URL + "getHiscores.php?";
 
     public void Init()
     {
-        SocialEvents.OnHiscore += OnHiscore;
-        GetHiscores();
+        SocialEvents.OnCompetitionHiscore += OnCompetitionHiscore;
+        SocialEvents.OnGetHiscores += OnGetHiscores;
     }
-    void OnHiscore(int score)
+    void OnCompetitionHiscore(int levelID, int score, bool isNew)
     {
+        int userId = GetComponent<UserData>().userId;
+        if (userId < 1)
+        {
+            Debug.Log("Usuario no registrado como para grabar score");
+            return;
+        }
         Debug.Log("save hiscore: " + score + " userid: " + GetComponent<UserData>().userId);
-        StartCoroutine(PostScores(GetComponent<UserData>().userId, score));
+       // StartCoroutine(PostScores(GetComponent<UserData>().userId, score));
+        StartCoroutine(PostCompetitionScore(GetComponent<UserData>().userId, levelID, score, isNew));
     }
     public void CheckIfFacebookIdExists(string facebookId)
     {
@@ -95,6 +102,20 @@ public class DataController : MonoBehaviour
     {
         SocialEvents.OnSetUserData(userName, userId, hiscore, true);
     }
+
+    IEnumerator PostCompetitionScore(int userId, int levelId, int score, bool isNew)
+    {
+        Debug.Log("SEt hiscore id: " + userId + " levelId: " + levelId + " score= " + score);
+        string hash = Md5Test.Md5Sum(userId.ToString() + levelId.ToString() + score.ToString() + secretKey);
+        string post_url = addScore_URL + "id=" + userId.ToString() + "&levelID=" + levelId.ToString() + "&score=" + score + "&new=" + isNew + "&hash=" + hash;
+        print("Post Competition Score : " + post_url);
+        WWW hs_post = new WWW(post_url);
+        yield return hs_post;
+        if (hs_post.error != null)
+            print("There was an error posting the high score: " + hs_post.error);
+        else
+            print("SAVED_ " + hs_post.text);
+    }
     IEnumerator PostScores(int userId, int hiscore)
     {
         Debug.Log("SEt hiscore id: " + userId + " score= " + hiscore);
@@ -111,6 +132,8 @@ public class DataController : MonoBehaviour
 
     public void AddFacebookIdToExistingAccount(int userId, string facebookId)
     {
+        print("AddFacebookIdToExistingAccount userId: " + userId + " facebookId " + facebookId);
+
         StartCoroutine(AddFacebookId(userId, facebookId));
     }
     IEnumerator AddFacebookId(int userId, string facebookId)
@@ -128,14 +151,13 @@ public class DataController : MonoBehaviour
         }
     }
 
-
-    public void GetHiscores()
+    void OnGetHiscores(int levelID)
     {
-        StartCoroutine(GetHiscoresRoutine());
+        StartCoroutine(GetHiscoresRoutine(levelID));
     }
-    IEnumerator GetHiscoresRoutine()
+    IEnumerator GetHiscoresRoutine(int levelID)
     {
-        string post_url = getHighscores_URL;
+        string post_url = getHighscores_URL + "levelID=" + levelID;
         print("GetHiscoresRoutine : " + post_url);
         WWW receivedData = new WWW(post_url);
         yield return receivedData;

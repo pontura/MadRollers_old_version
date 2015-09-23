@@ -8,6 +8,8 @@ public class Social : MonoBehaviour {
 
     [HideInInspector]
     public DataController dataController;
+    [HideInInspector]
+    public Hiscores hiscores;
 
     public static Social Instance
     {
@@ -25,6 +27,9 @@ public class Social : MonoBehaviour {
         mInstance = this;
         DontDestroyOnLoad(this);
         dataController = GetComponent<DataController>();
+        hiscores = GetComponent<Hiscores>();
         dataController.Init();
+
+        SocialEvents.OnGetHiscores(1);
     }
 }

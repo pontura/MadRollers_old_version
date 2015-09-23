@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MissionsTopPanel : MonoBehaviour
 {
+
     void Start()
     {
         Data.Instance.events.OnMissionComplete += OnMissionComplete;

@@ -9,6 +9,14 @@ public class FBHolder : MonoBehaviour
     public Texture2D picture;
    // public string username;
     private Dictionary<string, string> profile = null;
+    void Start()
+    {
+        SocialEvents.FBLogin += FBLogin;
+    }
+    void FBLogin()
+    {
+        Login();
+    }
     public void Init()
     {
         FB.Init(SetInit, OnHideUnity);
@@ -48,8 +56,19 @@ public class FBHolder : MonoBehaviour
         string username = profile["name"];
         Data.Instance.userData.username = username;
 
-        string facebookId = profile["id"];
-       SocialEvents.OnFacebookUserLoaded(facebookId, username);
+        string facebookID = profile["id"];
+        SocialEvents.OnFacebookUserLoaded(facebookID, username);
+
+       if (Data.Instance.userData.userId > 0)
+       {
+           Debug.Log("Usuario existía en la base, agrega facebookID nomas");
+           Social.Instance.dataController.AddFacebookIdToExistingAccount(Data.Instance.GetComponent<UserData>().userId, facebookID);
+       }
+       else
+       {
+           Debug.Log("Usuario Nuevo : No existe un usuario en la base con ese Facebook id");
+           Social.Instance.dataController.CheckIfFacebookIdExists(facebookID);
+       }
     }
     void AuthCalback(FBResult result)
     {

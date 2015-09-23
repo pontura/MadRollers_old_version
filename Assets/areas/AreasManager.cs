@@ -66,7 +66,7 @@ public class AreasManager : MonoBehaviour {
                 {
                     int totalAreaSets = Data.Instance.missions.GetActualMissions().Length;                   
                     activeAreaSetID = Random.Range(0,totalAreaSets);
-                    print("___________totalAreaSets: " + totalAreaSets + " activeAreaSetID: " + activeAreaSetID);
+                   // print("___________totalAreaSets: " + totalAreaSets + " activeAreaSetID: " + activeAreaSetID);
                     setNewAreaSet();                   
                 }
                 else

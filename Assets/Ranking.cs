@@ -7,16 +7,26 @@ public class Ranking : MonoBehaviour {
 
     public GameObject container;
     public RankingLine rankingLine;
+    private bool rankingLoaded;
 
-	void Start () {
-
+	void Start () 
+    {
+        int levelID = Data.Instance.competitions.current;
 	}
-    void OnDestroy()
+    void Update()
     {
-
+        if (rankingLoaded) return;
+        if (Social.Instance.hiscores.levels[0].hiscore.Count == 0) return;
+        rankingLoaded = true;
+        LoadRanking();
     }
-    void OnHiscoresLoaded(string asd)
+    void LoadRanking()
     {
-
+        foreach (Hiscores.Hiscore hiscore in Social.Instance.hiscores.levels[0].hiscore)
+        {
+            RankingLine newObj = Instantiate(rankingLine) as RankingLine;
+            newObj.Init(hiscore.username, hiscore.score, hiscore.facebookID);
+            newObj.transform.SetParent(container.transform);
+        }
     }
 }

@@ -53,7 +53,6 @@ public class LevelSelector : MonoBehaviour {
             {
                 button.disableButton();
             }
-            print(missionID);
             button.Init(missionID, mission.description.ToUpper());
 
             missionID++;

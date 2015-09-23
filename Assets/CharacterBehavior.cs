@@ -191,6 +191,8 @@ public class CharacterBehavior : MonoBehaviour {
     {
         if (state == states.CRASH) return;
 
+        SaveDistance();
+
         textureChanger.Dead();
 
         GetComponent<AudioSource>().clip = FXCrash;
@@ -204,18 +206,19 @@ public class CharacterBehavior : MonoBehaviour {
         
         removeColliders();
         _animation.Play("Crash");
-        StartCoroutine(waitToFall());
+       // StartCoroutine(waitToFall());
     }
-    IEnumerator waitToFall()
+    void SaveDistance()
     {
-        yield return new WaitForSeconds(2.5f);
-        Die();
+        if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
+            SocialEvents.OnFinalDistance(distance);
     }
 	public void Die()
 	{
 		if(state == states.DEAD) return;
 
-        //Data.Instance.events.OnAvatarDie(this);
+        SaveDistance();
+
 		state = states.DEAD;
         _animation.Play("FallDown");
 

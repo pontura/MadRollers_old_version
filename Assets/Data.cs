@@ -93,7 +93,7 @@ public class Data : MonoBehaviour {
 	}    
 	public void setMission(int num)
 	{
-        print("MODE: " + playMode + " Set NEW mission " + num + "   levelUnlockedID: " + levelUnlockedID);
+        //print("MODE: " + playMode + " Set NEW mission " + num + "   levelUnlockedID: " + levelUnlockedID);
         replays = 0;
 
         levelUnlockedID = num - 1;

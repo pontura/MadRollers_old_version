@@ -6,29 +6,37 @@ public class ProfilePicture : MonoBehaviour {
 
    public void Init(Hiscores.Hiscore data)
     {
-        setPictre(data.facebookID);
+        SetPicture(data.facebookID);
     }
-   public void setPictre(string facebookID)
+   public void SetPicture(string facebookID)
    {
-       StartCoroutine(GetPicture(facebookID));
+       Texture2D texture2d = Social.Instance.hiscores.GetPicture(facebookID);
+       if (texture2d)
+           SetLoadedPicture(texture2d);
+       else
+            StartCoroutine(GetPicture(facebookID));
+   }
+   public void SetLoadedPicture(Texture2D texture2d)
+   {
+       GetComponent<Image>().sprite = Sprite.Create(texture2d, new Rect(0, 0, 128, 128), Vector2.zero);
    }
    IEnumerator GetPicture(string facebookID)
     {
         if (facebookID == "") 
             yield break;
 
-        print("Busca " + facebookID);
+       // print("Busca " + facebookID);
 
         WWW receivedData = new WWW("https" + "://graph.facebook.com/" + facebookID + "/picture?width=128&height=128");
         yield return receivedData;
         if (receivedData.error == null)
         {
-            GetComponent<Image>().sprite = Sprite.Create(receivedData.texture, new Rect(0, 0, 128, 128), Vector2.zero);
+            SetLoadedPicture(receivedData.texture);
+            SocialEvents.OnFacebookImageLoaded(facebookID, receivedData.texture);
         }
         else
         {
             Debug.Log("ERROR trayendo imagen");
         }
-
     }
 }

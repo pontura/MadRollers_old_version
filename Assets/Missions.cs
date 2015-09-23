@@ -76,6 +76,14 @@ public class Missions : MonoBehaviour {
             MissionActive = GetActualMissions()[MissionActiveID];
             MissionActive.reset();
         }
+
+        if (MissionActive.isCompetition)
+        {
+            _MissionActiveID = Random.Range(1, GetActualMissions().Length + 1);
+          //  print("_________bUSCA MISION RNDOM: " + _MissionActiveID);
+        }
+
+
 	}
     public Mission[] GetActualMissions()
     {
@@ -116,7 +124,6 @@ public class Missions : MonoBehaviour {
             name_txt.text = "MISSION " + MissionActiveID;
             desc_txt.text = MissionActive.description.ToUpper();
         }
-
         
         MissionActive.points = 0;
         lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().getMainCharacter().distance;

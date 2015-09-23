@@ -7,6 +7,7 @@ public class MainMenuActions : MonoBehaviour {
     public Text PlayLabel;
     public Text DebugText;
     public ProfilePicture WinnerPicture;
+    private bool rankingLoaded;
 
 	void Start () {
         DebugText.text = "username: " + Data.Instance.userData.username + " - id: " + Data.Instance.userData.facebookId + " - id: " + Data.Instance.userData.userId;
@@ -19,6 +20,21 @@ public class MainMenuActions : MonoBehaviour {
         FacebookScene facebookScene = GetComponent<FacebookScene>();
 
         facebookScene.Init( Data.Instance.userData.isPlayerDataLogged() );
+    }
+    void Update()
+    {
+        if (rankingLoaded) return;
+        if (Social.Instance.hiscores.levels.Count == 0) return;
+
+        rankingLoaded = true;
+        if (Social.Instance.hiscores.levels[0].hiscore[0].profilePicture)
+        {
+            WinnerPicture.SetLoadedPicture(Social.Instance.hiscores.levels[0].hiscore[0].profilePicture);
+        }
+        else
+        {
+            WinnerPicture.SetPicture(Social.Instance.hiscores.levels[0].hiscore[0].facebookID);
+        }
     }
     public void Compite()
     {

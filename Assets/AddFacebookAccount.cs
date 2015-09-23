@@ -19,7 +19,16 @@ public class AddFacebookAccount : MonoBehaviour {
     }    
     void OnFacebookUserLoaded(string facebookID, string username)
     {
-        Social.Instance.dataController.AddFacebookIdToExistingAccount( Data.Instance.GetComponent<UserData>().userId,  facebookID);
+        if (Data.Instance.GetComponent<UserData>().userId > 0)
+        {
+            Debug.Log("Usuario existía en la base, agrega facebookID nomas");
+            Social.Instance.dataController.AddFacebookIdToExistingAccount(Data.Instance.GetComponent<UserData>().userId, facebookID);
+        }
+        else
+        {
+            Debug.Log("Usuario Nuevo : No existe un usuario en la base con ese Facebook id");
+            Social.Instance.dataController.CreateUserByFacebookID(facebookID);
+        }
     }
     void OnFacebookIdAdded()
     {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class UserData : MonoBehaviour {
 
@@ -145,5 +146,16 @@ public class UserData : MonoBehaviour {
             a++;
         }
         PlayerPrefs.DeleteAll();
+    }
+    public string GetUserNameSmaller(string username)
+    {
+        string[] userData = Regex.Split(username, "_");
+        if (userData.Length > 0)
+        {
+            if (userData.Length > 1)
+                return userData[0] + " " + userData[1];
+            return userData[0];
+        }
+        return username;
     }
 }

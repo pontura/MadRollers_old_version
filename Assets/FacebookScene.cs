@@ -28,31 +28,28 @@ public class FacebookScene : MonoBehaviour {
         }
         else
         {
-            SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
+            //SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
             SetActive(false);
         }
     }
     void OnDestroy()
     {
-       SocialEvents.OnFacebookUserLoaded -= OnFacebookUserLoaded;
+       //SocialEvents.OnFacebookUserLoaded -= OnFacebookUserLoaded;
     }
     void SetActive(bool isLoggedIn)
     {
+        MyAvatar.SetActive(isLoggedIn);
         if (isLoggedIn)
         {
             FB_Username.GetComponent<Text>().text = Data.Instance.userData.username;
             hiscore.text = Data.Instance.userData.hiscore.ToString();
-            profilePicture.setPictre(Data.Instance.userData.facebookId);
+            profilePicture.SetPicture(Data.Instance.userData.facebookId);
 
            // ButtonCompite.SetActive(false);
         }
-        else
-        {
-            MyAvatar.SetActive(false);
-        }
     }
-    void OnFacebookUserLoaded(string id, string username)
-    {
-        SetActive(true);
-    }
+    //void OnFacebookUserLoaded(string id, string username)
+    //{
+    //    SetActive(true);
+    //}
 }
