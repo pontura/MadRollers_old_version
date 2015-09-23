@@ -5,12 +5,12 @@ using System.Collections;
 public class MainMenuActions : MonoBehaviour {
 
     public Text PlayLabel;
-    public Text DebugText;
+   // public Text DebugText;
     public ProfilePicture WinnerPicture;
     private bool rankingLoaded;
 
 	void Start () {
-        DebugText.text = "username: " + Data.Instance.userData.username + " - id: " + Data.Instance.userData.facebookId + " - id: " + Data.Instance.userData.userId;
+      //  DebugText.text = "username: " + Data.Instance.userData.username + " - id: " + Data.Instance.userData.facebookId + " - id: " + Data.Instance.userData.userId;
         Data.Instance.GetComponent<Tracker>().TrackScreen("Main Menu");
         Data.Instance.events.OnInterfacesStart();
 
@@ -19,7 +19,7 @@ public class MainMenuActions : MonoBehaviour {
 
         FacebookScene facebookScene = GetComponent<FacebookScene>();
 
-        facebookScene.Init( Data.Instance.userData.isPlayerDataLogged() );
+        facebookScene.Init();
     }
     void Update()
     {

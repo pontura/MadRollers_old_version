@@ -20,36 +20,27 @@ public class FacebookScene : MonoBehaviour {
 
     private Dictionary<string, string> profile = null;
 
-    public void Init(bool IsLoggedIn)
+    void Start()
     {
-        if (IsLoggedIn)
-        {
-            SetActive(true);
-        }
-        else
-        {
-            //SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
-            SetActive(false);
-        }
+        MyAvatar.SetActive(false);
     }
-    void OnDestroy()
+    public void Init()
     {
-       //SocialEvents.OnFacebookUserLoaded -= OnFacebookUserLoaded;
+        Invoke("checkToStart", 0.5f);
     }
-    void SetActive(bool isLoggedIn)
+    void checkToStart()
     {
-        MyAvatar.SetActive(isLoggedIn);
-        if (isLoggedIn)
+        if (!Data.Instance.userData.isPlayerDataLogged())
         {
-            FB_Username.GetComponent<Text>().text = Data.Instance.userData.username;
-            hiscore.text = Data.Instance.userData.hiscore.ToString();
-            profilePicture.SetPicture(Data.Instance.userData.facebookId);
+            Init();
+            return;
+        }
 
-           // ButtonCompite.SetActive(false);
-        }
+        MyAvatar.SetActive(true);
+
+        FB_Username.GetComponent<Text>().text = Data.Instance.userData.username;
+        hiscore.text = Data.Instance.userData.hiscore.ToString();
+        profilePicture.SetPicture(Data.Instance.userData.facebookId);
+
     }
-    //void OnFacebookUserLoaded(string id, string username)
-    //{
-    //    SetActive(true);
-    //}
 }

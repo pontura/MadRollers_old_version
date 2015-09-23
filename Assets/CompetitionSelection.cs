@@ -44,6 +44,10 @@ public class CompetitionSelection : MonoBehaviour {
         Invoke("CloseReady", 1);
         popup.animation.Play("GameMenuClose");
     }
+    public void Back()
+    {
+        Data.Instance.LoadLevel("MainMenu");
+    }
     void CloseReady()
     {
         popup.SetActive(false);

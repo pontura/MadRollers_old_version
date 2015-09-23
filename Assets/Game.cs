@@ -88,10 +88,9 @@ public class Game : MonoBehaviour {
     {
         Pause();
         Data.Instance.events.OnResetLevel();
-        Debug.Log("GotoLevelSelector");
        // Application.LoadLevel("LevelSelector");
         Time.timeScale = 1;
-        Fade.LoadLevel("LevelSelector", 1, 1, Color.black);
+        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
     }
     public void GotoMainMenu()
     {
