@@ -27,11 +27,9 @@ public class CompetitionManager : MonoBehaviour {
 
             SetGoal();
         }
-        
     }
     void SetGoal()
     {
-        if (Data.Instance.missionActive < 5) return;
         Hiscores.Hiscore goalHiscore = Social.Instance.hiscores.GetMyNextGoal();
         nextGoalDistance = goalHiscore.score;
         avatar2.SetPicture(goalHiscore.facebookID);

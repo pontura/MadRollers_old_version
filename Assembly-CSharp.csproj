@@ -188,6 +188,8 @@
      <Compile Include="Assets\TangentSolver.cs" />
      <Compile Include="Assets\TextureChanger.cs" />
      <Compile Include="Assets\Tracker.cs" />
+     <Compile Include="Assets\TumbaAvatar.cs" />
+     <Compile Include="Assets\TumbasManager.cs" />
      <Compile Include="Assets\UserData.cs" />
      <Compile Include="Assets\Util.cs" />
      <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Scripts\Agent.cs" />

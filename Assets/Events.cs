@@ -34,7 +34,8 @@ public class Events : MonoBehaviour {
     public System.Action<Vector3> OnAddExplotion = delegate { };
     public void AddExplotion(Vector3 position) { OnAddExplotion(position); }
 
-    public System.Action<Vector3, int> OnAddObjectExplotion = delegate { };    
+    public System.Action<Vector3, int> OnAddObjectExplotion = delegate { };
+    public System.Action<Vector3, string, string> OnAddTumba = delegate { };  
 
     public System.Action<Vector3> OnAddWallExplotion = delegate { };
     public void AddWallExplotion(Vector3 position) { OnAddWallExplotion(position); }

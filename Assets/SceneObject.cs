@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SceneObject : MonoBehaviour {
 
-    public Shadow shadow;
+  //  public Shadow shadow;
 
     //sirve para quitar el objeto de pantalla màs tarde...
     public int size_z = 0;

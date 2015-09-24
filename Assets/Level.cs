@@ -67,6 +67,7 @@ public class Level : MonoBehaviour {
         data.events.OnAddExplotion += OnAddExplotion;
         data.events.OnAddWallExplotion += OnAddWallExplotion;
         data.events.OnAddObjectExplotion += OnAddObjectExplotion;
+        data.events.OnAddTumba += OnAddTumba;
 
     }
     
@@ -77,6 +78,7 @@ public class Level : MonoBehaviour {
         data.events.OnAddExplotion -= OnAddExplotion;
         data.events.OnAddWallExplotion -= OnAddWallExplotion;
         data.events.OnAddObjectExplotion -= OnAddObjectExplotion;
+        data.events.OnAddTumba -= OnAddTumba;
     }
 	public void Complete()
 	{
@@ -200,5 +202,18 @@ public class Level : MonoBehaviour {
     {
         SceneObject so = Instantiate(_so, position, Quaternion.identity) as SceneObject;
         so.Restart(so.transform.position);
+    }
+
+
+
+    public void OnAddTumba(Vector3 position, string username, string facebookID)
+    {
+        print("_________________OnAddTumba");
+        Vector3 newPos = position;
+        newPos.y -= 4;
+
+        SceneObject explotionNew = ObjectPool.instance.GetObjectForType("Tumba_real", true);
+        if (explotionNew)
+            explotionNew.Restart(newPos);
     }
 }
