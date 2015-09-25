@@ -13,6 +13,7 @@ public class CompetitionManager : MonoBehaviour {
 
     void Start()
     {
+        Data.Instance.events.OnCompetitionMissionComplete += OnCompetitionMissionComplete;
         if (Data.Instance.playMode == Data.PlayModes.STORY)
         {
             avatars.SetActive(false);
@@ -28,9 +29,23 @@ public class CompetitionManager : MonoBehaviour {
             SetGoal();
         }
     }
+    void OnDistroy()
+    {
+        Data.Instance.events.OnCompetitionMissionComplete -= OnCompetitionMissionComplete;
+    }
+    void OnCompetitionMissionComplete()
+    {
+        Social.Instance.hiscores.SetMyScoreWhenPlaying((int)(distance));
+        SetGoal();
+    }
     void SetGoal()
     {
         Hiscores.Hiscore goalHiscore = Social.Instance.hiscores.GetMyNextGoal();
+        if (goalHiscore == null)
+        {
+            Debug.Log("__________ya no hay rivales!");
+            return;
+        }
         nextGoalDistance = goalHiscore.score;
         avatar2.SetPicture(goalHiscore.facebookID);
         Data.Instance.missions.MissionActive.distance = nextGoalDistance;

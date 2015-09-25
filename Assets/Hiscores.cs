@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 public class Hiscores : MonoBehaviour {
 
@@ -130,6 +131,12 @@ public class Hiscores : MonoBehaviour {
             hiscore.username = "Yo";
             levels[0].hiscore.Add(hiscore);
         }
+        ArrengeHiscoresByScore();
+    }
+    public void ArrengeHiscoresByScore()
+    {
+        levels[0].hiscore = levels[0].hiscore.OrderBy(x => x.score).ToList();
+        levels[0].hiscore.Reverse();
     }
     public Hiscore GetMyNextGoal()
     {
@@ -142,6 +149,18 @@ public class Hiscores : MonoBehaviour {
             lastHiscore = hiscore;
         }
         return lastHiscore;
+    }
+    //mientras corres le ganas a un contrincante y te graba tu score provisorio
+    public void SetMyScoreWhenPlaying(int newScore)
+    {
+        print("SetMyScoreWhenPlaying newScore: " + newScore + " oldScore: " + levels[0].myScore);
+        foreach (Hiscore hiscore in levels[0].hiscore)
+        {
+            if (Data.Instance.userData.facebookId == hiscore.facebookID)
+                hiscore.score = newScore;
+        }
+        levels[0].myScore = newScore;
+        ArrengeHiscoresByScore();
     }
     public int GetMyScore()
     {

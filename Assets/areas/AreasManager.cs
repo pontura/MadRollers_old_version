@@ -54,7 +54,7 @@ public class AreasManager : MonoBehaviour {
         }
 		Area area;
 
-		if(startingArea)
+        if (startingArea)
 		{
 			area = getStartingArea();
 			num = 0;
@@ -68,8 +68,9 @@ public class AreasManager : MonoBehaviour {
                 {
                    // int totalAreaSets = Data.Instance.missions.GetActualMissions().Length;
                     print("__________________SI ");
-                    activeAreaSetID = Random.Range(0, areaSet.totalAreasInSet);
-                    setNewAreaSet();                   
+                  //  activeAreaSetID = Random.Range(0, areaSets);
+                    setNewAreaSet();
+                    activeAreaSetID++;
                 }
                 else
                 {

@@ -205,9 +205,17 @@ public class Missions : MonoBehaviour {
 		progressBar.setProgression(missionCompletedPercent);
 		if(missionCompletedPercent >= 100)
 		{
-            lastDistance = distance;
-			level.Complete();
             progressBar.reset();
+            if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+            {
+                Data.Instance.events.OnCompetitionMissionComplete();
+            }
+            else
+            {
+                lastDistance = distance;
+                level.Complete();
+            }
+            
 		}
 	}
 }

@@ -20,6 +20,7 @@ public class ObjectPool : MonoBehaviour
     }
     #endregion
     public ObjectPoolEntry[] Entries;
+    [HideInInspector]
     public GameObject Scene;
 
     public static ObjectPool instance;

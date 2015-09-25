@@ -205,15 +205,32 @@ public class Level : MonoBehaviour {
     }
 
 
-
+    private bool onLeft;
     public void OnAddTumba(Vector3 position, string username, string facebookID)
     {
-        print("_________________OnAddTumba");
-        Vector3 newPos = position;
-        newPos.y -= 4;
+        onLeft = !onLeft;
 
-        SceneObject explotionNew = ObjectPool.instance.GetObjectForType("Tumba_real", true);
-        if (explotionNew)
-            explotionNew.Restart(newPos);
+        Vector3 newPos = position;
+        newPos.y += 0f;
+
+        if (onLeft)
+        {
+            newPos.x = -6;
+        }
+        else
+        {
+            newPos.x = 6;
+        }
+
+        SceneObject obj = ObjectPool.instance.GetObjectForType("Tumba_real", true);
+        if (obj)
+        {
+            obj.Restart(newPos);
+            obj.GetComponent<TumbaAvatar>().SetPicture(facebookID);
+            if (onLeft)
+                obj.transform.localEulerAngles = new Vector3(0, 0, 0);
+            else
+                obj.transform.localEulerAngles = new Vector3(0, 90, 0);
+        }
     }
 }

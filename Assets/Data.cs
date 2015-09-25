@@ -27,6 +27,7 @@ public class Data : MonoBehaviour {
     public VoicesManager voicesManager;
 
     public bool DEBUG;
+    public int FORCE_LOCAL_SCORE;
 
     public PlayModes playMode;
     public enum PlayModes
@@ -53,6 +54,9 @@ public class Data : MonoBehaviour {
         }
     }
 	void Start () {
+        if (FORCE_LOCAL_SCORE > 0 )
+            PlayerPrefs.SetInt("scoreLevel_1", FORCE_LOCAL_SCORE);
+
         if (Application.loadedLevelName != "01LandingPage")
         {
             Application.LoadLevel("01LandingPage");

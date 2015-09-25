@@ -9,7 +9,7 @@ public class TumbasManager : MonoBehaviour {
     public float distance;
     public int hiscoreID;
     private List<Hiscores.Hiscore> hiscore;
-    private int offset = 2;
+    private int offset = 80;
 
     void Start()
     {
@@ -18,17 +18,15 @@ public class TumbasManager : MonoBehaviour {
             isCompetition = true;
             characterBehavior = GetComponent<CharactersManager>().character;
             hiscore = Social.Instance.hiscores.levels[0].hiscore;
+            hiscoreID = hiscore.Count - 1;
         }
-        hiscoreID = 0;
-
     }
     void Update()
     {
         if (!isCompetition) return;
-
-        if (characterBehavior.distance + offset < hiscore[hiscoreID].score)
+        if (characterBehavior.distance + offset > hiscore[hiscoreID].score)
         {
-            hiscoreID++;
+            hiscoreID--;
             Data.Instance.events.OnAddTumba(new Vector3(0, 0, characterBehavior.distance + offset), hiscore[hiscoreID].username, hiscore[hiscoreID].facebookID);
         }
     }
