@@ -27,6 +27,11 @@ public class TumbasManager : MonoBehaviour {
         if (characterBehavior.distance + offset > hiscore[hiscoreID].score)
         {
             hiscoreID--;
+            if (hiscoreID == 0)
+            {
+                Debug.Log("GAMASTE");
+                return;
+            }
             Data.Instance.events.OnAddTumba(new Vector3(0, 0, characterBehavior.distance + offset), hiscore[hiscoreID].username, hiscore[hiscoreID].facebookID);
         }
     }

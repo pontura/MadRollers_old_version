@@ -29,7 +29,7 @@ public class CompetitionManager : MonoBehaviour {
             SetGoal();
         }
     }
-    void OnDistroy()
+    void OnDestroy()
     {
         Data.Instance.events.OnCompetitionMissionComplete -= OnCompetitionMissionComplete;
     }

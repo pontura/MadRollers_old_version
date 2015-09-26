@@ -66,9 +66,8 @@ public class AreasManager : MonoBehaviour {
             {
                 if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
                 {
-                   // int totalAreaSets = Data.Instance.missions.GetActualMissions().Length;
-                    print("__________________SI ");
-                  //  activeAreaSetID = Random.Range(0, areaSets);
+                    Debug.Log("__setNewAreaSet__");
+                    Data.Instance.events.OnSetNewAreaSet(activeAreaSetID);
                     setNewAreaSet();
                     activeAreaSetID++;
                 }

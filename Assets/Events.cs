@@ -59,4 +59,9 @@ public class Events : MonoBehaviour {
     public System.Action OnAvatarShoot = delegate { };
 
     public System.Action OnCompetitionMissionComplete = delegate { };
+
+    public System.Action<int> OnCurvedWorldIncreaseBend = delegate { };
+    public System.Action<int> OnCurvedWorldTurn = delegate { };
+
+    public System.Action<int> OnSetNewAreaSet = delegate { };
 }

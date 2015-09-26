@@ -65,6 +65,7 @@
      <Compile Include="Assets\Competitions.cs" />
      <Compile Include="Assets\CompetitonGoalScene.cs" />
      <Compile Include="Assets\Continue.cs" />
+     <Compile Include="Assets\CurvedWorldManager.cs" />
      <Compile Include="Assets\Data.cs" />
      <Compile Include="Assets\Decoration.cs" />
      <Compile Include="Assets\DecorationManager.cs" />

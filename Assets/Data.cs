@@ -81,6 +81,7 @@ public class Data : MonoBehaviour {
         GetComponent<MusicManager>().Init();
         GetComponent<Tracker>().Init();
         GetComponent<Missions>().Init();
+        GetComponent<CurvedWorldManager>().Init();
 
         //GetComponent<DataController>().Init();
 

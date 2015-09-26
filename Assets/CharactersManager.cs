@@ -103,9 +103,9 @@ public class CharactersManager : MonoBehaviour {
     }
     IEnumerator restart(CharacterBehavior cb)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         Data.Instance.events.OnAvatarDie(cb);
-        yield return new WaitForSeconds(1.45f);
+        yield return new WaitForSeconds(1.32f);
         Destroy(cb.GetComponent<Player>().energyBar.gameObject);
         Destroy(cb.gameObject);
         Game.Instance.ResetLevel();

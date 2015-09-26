@@ -203,10 +203,23 @@ public class CharacterBehavior : MonoBehaviour {
         state = states.CRASH;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().AddForce(new Vector3(0, 1500, 0), ForceMode.Impulse);
-        
-        removeColliders();
+        GetComponent<Rigidbody>().freezeRotation = false;
+        //removeColliders();
         _animation.Play("Crash");
-       // StartCoroutine(waitToFall());
+        Invoke("CrashReal", 0.3f);
+    }
+    void CrashReal()
+    {
+        Time.timeScale = 0.02f;
+        StartCoroutine(lowCamera());
+    }
+    IEnumerator lowCamera()
+    {
+        while (Time.timeScale < 1)
+        {
+            Time.timeScale += 0.001f;
+            yield return null;
+        }
     }
     void SaveDistance()
     {
