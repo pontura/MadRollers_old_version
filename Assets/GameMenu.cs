@@ -1,34 +1,75 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
 public class GameMenu : MonoBehaviour {
 
+    public GameObject popup;
+    public Animation anim;
+    public GameObject button;
+    public Text soundsLabel;
+    public GameObject soundOn;
+    public GameObject soundOff;
+    public bool sounds = true;
+
+    void Start()
+    {
+        popup.SetActive(false);
+        button.SetActive(false);
+        soundsLabel.text = "SHHHH!!!";
+    }
+    public void SetOn()
+    {
+        button.SetActive(true);
+    }
     public void Init()
     {
-        Game.Instance.Pause();
-        StartCoroutine(Play(GetComponent<Animation>(), "GameMenuOpen", false, null));
+        Data.Instance.events.OnFadeALittle(true);
+        Time.timeScale = 0;
+        popup.SetActive(true);
+        StartCoroutine(Play(anim, "GameMenuOpen", false, null));
 	}
-
+    public void ToogleSounds()
+    {
+        if(sounds)
+        {
+            soundsLabel.text = "ENCENDEME!";
+            soundOn.SetActive(false);
+            soundOff.SetActive(true);
+            Data.Instance.events.SetVolume(0);
+        }else{
+            soundsLabel.text = "SHHHH!!!";
+            soundOn.SetActive(true);
+            soundOff.SetActive(false);
+            Data.Instance.events.SetVolume(1);
+        }
+        sounds = !sounds;
+    }
     public void Close()
     {
-        StartCoroutine(Play(GetComponent<Animation>(), "GameMenuClose", false, Reset));
+        Data.Instance.events.OnFadeALittle(false);
+        StartCoroutine(Play(anim, "GameMenuClose", false, Reset));
     }
     public void Restart()
     {
         Data.Instance.resetProgress();
-        Game.Instance.GotoMainMenu();
+        ChangeLevels();
     }
     public void ChangeLevels()
     {
         SocialEvents.OnGetHiscores(1);
-        Game.Instance.GotoLevelSelector();
+        Time.timeScale = 1;
+        Data.Instance.LoadLevel("MainMenu");
+        Close();
+     //   Game.Instance.GotoLevelSelector();
     }
     private void Reset()
     {
-        Game.Instance.UnPause();
+        Time.timeScale = 1;
+        popup.SetActive(false);
+       // Game.Instance.UnPause();
         Data.Instance.events.OnCloseMainmenu();
-        gameObject.SetActive(false);
     }
     private IEnumerator Play(this Animation animation, string clipName, bool useTimeScale, Action onComplete)
     {

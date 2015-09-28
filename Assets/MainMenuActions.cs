@@ -5,7 +5,6 @@ using System.Collections;
 public class MainMenuActions : MonoBehaviour {
 
     public Text PlayLabel;
-   // public Text DebugText;
     public ProfilePicture WinnerPicture;
     private bool rankingLoaded;
 
@@ -25,6 +24,7 @@ public class MainMenuActions : MonoBehaviour {
     {
         if (rankingLoaded) return;
         if (Social.Instance.hiscores.levels.Count == 0) return;
+        if (Social.Instance.hiscores.levels[0].hiscore.Count == 0) return;
 
         rankingLoaded = true;
         if (Social.Instance.hiscores.levels[0].hiscore[0].profilePicture)
@@ -45,23 +45,23 @@ public class MainMenuActions : MonoBehaviour {
     public void MissionsScene()
     {
         Data.Instance.playMode = Data.PlayModes.STORY;
-        Fade.LoadLevel("LevelSelector", 1, 1, Color.black);
+        Data.Instance.LoadLevel("LevelSelector");
         Data.Instance.levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
     }
     public void Registry()
     {
         if (Data.Instance.userData.userId == 0)
-            Fade.LoadLevel("Registry", 1, 1, Color.black);
+            Data.Instance.LoadLevel("Registry");
     }
     public void About()
     {
-        Fade.LoadLevel("About", 1, 1, Color.black);
+        Data.Instance.LoadLevel("About");
     }
     public void AddFacebookIDToMyAccount()
     {
         if (Data.Instance.GetComponent<UserData>().facebookId == "")
         {
-            Fade.LoadLevel("AddFacebookLogin", 1, 1, Color.black);
+            Data.Instance.LoadLevel("AddFacebookLogin");
         }
     }
     public void Logout()
@@ -69,7 +69,7 @@ public class MainMenuActions : MonoBehaviour {
         if(FB.IsLoggedIn)
             FB.Logout();
         PlayerPrefs.DeleteAll();
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
 
 }

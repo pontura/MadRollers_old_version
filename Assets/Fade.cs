@@ -4,79 +4,88 @@ using System.Collections;
 
 public class Fade : MonoBehaviour
 {
-    private static Fade m_Instance = null;
-    private Image masker;
-    private string m_LevelName = "";
-    private int m_LevelIndex = 0;
-    private bool m_Fading = false;
-    private GraphicRaycaster graphicRaycaster;
+    public Image masker;
+ //   public GraphicRaycaster graphicRaycaster;
 
-    private static Fade Instance
+    private string m_LevelName = "";
+    private int m_LevelIndex = 0;    
+    private bool fading;
+
+    private void Start()
     {
-        get
+        masker.enabled = true;
+        masker.color = new Color(0, 0, 0, 0);
+        Data.Instance.events.OnFadeALittle += OnFadeALittle;
+    }
+    void OnFadeALittle(bool fadeIn)
+    {
+        if (fadeIn)
+            StartCoroutine(FadeALittleIn(0.05f, Color.black));
+        else
+            StartCoroutine(FadeALittleOut(0.05f, Color.black));
+    }
+    public IEnumerator FadeALittleIn(float aFadeTime, Color aColor)
+    {
+        masker.gameObject.SetActive(true);
+        aFadeTime /= 10;
+        float t = 0;
+        while (t < 0.7f)
         {
-            if (m_Instance == null)
-            {
-                m_Instance = (new GameObject("Fade")).AddComponent<Fade>();
-            }
-            return m_Instance;
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime + aFadeTime;
+            masker.color = new Color(0, 0, 0, t);
         }
     }
-    public static bool Fading
+    IEnumerator FadeALittleOut(float aFadeTime, Color aColor)
     {
-        get { return Instance.m_Fading; }
+        masker.gameObject.SetActive(true);
+        aFadeTime /= 10;
+        float t = 0.7f;
+        while (t >= 0.01f)
+        {
+            yield return new WaitForEndOfFrame();
+            t -= Time.deltaTime + aFadeTime;
+            masker.color = new Color(0, 0, 0, t);
+        }
+        if(t<=0.02f)
+            masker.gameObject.SetActive(false);
     }
-
-    private void Awake()
+    IEnumerator FadeStart(float aFadeTime, Color aColor)
     {
-        graphicRaycaster = GetComponentInChildren<GraphicRaycaster>();
-        DontDestroyOnLoad(this);
-        m_Instance = this;
-		masker = GetComponentInChildren<Image>();
-		masker.color = new Color(0,0,0,0);
-	}
-
-    private IEnumerator FadeStart(float aFadeOutTime, float aFadeInTime, Color aColor)
-    {
-        graphicRaycaster.enabled = true;
+        masker.gameObject.SetActive(true);
+        aFadeTime /= 10;
         float t = 0;
-		while (t < 1)
-		{
-			yield return new WaitForEndOfFrame();
-			t+=Time.deltaTime;
-			masker.color = new Color(0,0,0,t);
-		}
+        while (t < 1)
+        {
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime + aFadeTime;
+            masker.color = new Color(0, 0, 0, t);
+        }
 
         if (m_LevelName != "")
             Application.LoadLevel(m_LevelName);
         else
-            Application.LoadLevel(m_LevelIndex);     
-		while (t > 0f)
-		{
-			yield return new WaitForEndOfFrame();
-			t-=Time.deltaTime;
-			masker.color = new Color(0,0,0,t);
-		}
-        graphicRaycaster.enabled = false;
-        m_Fading = false;
+            Application.LoadLevel(m_LevelIndex);
+        while (t > 0f)
+        {
+            yield return new WaitForEndOfFrame();
+            t -= Time.deltaTime + aFadeTime;
+            masker.color = new Color(0, 0, 0, t);
+        }
+      //  graphicRaycaster.enabled = false;
+        fading = false;
+        masker.gameObject.SetActive(false);
     }
-    private void StartFade(float aFadeOutTime, float aFadeInTime, Color aColor)
+    private void StartFade(float aFadeTime, Color aColor)
     {
-        m_Fading = true;
-        StartCoroutine(FadeStart(aFadeOutTime, aFadeInTime, aColor));
+        fading = true;
+        StartCoroutine(FadeStart( aFadeTime, aColor));
     }
 
-    public static void LoadLevel(string aLevelName, float aFadeOutTime, float aFadeInTime, Color aColor)
+    public void LoadLevel(string aLevelName, float aFadeTime, Color aColor)
     {
-        //if (Fading) return;
-        Instance.m_LevelName = aLevelName;
-        Instance.StartFade(aFadeOutTime, aFadeInTime, aColor);
-    }
-    public static void LoadLevel(int aLevelIndex, float aFadeOutTime, float aFadeInTime, Color aColor)
-    {
-        if (Fading) return;
-        Instance.m_LevelName = "";
-        Instance.m_LevelIndex = aLevelIndex;
-        Instance.StartFade(aFadeOutTime, aFadeInTime, aColor);
+        if (fading) return;
+        m_LevelName = aLevelName;
+        StartFade(aFadeTime, aColor);
     }
 }

@@ -65,7 +65,7 @@ public class Game : MonoBehaviour {
         } else if (Data.Instance.replays == Data.Instance.totalReplays)
             GotoContinue();
         else
-            Fade.LoadLevel("Game", 1, 1, Color.black);
+            Data.Instance.LoadLevel("Game");
 	}
     //IEnumerator  restart()
     //{
@@ -90,20 +90,20 @@ public class Game : MonoBehaviour {
         Data.Instance.events.OnResetLevel();
        // Application.LoadLevel("LevelSelector");
         Time.timeScale = 1;
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
     public void GotoMainMenu()
     {
         Pause();
         Data.Instance.events.OnResetLevel();
         Time.timeScale = 1;
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
     public void GotoContinue()
     {
         Pause();
         Data.Instance.events.OnResetLevel();
         Time.timeScale = 1;
-        Fade.LoadLevel("Continue", 1, 1, Color.black);
+        Data.Instance.LoadLevel("Continue");
     }
 }

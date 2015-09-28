@@ -217,7 +217,7 @@ public class CharacterBehavior : MonoBehaviour {
     {
         while (Time.timeScale < 1)
         {
-            Time.timeScale += 0.001f;
+            Time.timeScale += 0.001f + Time.deltaTime;
             yield return null;
         }
     }

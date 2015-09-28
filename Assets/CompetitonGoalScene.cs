@@ -18,6 +18,7 @@ public class CompetitonGoalScene : MonoBehaviour {
         Data.Instance.events.OnGamePaused(true);
 
         Hiscores.Hiscore goalHiscore = Social.Instance.hiscores.GetMyNextGoal();
+        
         username1.text = goalHiscore.username;
         score1.text = goalHiscore.score.ToString() + " Mts";
         avatar1.SetPicture(goalHiscore.facebookID);

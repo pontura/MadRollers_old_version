@@ -38,10 +38,10 @@ public class RegistryScreen : MonoBehaviour {
     }
     public void SimpleLogin()
     {
-        Fade.LoadLevel("SimpleLogin", 1, 1, Color.black);
+        Data.Instance.LoadLevel("SimpleLogin");
     }
     public void Back()
     {
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
 }

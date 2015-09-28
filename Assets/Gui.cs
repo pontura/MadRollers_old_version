@@ -3,10 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Gui : MonoBehaviour {
-
-    [SerializeField]
-    GameMenu gameMenu;
-
+    
     [SerializeField]
     Text scoreLabel;
 
@@ -22,18 +19,15 @@ public class Gui : MonoBehaviour {
 	 
 	void Start()
 	{
-        gameMenu.gameObject.SetActive(false);
         events = Data.Instance.events;
         levelComplete.gameObject.SetActive(false);
         Data.Instance.events.OnSetFinalScore += OnSetFinalScore;
-        Data.Instance.events.OnCloseMainmenu += OnCloseMainmenu;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnSetFinalScore -= OnSetFinalScore;
-        Data.Instance.events.OnCloseMainmenu -= OnCloseMainmenu;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
 
@@ -55,24 +49,5 @@ public class Gui : MonoBehaviour {
     void OnSetFinalScore(Vector3 pos, int _score)
     {
         scoreLabel.text = _score.ToString();
-    }
-    void Update()
-    {
-        if (InputManager.getOpenMenu(0))
-        {
-            OpenMainMenu();
-        }
-    }
-    private void OnCloseMainmenu()
-    {
-        MainMenuOpened = false;
-    }
-   public void OpenMainMenu()
-    {
-        print("OpenMainMenu " + MainMenuOpened);
-        if (MainMenuOpened) return;
-        MainMenuOpened = true;
-        gameMenu.gameObject.SetActive(true);
-        gameMenu.Init();
     }
 }

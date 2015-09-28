@@ -93,8 +93,11 @@ namespace Facebook
             isLoggedIn = false;
             userId = "";
             accessToken = "";
-            fb.UserId = "";
-            fb.AccessToken = "";
+            if (fb)
+            {
+                fb.UserId = "";
+                fb.AccessToken = "";
+            }
         }
 
         public override void AppRequest(

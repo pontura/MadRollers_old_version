@@ -11,7 +11,10 @@ public class Events : MonoBehaviour {
     //public System.Action OnHiscoresLoaded = delegate { };
 
     //public System.Action<int> OnHiscore = delegate { };   
- 
+
+
+    public System.Action<float> SetVolume = delegate { };
+    public System.Action<bool> OnFadeALittle = delegate { };
     public System.Action OnInterfacesStart = delegate { };
     public System.Action OnGameStart = delegate { };
     public System.Action<bool> OnGamePaused = delegate { };

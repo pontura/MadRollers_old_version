@@ -33,6 +33,11 @@ public class VoicesManager : MonoBehaviour
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
+        Data.Instance.events.SetVolume += SetVolume;
+    }
+    void SetVolume(float vol)
+    {
+        GetComponent<AudioSource>().volume = vol;
     }
     private void OnMissionComplete(int id)
     {

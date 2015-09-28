@@ -22,7 +22,7 @@ public class SimpleLogin : MonoBehaviour {
     }
     void OnSetUserData(string id, int facebookId, int hiscore, bool saveIt)
     {
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
     public void Registry()
     {
@@ -35,6 +35,6 @@ public class SimpleLogin : MonoBehaviour {
     }
     public void Back()
     {
-        Fade.LoadLevel("Registry", 1, 1, Color.black);
+        Data.Instance.LoadLevel("Registry");
     }
 }

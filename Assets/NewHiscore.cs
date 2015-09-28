@@ -11,14 +11,14 @@ public class NewHiscore : MonoBehaviour {
 	}
     public void Share()
     {
-        Fade.LoadLevel("Game", 1, 1, Color.black);
+        Data.Instance.LoadLevel("Game");
     }
     public void Ok()
     {
-        Fade.LoadLevel("Game", 1, 1, Color.black);
+        Data.Instance.LoadLevel("Game");
     }
     public void MainMenu()
     {
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
 }

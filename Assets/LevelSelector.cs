@@ -65,10 +65,10 @@ public class LevelSelector : MonoBehaviour {
     public void loadLevel(int num)
     {
         data.missionActive = num+1;
-        Fade.LoadLevel("Game", 1, 1, Color.black);
+        Data.Instance.LoadLevel("Game");
     }
     public void Back()
     {
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
 }

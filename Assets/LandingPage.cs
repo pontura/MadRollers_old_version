@@ -3,10 +3,13 @@ using System.Collections;
 
 public class LandingPage : MonoBehaviour {
 
+    public GameMenu gm;
+
 	void Update () {
         if (Input.anyKeyDown)
         {
-            Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+            gm.SetOn();
+            Data.Instance.LoadLevel("MainMenu");
         }
 	}
 }

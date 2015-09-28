@@ -7,6 +7,7 @@ public class Data : MonoBehaviour {
 	public int missionActive = 0;
     public int totalReplays = 3;
     public int replays = 0;
+    public float volume;
 
     [HideInInspector]
     public UserData userData;
@@ -95,7 +96,13 @@ public class Data : MonoBehaviour {
 
         if (Application.isWebPlayer)
             Application.ExternalCall("OnUnityReady");
-	}    
+
+        events.SetVolume += SetVolume;
+	}
+    void SetVolume(float vol)
+    {
+        volume = vol;
+    }
 	public void setMission(int num)
 	{
         //print("MODE: " + playMode + " Set NEW mission " + num + "   levelUnlockedID: " + levelUnlockedID);
@@ -125,6 +132,6 @@ public class Data : MonoBehaviour {
     }
     public void LoadLevel(string levelName)
     {
-        Fade.LoadLevel(levelName, 0.5f, 0.5f, Color.black);
+        GetComponent<Fade>().LoadLevel(levelName, 0.6f, Color.black);
     }
 }

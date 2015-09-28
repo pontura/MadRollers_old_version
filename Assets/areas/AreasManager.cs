@@ -61,22 +61,25 @@ public class AreasManager : MonoBehaviour {
 		} 
 		else
 		{
-            //if (activeAreaSetID < areaSets.Length && num >= areaSet.totalAreasInSet)
-            if (num >= areaSet.totalAreasInSet)
+            if (Data.Instance.playMode == Data.PlayModes.STORY)
             {
-                if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+                if (activeAreaSetID < areaSets.Length && num >= areaSet.totalAreasInSet)
+                {
+                    if (num >= areaSet.totalAreasInSet)
+                    {
+                        setNewAreaSet();
+                        activeAreaSetID++;
+                        num = 0;
+                    }
+                }
+            } else 
+            if (num >= areaSet.totalAreasInSet)
                 {
                     Debug.Log("__setNewAreaSet__");
                     Data.Instance.events.OnSetNewAreaSet(activeAreaSetID);
                     setNewAreaSet();
                     activeAreaSetID++;
-                }
-                else
-                {
-                    setNewAreaSet();
-                    activeAreaSetID++;
-                }
-                num = 0;
+                    num = 0;
             }
            
             area = areaSet.getArea();

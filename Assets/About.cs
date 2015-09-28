@@ -11,11 +11,11 @@ public class About : MonoBehaviour {
     {
         if (Input.anyKeyDown)
         {
-            Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+            Data.Instance.LoadLevel("MainMenu");
         }
     }
     public void Back()
     {
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
 }

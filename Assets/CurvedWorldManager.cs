@@ -13,11 +13,6 @@ public class CurvedWorldManager : MonoBehaviour {
 
 
 	public void Init () {
-        bending = (float)VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_X_Bend_Size_GLOBAL;
-        turn = (float)VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_Y_Bend_Size_GLOBAL;
-
-        newBending = bending;
-        turn = newTurn;
         Data.Instance.events.OnGameStart += OnGameStart;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnCurvedWorldIncreaseBend += OnCurvedWorldIncreaseBend;
@@ -40,8 +35,13 @@ public class CurvedWorldManager : MonoBehaviour {
     }
     void OnGameStart()
     {
-        newTurn = 0;
-        turn = 0;
+        bending = (float)VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_X_Bend_Size_GLOBAL;
+        turn = (float)VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_Y_Bend_Size_GLOBAL;
+
+        newTurn = turn;
+        newBending = bending;
+
+        VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_X_Bend_Size_GLOBAL = newBending;
         VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_Y_Bend_Size_GLOBAL = turn;
     }
     void OnCurvedWorldIncreaseBend(int _newBending)

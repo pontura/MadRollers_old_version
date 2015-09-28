@@ -141,7 +141,9 @@ public class Hiscores : MonoBehaviour {
     public Hiscore GetMyNextGoal()
     {
         string facebookID = Data.Instance.userData.facebookId;
-        Hiscore lastHiscore = null;
+
+        Hiscore lastHiscore = levels[0].hiscore[0];
+
         foreach (Hiscore hiscore in levels[0].hiscore)
         {
             if (levels[0].myScore > hiscore.score || facebookID == hiscore.facebookID)

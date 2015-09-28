@@ -18,7 +18,12 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnGamePaused += OnGamePaused;
+        Data.Instance.events.SetVolume += SetVolume;
 	}
+    void SetVolume(float vol)
+    {
+        GetComponent<AudioSource>().volume = vol;
+    }
     private void playSound(AudioClip _clip, bool looped = true)
     {        
         if (GetComponent<AudioSource>().clip.name == _clip.name) return;

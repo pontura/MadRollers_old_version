@@ -150,6 +150,7 @@ public class UserData : MonoBehaviour {
             a++;
         }
         PlayerPrefs.DeleteAll();
+        Data.Instance.LoadLevel("MainMenu");
     }
     public string GetUserNameSmaller(string username)
     {

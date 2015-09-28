@@ -36,6 +36,6 @@ public class AddFacebookAccount : MonoBehaviour {
     }
     public void Back()
     {
-        Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+        Data.Instance.LoadLevel("MainMenu");
     }
 }

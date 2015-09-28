@@ -22,7 +22,7 @@ public class Continue : MonoBehaviour {
 		num--;
 		if(num==0)
 		{
-            Fade.LoadLevel("MainMenu", 1, 1, Color.black);
+            Data.Instance.LoadLevel("MainMenu");
             clicked = true;
 			return;
 		}
@@ -41,7 +41,7 @@ public class Continue : MonoBehaviour {
         {
             clicked = true;
             StopCoroutine("WaitAndDo");
-            Fade.LoadLevel("Game", 1, 1, Color.black);
+            Data.Instance.LoadLevel("Game");
 		}
 	}
 
