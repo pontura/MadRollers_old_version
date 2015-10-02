@@ -42,6 +42,7 @@ public class Data : MonoBehaviour {
         KEYBOARD,
         JOYSTICK
     }
+    public bool playingTutorial;
 
     public static Data Instance
     {
@@ -125,10 +126,11 @@ public class Data : MonoBehaviour {
 	}
     public void resetProgress()
     {
+        SocialEvents.OnCompetitionHiscore(1, 0, false);
         PlayerPrefs.DeleteAll();
         levelUnlockedID = 0;
         userData.resetProgress();
-        Social.Instance.hiscores.Reset();
+        Social.Instance.hiscores.Reset();        
     }
     public void LoadLevel(string levelName)
     {

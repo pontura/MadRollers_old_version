@@ -56,6 +56,10 @@ public class Game : MonoBehaviour {
         Data.Instance.events.OnResetLevel();
         Data.Instance.replays++;
 
+        if (Data.Instance.playingTutorial && Data.Instance.levelUnlockedID > 3)
+        {
+            Data.Instance.LoadLevel("TrainingSplash");
+        }else
         if (Data.Instance.userData.hiscore < Data.Instance.userData.score)
         {
             Data.Instance.userData.OnHiscore(Data.Instance.userData.score);

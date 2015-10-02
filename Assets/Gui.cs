@@ -10,6 +10,8 @@ public class Gui : MonoBehaviour {
     [SerializeField]
     LevelComplete levelComplete;
 
+    public GameObject[] hideOnCompetitions;
+
 	private Data data;   
 
 	private int barWidth = 200;
@@ -19,6 +21,14 @@ public class Gui : MonoBehaviour {
 	 
 	void Start()
 	{
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+        {
+            foreach (GameObject go in hideOnCompetitions)
+            {
+                Destroy(go);
+            }
+            return;
+        }
         events = Data.Instance.events;
         levelComplete.gameObject.SetActive(false);
         Data.Instance.events.OnSetFinalScore += OnSetFinalScore;

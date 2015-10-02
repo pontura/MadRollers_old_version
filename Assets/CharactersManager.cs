@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class CharactersManager : MonoBehaviour {
 
     public CharacterBehavior character;
-    public EnergyBar energyBar;
+  //  public EnergyBar energyBar;
     public List<CharacterBehavior> characters;
     private Vector3 characterPosition = new Vector3(0,0,0);
 
@@ -75,10 +75,10 @@ public class CharactersManager : MonoBehaviour {
         
         character = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
 
-        EnergyBar newEnergyBar = Instantiate(energyBar, Vector3.zero, Quaternion.identity) as EnergyBar;
-        newEnergyBar.Init(character.GetComponent<CharacterBehavior>());
+       // EnergyBar newEnergyBar = Instantiate(energyBar, Vector3.zero, Quaternion.identity) as EnergyBar;
+       // newEnergyBar.Init(character.GetComponent<CharacterBehavior>());
 
-        character.GetComponent<Player>().Init(id, newEnergyBar);
+        character.GetComponent<Player>().Init(id);
 
         character.GetComponent<Player>().id = id;
 
@@ -106,7 +106,7 @@ public class CharactersManager : MonoBehaviour {
         yield return new WaitForSeconds(0.05f);
         Data.Instance.events.OnAvatarDie(cb);
         yield return new WaitForSeconds(1.32f);
-        Destroy(cb.GetComponent<Player>().energyBar.gameObject);
+       // Destroy(cb.GetComponent<Player>().energyBar.gameObject);
         Destroy(cb.gameObject);
         Game.Instance.ResetLevel();
     }

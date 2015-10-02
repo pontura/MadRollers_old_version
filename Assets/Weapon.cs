@@ -6,24 +6,24 @@ public class Weapon : MonoBehaviour {
     public bool isOn;
     public GameObject asset;
 
-    public void setOff()
+    virtual public void setOff()
     {
         isOn = false;
         asset.SetActive(false);
     }
-    public void setOn()
+    virtual public void setOn()
     {
         if (isOn) return;
         isOn = true;
         asset.SetActive(true);
         Rebuild();
     }
-    public void Shoot()
+    virtual public void Shoot()
     {
         if (!isOn) return;
         Rebuild();
     }
-    private void Rebuild()
+    virtual public void Rebuild()
     {
         DestroyImmediate(GetComponent<iTween>());
         transform.localScale = Vector3.one*0.001f;

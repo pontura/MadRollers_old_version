@@ -102,7 +102,7 @@ public class GameCamera : MonoBehaviour
 
 		newPos += cameraOrientationVector;
 
-        transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime*6);
+        transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime*7);
 
        // if (charactersManager.getTotalCharacters() > 1) setCameraRotationX(45); else setCameraRotationX(40);
 	}

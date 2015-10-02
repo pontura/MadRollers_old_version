@@ -4,6 +4,7 @@ using System.Collections;
 public class CurvedWorldManager : MonoBehaviour {
 
     public int MAX_BENDING = -40;
+    public int Bending_Start;
 
     public float newBending;
     public float newTurn;
@@ -35,8 +36,8 @@ public class CurvedWorldManager : MonoBehaviour {
     }
     void OnGameStart()
     {
-        bending = (float)VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_X_Bend_Size_GLOBAL;
-        turn = (float)VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_Y_Bend_Size_GLOBAL;
+        bending = Bending_Start;
+        turn = 0;
 
         newTurn = turn;
         newBending = bending;

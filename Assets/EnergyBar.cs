@@ -3,33 +3,34 @@ using System.Collections;
 
 public class EnergyBar : MonoBehaviour {
 
-    //public UISprite progress;
+    public Transform bar;
     public float fillValue = 0;
-    private float rechargeTime = 5f;
-    private CharacterBehavior characterBehavior;
-    public Animation _animation;
+    public bool isOn;
 
-    public void Init(CharacterBehavior target)
+    
+    public void Init()
     {
-        this.characterBehavior = target;
-        gameObject.SetActive(true);
+        isOn = true;
+        fillValue = 1;
+        SetScale();
     }
-    public void hide()
+    public void SetOff()
     {
-        gameObject.SetActive(false);
+        isOn = false;
     }
-    void LateUpdate()
+    public void UnFill(float qty)
     {
-        transform.position = characterBehavior.transform.position;
+        this.fillValue -= qty;
+        SetScale();
     }
-    public void setEnergy( float qty)
+    void SetScale()
     {
-        this.fillValue = qty;
-       // progress.fillAmount = fillValue;
-    }
-    public void Animate()
-    {
-        _animation.Play("EnergyBarActive");
-        _animation["EnergyBarActive"].normalizedTime = 0;
+        if (!isOn) return;
+        Vector3 scale = bar.localScale;
+        scale.x = fillValue;
+        bar.localScale = scale;
+
+        if (fillValue <= 0)
+            Data.Instance.events.OnAvatarProgressBarEmpty();
     }
 }

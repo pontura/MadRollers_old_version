@@ -5,17 +5,21 @@ public class Player : MonoBehaviour {
 
 	private Game game;
 	private Gui gui;
-	private CharacterBehavior character;
 
     public GameObject particles;
 
     public int id; //numero de player;
+    public EnergyBar progressBar;
 
     [HideInInspector]
     public Weapon weapon;
-
     public Weapon[] weapons;
     public GameObject weaponContainer;
+
+    [HideInInspector]
+    public Transport transport;
+    public Transport[] transports;
+    public GameObject transportContainer;
 
     public fxStates fxState;
 
@@ -34,15 +38,16 @@ public class Player : MonoBehaviour {
     public float energy = 90;
     private Material originalMaterial;
 
-    public EnergyBar energyBar;
+ //   public EnergyBar energyBar;
 
     void OnDestroy()
     {
         Data.Instance.events.OnMissionStart -= OnMissionStart;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
-        Data.Instance.events.OnAvatarGetItem -= OnAvatarGetItem;        
+        Data.Instance.events.OnAvatarGetItem -= OnAvatarGetItem;
+        Data.Instance.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
     }
-    public void Init(int id, EnergyBar energyBar)
+    public void Init(int id)
     {
         _scale = transform.localScale;
         if (id == 0)
@@ -55,20 +60,57 @@ public class Player : MonoBehaviour {
 
         Data.Instance.events.OnMissionStart += OnMissionStart;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-        Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;      
+        Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
+        Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 
         this.id = id;
-        this.energyBar = energyBar;
+       // this.energyBar = energyBar;
         weapon = Instantiate(weapons[0] as Weapon, Vector3.zero, Quaternion.identity) as Weapon;
         weapon.transform.parent = weaponContainer.transform;
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localScale = Vector3.one*2;
         particles.SetActive(false);
+        OnAvatarProgressBarEmpty();
+    }
+    public void OnAvatarProgressBarStart()
+    {
+        if (progressBar.isOn) return;
+        progressBar.Init();
+        progressBar.gameObject.SetActive(true);
+    }
+    public void OnAvatarProgressBarEmpty()
+    {
+        progressBar.SetOff();
+        print("OnAvatarProgressBarEmpty");
+        progressBar.gameObject.SetActive(false);
+
+        foreach (Transform child in transportContainer.transform)  Destroy(child.gameObject);
+
+        transport = null;
+    }
+    public void OnAvatarProgressBarUnFill(float qty )
+    {
+        progressBar.UnFill(qty);
     }
     private void OnAvatarGetItem(string item)
     {
-        canShoot = true;
-        weapon.setOn();
+        if (item == "missile")
+        {
+            canShoot = true;
+            weapon.setOn();
+        }
+        else if (item == "jetPack")
+        {
+            transport = Instantiate(transports[0] as Transport, Vector3.zero, Quaternion.identity) as Transport;
+            transport.transform.parent = transportContainer.transform;
+            transport.transform.localPosition = Vector3.zero;
+            transport.transform.localEulerAngles = Vector3.zero;
+            transport.transform.localScale = Vector3.one;
+        }
+    }
+    public void DisableJetPack()
+    {
+
     }
    public void UpdateByController()
     {
@@ -90,8 +132,8 @@ public class Player : MonoBehaviour {
         float newEnergy = energy / 100.0f;
 
 
-        if (newEnergy != energyBar.fillValue)
-            energyBar.setEnergy(newEnergy);
+        //if (newEnergy != energyBar.fillValue)
+        //    energyBar.setEnergy(newEnergy);
 
     }
    private void OnListenerDispatcher(string message)
@@ -173,7 +215,7 @@ public class Player : MonoBehaviour {
         else
             energy += qty;
 
-       energyBar.Animate();
+     //  energyBar.Animate();
     }
     
 }

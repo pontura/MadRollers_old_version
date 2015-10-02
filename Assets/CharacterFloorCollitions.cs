@@ -11,7 +11,8 @@ public class CharacterFloorCollitions : MonoBehaviour {
     {
         ON_FLOOR,
         ON_AIR,
-        SHOOTING
+        SHOOTING,
+        ON_FLY
     }
 
 	void Start () {
@@ -24,7 +25,16 @@ public class CharacterFloorCollitions : MonoBehaviour {
         Data.Instance.events.OnAvatarJump -= OnAvatarJump;
         Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
     }
-
+    public void OnAvatarFly()
+    {
+        state = states.ON_FLY;
+        characterBehavior.transform.localEulerAngles = new Vector3(0, 0, 0);
+       // Invoke("WaitToResetCollliders", 0.5f);
+    }
+    public void OnAvatarFalling()
+    {
+        state = states.ON_AIR;
+    }
     public void OnAvatarJump()
     {
         state = states.ON_AIR;
@@ -37,6 +47,8 @@ public class CharacterFloorCollitions : MonoBehaviour {
     private int resetShooting;
     void Update ()
     {
+        if (state == states.ON_FLY) return;
+
         if (state == states.ON_FLOOR)
         {
             Vector3 pos = characterBehavior.transform.localPosition;
@@ -69,6 +81,9 @@ public class CharacterFloorCollitions : MonoBehaviour {
     
 
 	void OnTriggerEnter(Collider other) {
+
+        if (state == states.ON_FLY) return;
+
         if (other.tag == "floor" && state != states.ON_FLOOR)
         {
             state = states.ON_FLOOR;

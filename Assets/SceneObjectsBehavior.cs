@@ -18,7 +18,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject palm2;
     public SceneObject tree1;
 
-    public SceneObject casa1;
+    public SceneObject GrabbableJetpack;
     public SceneObject borde1;
     public SceneObject bloodx5;
     public SceneObject enemyFrontal1;
@@ -108,6 +108,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 case "extraSmallBlock1":
                 case "Coin":
                 case "bloodx1":
+                case "Yuyo":
                     
 
                     sceneObject = Pool.GetObjectForType(go.name + "_real", false);
@@ -206,8 +207,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = streetFloorSmall;
                 else if (go.name == "levelSignal")
                     clone = levelSignal;
-                else if (go.name == "casa1")
-                    clone = casa1;
+                else if (go.name == "GrabbableJetpack")
+                    clone = GrabbableJetpack;
                 else if (go.name == "borde1")
                     clone = borde1;
                 else if (go.name == "fences")

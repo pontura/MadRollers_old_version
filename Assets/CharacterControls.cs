@@ -5,7 +5,6 @@ public class CharacterControls : MonoBehaviour {
 
     CharacterBehavior characterBehavior;
     Player player;
-    private float speedRun = 18f;
     private float rotationY;
     private float rotationZ = 0;
     private float turnSpeed = 2.8f;
@@ -34,19 +33,39 @@ public class CharacterControls : MonoBehaviour {
        // transform.Translate(0, 0, Time.deltaTime * speedRun);
 
         // los players siguen al player 1ero
-        if (charactersManager.isSecondPlayer(characterBehavior))
-        {
-            Vector3 pos = charactersManager.getPositionMainCharacter();
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, pos.z);
-        }
-        transform.Translate(Vector3.forward * speedRun * Time.deltaTime);
+        //if (charactersManager.isSecondPlayer(characterBehavior))
+        //{
+        //    Vector3 pos = charactersManager.getPositionMainCharacter();
+        //    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, pos.z);
+        //}
+        
 
        // if (!ControlsEnabled) return;
+
 
         if (mobileController)
             moveByAccelerometer();
         else
+        {
+            if (InputManager.getFire(player.id))
+            {
+                characterBehavior.CheckFire();
+            }
+            if (InputManager.getJump(player.id))
+            {
+                characterBehavior.Jump();
+            } else
+            if (Input.GetButton("Jump1"))
+            {
+                characterBehavior.JumpPressed();
+            }
+            else
+            {
+                characterBehavior.AllButtonsReleased();
+            }
+           
             moveByKeyboard();
+        }
 
         if (Time.deltaTime == 0) return;
         characterBehavior.UpdateByController();
@@ -63,17 +82,23 @@ public class CharacterControls : MonoBehaviour {
                 Game.Instance.GotoLevelSelector();
             } else if (touch.position.x < Screen.width / 2)
             {
-                if ((characterBehavior.state == CharacterBehavior.states.RUN || characterBehavior.state == CharacterBehavior.states.SHOOT) && Input.GetTouch(0).phase == TouchPhase.Began)
+                if (characterBehavior.state == CharacterBehavior.states.JETPACK)
+                {
+                    characterBehavior.Jetpack();
+                } else
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
                     characterBehavior.Jump();
-                else if (characterBehavior.state == CharacterBehavior.states.JUMP && Input.GetTouch(0).phase == TouchPhase.Began)
-                    characterBehavior.SuperJump(characterBehavior.superJumpHeight);
             }
             else if (touch.position.x > Screen.width / 2)
             {
                 characterBehavior.CheckFire();
             }
+        } else if (characterBehavior.state == CharacterBehavior.states.JETPACK)
+        {
+            characterBehavior.JetpackOff();
+        } 
 
-        }
+
         if (Time.deltaTime == 0) return;
         transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 100, rotationZ);
        // transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
@@ -82,18 +107,7 @@ public class CharacterControls : MonoBehaviour {
 
     private void moveByKeyboard()
     {
-        if (InputManager.getFire(player.id))
-        {
-            characterBehavior.CheckFire();
-        }
-        if (InputManager.getJump(player.id))
-        {
-            if ((characterBehavior.state == CharacterBehavior.states.RUN || characterBehavior.state == CharacterBehavior.states.SHOOT))
-                characterBehavior.Jump();
-            else if (characterBehavior.state == CharacterBehavior.states.JUMP)
-                characterBehavior.SuperJump(characterBehavior.superJumpHeight);
-        }
-
+        
         float newPosX = InputManager.getHorizontal(player.id) * speedX;
 
         if (newPosX == 0)

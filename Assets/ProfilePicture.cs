@@ -31,7 +31,6 @@ public class ProfilePicture : MonoBehaviour {
         yield return receivedData;
         if (receivedData.error == null)
         {
-            print("_____________");
             SetLoadedPicture(receivedData.texture);
             SocialEvents.OnFacebookImageLoaded(facebookID, receivedData.texture);
         }

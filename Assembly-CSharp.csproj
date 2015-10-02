@@ -61,6 +61,7 @@
      <Compile Include="Assets\CheckPoint.cs" />
      <Compile Include="Assets\CompetitionButton.cs" />
      <Compile Include="Assets\CompetitionManager.cs" />
+     <Compile Include="Assets\CompetitionResult.cs" />
      <Compile Include="Assets\CompetitionSelection.cs" />
      <Compile Include="Assets\Competitions.cs" />
      <Compile Include="Assets\CompetitonGoalScene.cs" />
@@ -151,6 +152,7 @@
      <Compile Include="Assets\MainMenuActions.cs" />
      <Compile Include="Assets\MaterialsChanger.cs" />
      <Compile Include="Assets\Md5Test.cs" />
+     <Compile Include="Assets\Missil.cs" />
      <Compile Include="Assets\Mission.cs" />
      <Compile Include="Assets\MissionButton.cs" />
      <Compile Include="Assets\MissionSignal.cs" />
@@ -189,6 +191,8 @@
      <Compile Include="Assets\TangentSolver.cs" />
      <Compile Include="Assets\TextureChanger.cs" />
      <Compile Include="Assets\Tracker.cs" />
+     <Compile Include="Assets\TrainingSplash.cs" />
+     <Compile Include="Assets\Transport.cs" />
      <Compile Include="Assets\TumbaAvatar.cs" />
      <Compile Include="Assets\TumbasManager.cs" />
      <Compile Include="Assets\UserData.cs" />

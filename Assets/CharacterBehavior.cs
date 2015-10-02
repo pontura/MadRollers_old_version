@@ -29,9 +29,13 @@ public class CharacterBehavior : MonoBehaviour {
         SHOOT,
         DEAD,
         FALL,
-        CRASH
+        CRASH,
+        JETPACK,
+        JETPACK_OFF
     }
 
+    private int MAX_JETPACK_HEIGHT = 20;
+    private float speedRun = 18f;
     private int heightToFall = -5;
 	private float jumpHeight = 1300;
 	public float superJumpHeight = 1200;
@@ -54,15 +58,18 @@ public class CharacterBehavior : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-        data = Data.Instance;
-        data.events.OncharacterCheer += OncharacterCheer;
+        data = Data.Instance;       
         missions = Data.Instance.GetComponent<Missions>();
 		player = GetComponent<Player>();
         _animation = model.GetComponent<Animation>();
+
+        data.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
+        data.events.OncharacterCheer += OncharacterCheer;
 	}
     void OnDestroy ()
     {
-         Data.Instance.events.OncharacterCheer -= OncharacterCheer;
+        data.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
+        data.events.OncharacterCheer -= OncharacterCheer;
     }
 	private float lastShot;
     public void OncharacterCheer()
@@ -101,6 +108,32 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void UpdateByController () {
 
+        Vector3 goTo = Vector3.forward * speedRun * Time.deltaTime;
+
+        
+        if (state == states.JETPACK)
+        {
+            player.OnAvatarProgressBarUnFill(0.25f * Time.deltaTime);
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.useGravity = false;
+            
+            Vector3 pos = transform.position;
+
+            if (pos.y < MAX_JETPACK_HEIGHT)
+            {
+                pos.y += 6 * Time.deltaTime;
+                transform.position = pos;
+            }
+        }
+        else
+        {
+            rigidbody.mass = 100;
+            rigidbody.useGravity = true;
+        }
+        
+
+        transform.Translate(goTo);
+
 		distance = transform.position.z;
         missions.updateDistance(distance);
 		lastDistance= distance;
@@ -108,7 +141,6 @@ public class CharacterBehavior : MonoBehaviour {
         if (transform.position.y < heightToFall)
 		{
             Fall();
-			return;
 		}
 	}
 
@@ -136,9 +168,56 @@ public class CharacterBehavior : MonoBehaviour {
 		state = states.RUN;
 		_animation.Play("run");
 	}
+    public void JumpPressed()
+    {
+        if (player.transport != null)
+            Jetpack();
+    }
+    public void AllButtonsReleased()
+    {
+        if (player.transport != null)
+            JetpackOff();
+    }
+    void OnAvatarProgressBarEmpty()
+    {
+        JetpackOff();
+    }
+    public void Jetpack()
+    {
+        if (state == states.JETPACK) return;
+
+        if(_animation.clip.name != "shot")
+            _animation.Play("shoot");
+
+        player.OnAvatarProgressBarStart();
+        floorCollitions.OnAvatarFly();
+        state = states.JETPACK;
+        player.transport.SetOn();
+    }
+    public void JetpackOff()
+    {
+        floorCollitions.OnAvatarFalling();
+
+        if (player.transport)
+            player.transport.SetOff();
+
+        state = states.FALL;
+    }
 	public void Jump()
 	{
+        if (player.transport != null)   return;
+
+        if (state == states.JUMP)
+        {
+            SuperJump(superJumpHeight);
+            return;
+        }
+        else if(state != states.RUN && state != states.SHOOT)
+        {
+            return;
+        }
         if (!player.canJump) return;
+
         floorCollitions.OnAvatarJump();
         GetComponent<AudioSource>().clip = jumpClip;
         GetComponent<AudioSource>().Play();
@@ -237,7 +316,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		
 		
-        player.energyBar.hide();
+       // player.energyBar.hide();
 	}
 	
 	

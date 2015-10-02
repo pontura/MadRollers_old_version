@@ -51,7 +51,7 @@ public class CharacterCollisions : MonoBehaviour {
             && characterBehavior.state != CharacterBehavior.states.SHOOT
             )
         {
-            if (player.fxState == Player.fxStates.NORMAL)
+            if (player.fxState == Player.fxStates.NORMAL && characterBehavior.state != CharacterBehavior.states.JETPACK)
                 characterBehavior.Hit();
             other.GetComponent<MmoCharacter>().Die();
         }

@@ -6,6 +6,7 @@ using System;
 public class GameMenu : MonoBehaviour {
 
     public GameObject popup;
+    public GameObject popupReset;
     public Animation anim;
     public GameObject button;
     public Text soundsLabel;
@@ -15,6 +16,7 @@ public class GameMenu : MonoBehaviour {
 
     void Start()
     {
+        popupReset.SetActive(false);
         popup.SetActive(false);
         button.SetActive(false);
         soundsLabel.text = "SHHHH!!!";
@@ -45,17 +47,14 @@ public class GameMenu : MonoBehaviour {
             Data.Instance.events.SetVolume(1);
         }
         sounds = !sounds;
+        Close();
     }
     public void Close()
     {
         Data.Instance.events.OnFadeALittle(false);
         StartCoroutine(Play(anim, "GameMenuClose", false, Reset));
     }
-    public void Restart()
-    {
-        Data.Instance.resetProgress();
-        ChangeLevels();
-    }
+    
     public void ChangeLevels()
     {
         SocialEvents.OnGetHiscores(1);
@@ -64,8 +63,27 @@ public class GameMenu : MonoBehaviour {
         Close();
      //   Game.Instance.GotoLevelSelector();
     }
+    public void OpenResetPopup()
+    {
+        popupReset.SetActive(true);
+        popup.SetActive(false);
+        StartCoroutine(Play(popupReset.animation, "GameMenuOpen", false, Reset));
+    }
+    public void ResetGame()
+    {
+        Data.Instance.resetProgress();
+        ChangeLevels();
+        Data.Instance.events.OnFadeALittle(false);
+        StartCoroutine(Play(popupReset.animation, "GameMenuClose", false, Reset));
+    }
+    public void CloseResetPopup()
+    {
+        Data.Instance.events.OnFadeALittle(false);
+        StartCoroutine(Play(popupReset.animation, "GameMenuClose", false, Reset));
+    }
     private void Reset()
     {
+        
         Time.timeScale = 1;
         popup.SetActive(false);
        // Game.Instance.UnPause();

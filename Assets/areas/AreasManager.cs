@@ -46,7 +46,7 @@ public class AreasManager : MonoBehaviour {
 	public Area getRandomArea (bool startingArea) {
         num++;
 
-        print(areaSet + "areaSets.Length: " + areaSets.Length + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
+      //  print(areaSet + "areaSets.Length: " + areaSets.Length + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
         if (!areaSet)
         {
             areaSet = areaSets[0];
