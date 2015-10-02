@@ -69,7 +69,7 @@ public class Data : MonoBehaviour {
         
 
 		//setAvatarUpgrades();
-        levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
+       // levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
         events = GetComponent<Events>();
         missions = GetComponent<Missions>();
         competitions = GetComponent<Competitions>();
@@ -86,12 +86,12 @@ public class Data : MonoBehaviour {
         GetComponent<CurvedWorldManager>().Init();
 
         //GetComponent<DataController>().Init();
+        levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked");
 
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
             DEBUG = false;
-            mode = modes.ACCELEROMETER;
-            levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked");
+            mode = modes.ACCELEROMETER;            
         }
         voicesManager.Init();
 
@@ -120,7 +120,7 @@ public class Data : MonoBehaviour {
         {
             if (num > levelUnlockedID)
             {
-                PlayerPrefs.SetInt("levelUnlocked_0", num - 1);        
+                PlayerPrefs.SetInt("levelUnlocked", num - 1);
             }
         }
 	}

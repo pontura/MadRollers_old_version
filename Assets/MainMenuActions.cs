@@ -44,7 +44,7 @@ public class MainMenuActions : MonoBehaviour {
         }
         else
         {
-            Data.Instance.levelUnlockedID = Data.Instance.competitions.GetUnlockedLevel();
+          //  Data.Instance.levelUnlockedID = Data.Instance.competitions.GetUnlockedLevel();
             Data.Instance.playMode = Data.PlayModes.COMPETITION;
             Data.Instance.LoadLevel("Competitions");
         }
@@ -53,7 +53,7 @@ public class MainMenuActions : MonoBehaviour {
     {
         Data.Instance.playMode = Data.PlayModes.STORY;
         Data.Instance.LoadLevel("LevelSelector");
-        Data.Instance.levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
+      //  Data.Instance.levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
     }
     public void Registry()
     {
