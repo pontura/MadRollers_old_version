@@ -74,28 +74,28 @@ public class CharacterControls : MonoBehaviour {
 
     private void moveByAccelerometer()
     {
+
+
+
         if (Input.touchCount > 0)
         {
             var touch = Input.touches[0];
-            if (touch.position.y > (Screen.height / 2) && touch.position.x < (Screen.width / 2 - 20) && touch.position.x < (Screen.width / 2 + 20))
+           if (touch.position.x < Screen.width / 2)
             {
-                Game.Instance.GotoLevelSelector();
-            } else if (touch.position.x < Screen.width / 2)
-            {
-                if (characterBehavior.state == CharacterBehavior.states.JETPACK)
-                {
-                    characterBehavior.Jetpack();
-                } else
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                     characterBehavior.Jump();
+                else
+                {
+                    characterBehavior.JumpPressed();
+                }
             }
             else if (touch.position.x > Screen.width / 2)
             {
                 characterBehavior.CheckFire();
             }
-        } else if (characterBehavior.state == CharacterBehavior.states.JETPACK)
+        } else
         {
-            characterBehavior.JetpackOff();
+            characterBehavior.AllButtonsReleased();
         } 
 
 

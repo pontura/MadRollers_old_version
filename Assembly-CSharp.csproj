@@ -191,6 +191,7 @@
      <Compile Include="Assets\TangentSolver.cs" />
      <Compile Include="Assets\TextureChanger.cs" />
      <Compile Include="Assets\Tracker.cs" />
+     <Compile Include="Assets\TrainingReady.cs" />
      <Compile Include="Assets\TrainingSplash.cs" />
      <Compile Include="Assets\Transport.cs" />
      <Compile Include="Assets\TumbaAvatar.cs" />
