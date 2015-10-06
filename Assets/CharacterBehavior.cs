@@ -267,17 +267,18 @@ public class CharacterBehavior : MonoBehaviour {
 
     public void HitWithObject(Vector3 objPosition)
     {
-        if (state == states.CRASH) return;
-        print("CRASH");
+        Hit();
+        //if (state == states.CRASH) return;
+        //print("CRASH");
 
-        GetComponent<AudioSource>().clip = FXCrash;
-        GetComponent<AudioSource>().Play();
+        //GetComponent<AudioSource>().clip = FXCrash;
+        //GetComponent<AudioSource>().Play();
 
-        state = states.CRASH;
-        Vector3 thrownPos = new Vector3((objPosition.x - transform.position.x)*1000, 1000, -1000);
-        GetComponent<Rigidbody>().AddForce(thrownPos, ForceMode.Impulse);
-        _animation.Play("Crash");
-        Invoke("CrashReset", 1f);
+        //state = states.CRASH;
+        //Vector3 thrownPos = new Vector3((objPosition.x - transform.position.x)*2000, 1000, -1000);
+        //GetComponent<Rigidbody>().AddForce(thrownPos, ForceMode.Impulse);
+        //_animation.Play("Crash");
+        //Invoke("CrashReset", 1f);
     }
     void CrashReset()
     {
@@ -305,7 +306,7 @@ public class CharacterBehavior : MonoBehaviour {
         _animation.Play("Crash");
         Invoke("CrashReal", 0.3f);
     }
-    void CrashReal2()
+    void CrashReal()
     {
         Time.timeScale = 0.02f;
         StartCoroutine(lowCamera());

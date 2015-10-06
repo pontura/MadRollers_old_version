@@ -1,15 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class AreasManager : MonoBehaviour {
 
 	public Area startingArea;
     private int num = 0;
 
-    //public Area[] testingAreas;	
-    //public AreaSet testingAreaSet;	
+    public bool isCompetition;
 
-	public AreaSet[] areaSets;
+	public List<AreaSet> areaSets;
+    public List<AreaSet> areaRandomSets;
 	//public Area[] skyAreas;
 
 	private int activeAreaSetID = 1;
@@ -19,9 +21,37 @@ public class AreasManager : MonoBehaviour {
     void Start()
     {
         num = 0;
+       // RandomizeAreaSetsByPriority();
+      
+    }
+    public void RandomizeAreaSetsByPriority()
+    {
+       
+        areaRandomSets = Randomize(areaRandomSets);
+        areaRandomSets = areaRandomSets.OrderBy(x => x.competitionsPriority).ToList();
+        areaRandomSets.Reverse();
+    }
+    private List<AreaSet> Randomize(List<AreaSet> toRandom)
+    {
+        Random.seed = Data.Instance.competitions.GetCurrentScore();
+        for (int i = 0; i < toRandom.Count; i++)
+        {
+            AreaSet temp = toRandom[i];
+            int randomIndex = Random.Range(i, toRandom.Count);
+            toRandom[i] = toRandom[randomIndex];
+            toRandom[randomIndex] = temp;
+        }
+        return toRandom;
     }
 	public void Init(int _activeAreaSetID)
 	{
+        areaRandomSets.Clear();
+        foreach (AreaSet areaSet in areaSets)
+        {
+            areaRandomSets.Add(areaSet);
+        }
+        if (isCompetition)
+            RandomizeAreaSetsByPriority();
 		num = 0;
 		activeAreaSetID = 0;
 		setNewAreaSet();
@@ -32,8 +62,16 @@ public class AreasManager : MonoBehaviour {
 		return 2;
 	}
 	private void setNewAreaSet()
-	{	
-		areaSet = areaSets[activeAreaSetID];
+	{
+        Random.seed = 1;
+
+        //if (areaSet.competitionsPriority == 0)
+        //{
+        //    activeAreaSetID = Random.Range(2, areaSets.Count - 1);
+        //    activeAreaSetID++;
+        //}
+
+        areaSet = areaRandomSets[activeAreaSetID];
 		//changeCameraOrientation();
         areaSet.id = 0;
        
@@ -49,7 +87,7 @@ public class AreasManager : MonoBehaviour {
       //  print(areaSet + "areaSets.Length: " + areaSets.Length + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
         if (!areaSet)
         {
-            areaSet = areaSets[0];
+            areaSet = areaRandomSets[0];
             areaSet.id = 0;
         }
 		Area area;
@@ -63,7 +101,7 @@ public class AreasManager : MonoBehaviour {
 		{
             if (Data.Instance.playMode == Data.PlayModes.STORY)
             {
-                if (activeAreaSetID < areaSets.Length && num >= areaSet.totalAreasInSet)
+                if (activeAreaSetID < areaRandomSets.Count && num >= areaSet.totalAreasInSet)
                 {
                     if (num >= areaSet.totalAreasInSet)
                     {

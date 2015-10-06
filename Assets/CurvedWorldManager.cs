@@ -25,10 +25,10 @@ public class CurvedWorldManager : MonoBehaviour {
         if (areaSet < 2) return;
 
         Data.Instance.events.OnCurvedWorldIncreaseBend(-1);
-        int rand = Random.Range(0, 16);
+        int rand = Random.Range(0, 20);
         if (rand > 10) newTurn = 0;
         else
-            newTurn = (rand-5)*8;
+            newTurn = (rand-5)*2;
     }
     void OnCurvedWorldTurn(int _newTurn)
     {

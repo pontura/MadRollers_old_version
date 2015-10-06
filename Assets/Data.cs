@@ -55,12 +55,7 @@ public class Data : MonoBehaviour {
             return mInstance;
         }
     }
-    void Awake()
-    {
-        mInstance = this;
-        DontDestroyOnLoad(this);
-    }
-	void Start () {        
+	void Start () {
 
         if (FORCE_LOCAL_SCORE > 0 )
             PlayerPrefs.SetInt("scoreLevel_1", FORCE_LOCAL_SCORE);
@@ -70,6 +65,10 @@ public class Data : MonoBehaviour {
             Application.LoadLevel("01LandingPage");
             return;
         }
+        mInstance = this;
+		DontDestroyOnLoad(this);
+        
+
 		//setAvatarUpgrades();
        // levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
         events = GetComponent<Events>();

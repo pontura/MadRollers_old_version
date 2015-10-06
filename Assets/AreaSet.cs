@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AreaSet : MonoBehaviour {
 
+    public int competitionsPriority;
     public bool randomize = true;
 	public Area[] areas;
 	public int totalAreasInSet;

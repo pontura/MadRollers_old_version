@@ -49,6 +49,7 @@ public class CharacterCollisions : MonoBehaviour {
             && characterBehavior.state != CharacterBehavior.states.JUMP
             && characterBehavior.state != CharacterBehavior.states.DOUBLEJUMP
             && characterBehavior.state != CharacterBehavior.states.SHOOT
+            && characterBehavior.state != CharacterBehavior.states.FALL
             )
         {
             if (player.fxState == Player.fxStates.NORMAL && characterBehavior.state != CharacterBehavior.states.JETPACK)
