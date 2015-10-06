@@ -57,6 +57,7 @@ public class GameMenu : MonoBehaviour {
     
     public void ChangeLevels()
     {
+        Data.Instance.events.OnResetLevel();
         SocialEvents.OnGetHiscores(1);
         Time.timeScale = 1;
         Data.Instance.LoadLevel("MainMenu");

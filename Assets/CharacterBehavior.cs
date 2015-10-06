@@ -107,7 +107,6 @@ public class CharacterBehavior : MonoBehaviour {
         }
 	}
 	public void UpdateByController () {
-
         Vector3 goTo = Vector3.forward * speedRun * Time.deltaTime;
 
         
@@ -266,6 +265,25 @@ public class CharacterBehavior : MonoBehaviour {
         Die();
     }
 
+    public void HitWithObject(Vector3 objPosition)
+    {
+        if (state == states.CRASH) return;
+        print("CRASH");
+
+        GetComponent<AudioSource>().clip = FXCrash;
+        GetComponent<AudioSource>().Play();
+
+        state = states.CRASH;
+        Vector3 thrownPos = new Vector3((objPosition.x - transform.position.x)*1000, 1000, -1000);
+        GetComponent<Rigidbody>().AddForce(thrownPos, ForceMode.Impulse);
+        _animation.Play("Crash");
+        Invoke("CrashReset", 1f);
+    }
+    void CrashReset()
+    {
+        Run();
+    }
+
     public void Hit()
     {
         if (state == states.CRASH) return;
@@ -287,7 +305,7 @@ public class CharacterBehavior : MonoBehaviour {
         _animation.Play("Crash");
         Invoke("CrashReal", 0.3f);
     }
-    void CrashReal()
+    void CrashReal2()
     {
         Time.timeScale = 0.02f;
         StartCoroutine(lowCamera());

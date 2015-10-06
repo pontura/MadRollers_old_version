@@ -16,7 +16,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject bomb1;
     public SceneObject palm;
     public SceneObject palm2;
-    public SceneObject tree1;
+    public SceneObject palm3;
+    public SceneObject palm4;
+    public SceneObject palm5;
 
     public SceneObject GrabbableJetpack;
     public SceneObject borde1;
@@ -197,9 +199,21 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = tunel2;
                 else if (go.name == "palm")
                 {
-                    if(Random.Range(0,10)>5)
+                    int ran = Random.Range(0, 100);
+                    if (ran <20)
                         clone = palm;
-                    else  clone = palm2;
+                    else if (ran < 40)
+                        clone = palm2;
+                    else if (ran < 60)
+                        clone = palm3;
+                    else if (ran < 80)
+                        clone = palm4;
+                    else  
+                        clone = palm5;
+
+                    Vector3 pos2 = go.transform.localEulerAngles;
+                    pos2.y = Random.Range(0, 360);
+                    go.transform.localEulerAngles = pos2;   
                 }
                 else if (go.name == "streetFloor")
                     clone = streetFloor;
@@ -229,8 +243,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 {
                     clone = Listener;
                 }
-                else if (go.name == "tree1")
-                    clone = tree1;
                 else if (go.name == "cruz")
                     clone = cruz;
                 else if (go.name == "CruzGrande")

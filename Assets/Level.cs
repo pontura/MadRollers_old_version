@@ -94,7 +94,7 @@ public class Level : MonoBehaviour {
         if (!playing) return;
         playing = false;
         sceneObjects.PoolSceneObjectsInScene();
-
+        print("PoolSceneObjectsInScene");
         //Init();
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)

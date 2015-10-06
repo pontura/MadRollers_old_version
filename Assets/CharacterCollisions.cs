@@ -26,7 +26,7 @@ public class CharacterCollisions : MonoBehaviour {
         if (other.tag == "destroyable") 
 		{
             if (player.fxState == Player.fxStates.NORMAL)
-                characterBehavior.Hit();
+                characterBehavior.HitWithObject(other.transform.position);
             breakBreakable(other.GetComponent<Breakable>(), other.transform.position);
         }
         else if (other.tag == "floor" && !hitted)
