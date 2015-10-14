@@ -47,6 +47,11 @@ public class CharacterFloorCollitions : MonoBehaviour {
     private int resetShooting;
     void Update ()
     {
+        if (characterBehavior.state == CharacterBehavior.states.DEAD 
+            || characterBehavior.state == CharacterBehavior.states.CRASH
+            || characterBehavior.state == CharacterBehavior.states.FALL) 
+            return;
+
         if (state == states.ON_FLY) return;
 
         if (state == states.ON_FLOOR)
@@ -81,6 +86,11 @@ public class CharacterFloorCollitions : MonoBehaviour {
     
 
 	void OnTriggerEnter(Collider other) {
+
+        if (characterBehavior.state == CharacterBehavior.states.DEAD
+            || characterBehavior.state == CharacterBehavior.states.CRASH
+            || characterBehavior.state == CharacterBehavior.states.FALL)
+            return;
 
         if (state == states.ON_FLY) return;
 

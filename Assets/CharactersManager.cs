@@ -33,11 +33,11 @@ public class CharactersManager : MonoBehaviour {
     }
     void OnAvatarFall(CharacterBehavior characterBehavior)
     {
-        killCharacter(characterBehavior.GetComponent<Player>().id);
+       // killCharacter(characterBehavior.GetComponent<Player>().id);
     }
     void OnAvatarCrash(CharacterBehavior characterBehavior)
     {
-        killCharacter(characterBehavior.GetComponent<Player>().id);
+       // killCharacter(characterBehavior.GetComponent<Player>().id);
     }
     //void Update()
     //{
@@ -107,8 +107,8 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnAvatarDie(cb);
         yield return new WaitForSeconds(1.32f);
        // Destroy(cb.GetComponent<Player>().energyBar.gameObject);
-        Destroy(cb.gameObject);
-        Game.Instance.ResetLevel();
+        //Destroy(cb.gameObject);
+        //Game.Instance.ResetLevel();
     }
     public bool isSecondPlayer(CharacterBehavior cb)
     {

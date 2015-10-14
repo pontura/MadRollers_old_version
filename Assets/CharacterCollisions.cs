@@ -13,6 +13,11 @@ public class CharacterCollisions : MonoBehaviour {
         player = gameObject.transform.parent.GetComponent<Player>();
 	}
 	void OnTriggerEnter(Collider other) {
+
+        if (characterBehavior.state == CharacterBehavior.states.DEAD) return;
+        if (characterBehavior.state == CharacterBehavior.states.CRASH) return;
+        if (characterBehavior.state == CharacterBehavior.states.FALL) return;
+
         if (other.tag == "wall") 
 		{
             if (player.fxState == Player.fxStates.NORMAL)

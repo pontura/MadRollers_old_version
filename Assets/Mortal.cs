@@ -24,7 +24,8 @@ public class Mortal : MonoBehaviour {
             else
                 cb = other.transform.parent.GetComponent<CharacterBehavior>();
 
-            cb.Hit();
+            //cb.Hit();
+            Debug.Log("Mortal HIT PLAYER ____________ ARREGLAR!!!!!!!");
         }
         else if (other.gameObject.CompareTag("enemy"))
 		{

@@ -149,7 +149,6 @@ public class UserData : MonoBehaviour {
             stars[a-1] = 0;
             a++;
         }
-        PlayerPrefs.DeleteAll();
         Data.Instance.LoadLevel("MainMenu");
     }
     public string GetUserNameSmaller(string username)

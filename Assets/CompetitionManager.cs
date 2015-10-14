@@ -13,19 +13,14 @@ public class CompetitionManager : MonoBehaviour {
 
     void Start()
     {
-        Data.Instance.events.OnCompetitionMissionComplete += OnCompetitionMissionComplete;
-        if (Data.Instance.playMode == Data.PlayModes.STORY)
-        {
-            avatars.SetActive(false);
-        }
-        else
+        if (Data.Instance.userData.facebookId != "0")
+            avatar1.SetPicture(Data.Instance.userData.facebookId);
+
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             isCompetition = true;
-            if (Data.Instance.userData.facebookId != "0")
-                avatar1.SetPicture(Data.Instance.userData.facebookId);
-
+            Data.Instance.events.OnCompetitionMissionComplete += OnCompetitionMissionComplete;
             characterBehavior = GetComponent<CharactersManager>().character;
-
             SetGoal();
         }
     }

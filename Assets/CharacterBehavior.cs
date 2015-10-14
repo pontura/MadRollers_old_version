@@ -161,6 +161,12 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 
 	}
+    public void Revive()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().freezeRotation = true;
+        Run();
+    }
 	public void Run()
 	{
 		if(state == states.RUN) return;
@@ -287,8 +293,6 @@ public class CharacterBehavior : MonoBehaviour {
 
     public void Hit()
     {
-        if (state == states.CRASH) return;
-
         SaveDistance();
 
         textureChanger.Dead();
@@ -332,10 +336,6 @@ public class CharacterBehavior : MonoBehaviour {
 
 		state = states.DEAD;
         _animation.Play("FallDown");
-
-		
-		
-       // player.energyBar.hide();
 	}
 	
 	
@@ -344,14 +344,6 @@ public class CharacterBehavior : MonoBehaviour {
         player.removeEnergy(damage);
 		SuperJump( jumpHeight );
 	}
-    public void removeColliders()
-    {
-        gameObject.layer = LayerMask.NameToLayer("Default");
-        foreach (Collider collider in colliders)
-        {
-            collider.enabled = false;
-        }
-    }
 	
 	
 }

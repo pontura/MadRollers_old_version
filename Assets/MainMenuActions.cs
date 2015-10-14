@@ -73,10 +73,9 @@ public class MainMenuActions : MonoBehaviour {
     }
     public void Logout()
     {
-        if(FB.IsLoggedIn)
-            FB.Logout();
-        PlayerPrefs.DeleteAll();
-        Data.Instance.LoadLevel("MainMenu");
+        //if(FB.IsLoggedIn)
+        //    FB.Logout();
+        //Data.Instance.LoadLevel("MainMenu");
     }
 
 }

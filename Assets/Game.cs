@@ -49,7 +49,20 @@ public class Game : MonoBehaviour {
         Data.Instance.events.MissionStart(Data.Instance.missionActive);
         UnPause();
 	}
+    public void Revive()
+    {
+        UnPause();
+        gameCamera.Init();
+        
+        CharacterBehavior cb = level.charactersManager.character;
+        
+        Vector3 pos = cb.transform.position;
+        pos.y = 10;
+        pos.x = 1;
+        cb.transform.position = pos;
 
+        cb.Revive();
+    }
     //pierdo y arranca de ni
     public void ResetLevel()
 	{
@@ -65,8 +78,9 @@ public class Game : MonoBehaviour {
             Data.Instance.userData.OnHiscore(Data.Instance.userData.score);            
             Application.LoadLevel("NewHiscore");
             Data.Instance.replays = 0;
-        } else if (Data.Instance.replays == Data.Instance.totalReplays)
-            GotoContinue();
+        } 
+        //else if (Data.Instance.replays == Data.Instance.totalReplays)
+        //    GotoContinue();
         else
             Data.Instance.LoadLevel("Game");
 	}

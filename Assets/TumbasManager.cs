@@ -29,6 +29,7 @@ public class TumbasManager : MonoBehaviour {
             hiscoreID--;
             if (hiscoreID <= 0)
             {
+                hiscoreID = 0;
                 Debug.Log("GAMASTE");
                 return;
             }

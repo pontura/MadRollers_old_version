@@ -12,22 +12,14 @@ public class Competitions : MonoBehaviour {
     {
         public string name;
         public int id;
-        public int myScore;
+        //public int myScore;
        // public int levelUnlockedID;
         public Mission[] missions;
         
     }
-    public int GetCurrentScore()
-    {
-        return competitions[current - 1].myScore;
-    }
     public void Init()
     {
-        competitions[current - 1].myScore = PlayerPrefs.GetInt("scoreLevel_" + current);
-
-       // competitions[current-1].levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_1_");
         SocialEvents.OnMissionReady += OnMissionReady;
-        //Data.Instance.missionActive = competitions[current - 1].levelUnlockedID;
         Data.Instance.missionActive = 0;
         if (Data.Instance.missionActive == 0) Data.Instance.missionActive = 1;
     }
@@ -45,6 +37,7 @@ public class Competitions : MonoBehaviour {
     //}
     public void OnMissionReady(int num)
     {
+        print("OnMissionReady  " + num);
         //if (competitions[current - 1].levelUnlockedID >= num) return;
         //competitions[current - 1].levelUnlockedID = num;
         //PlayerPrefs.SetInt("levelUnlocked_" + current + "_", num);

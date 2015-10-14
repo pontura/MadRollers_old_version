@@ -35,10 +35,13 @@ public class Missions : MonoBehaviour {
     {
         data = Data.Instance;
         Data.Instance.events.OnScoreOn += OnScoreOn;
+        Data.Instance.events.OnGrabHeart += OnGrabHeart;
+        
     }
     void OnDestroy()
     {
         Data.Instance.events.OnScoreOn -= OnScoreOn;
+        Data.Instance.events.OnGrabHeart -= OnGrabHeart;
     }
 
     public void OnDisable()
@@ -181,10 +184,11 @@ public class Missions : MonoBehaviour {
 		}
 	}
 
-	public void getHeart (int qty) {
+    void OnGrabHeart()
+    {
 		if(MissionActive.hearts > 0)
 		{
-            addPoints(qty);
+            addPoints(1);
 			setMissionStatus(MissionActive.hearts);
 		}
 	}

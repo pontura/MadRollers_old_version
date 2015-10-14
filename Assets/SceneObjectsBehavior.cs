@@ -10,6 +10,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
     public SceneObject house1;
     public SceneObject house2;
+    public SceneObject house3;
     public SceneObject PisoPinche;
     public SceneObject rampa;
     public SceneObject flyer;
@@ -177,6 +178,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = house1;
                 else if (go.name == "house2")
                     clone = house2;
+                else if (go.name == "house3")
+                    clone = house3;
                 else if (go.name == "rampa")
                     clone = rampa;
                 else if (go.name == "flyer")
@@ -211,9 +214,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     else  
                         clone = palm5;
 
-                    Vector3 pos2 = go.transform.localEulerAngles;
-                    pos2.y = Random.Range(0, 360);
-                    go.transform.localEulerAngles = pos2;   
+                    //Vector3 pos2 = go.transform.localEulerAngles;
+                    //pos2.y = Random.Range(0, 360);
+                    //go.transform.localEulerAngles = pos2;   
                 }
                 else if (go.name == "streetFloor")
                     clone = streetFloor;

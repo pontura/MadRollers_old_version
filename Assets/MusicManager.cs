@@ -10,8 +10,12 @@ public class MusicManager : MonoBehaviour {
     public AudioClip deathFX;
 
     private float heartsDelay = 0.1f;
+    private AudioSource audioSource;
 
-	// Use this for initialization
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 	public void Init () {
         Data.Instance.events.OnMissionStart += OnMissionStart;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
@@ -19,25 +23,31 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnGamePaused += OnGamePaused;
         Data.Instance.events.SetVolume += SetVolume;
+        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
+        Data.Instance.events.OnAvatarFall += OnAvatarCrash;
 	}
+    void OnAvatarCrash(CharacterBehavior cb)
+    {
+        audioSource.Stop();
+    }
     void SetVolume(float vol)
     {
-        GetComponent<AudioSource>().volume = vol;
+        audioSource.volume = vol;
     }
     private void playSound(AudioClip _clip, bool looped = true)
     {        
-        if (GetComponent<AudioSource>().clip.name == _clip.name) return;
+        if (audioSource.clip.name == _clip.name) return;
         stopAllSounds();
-        GetComponent<AudioSource>().clip = _clip;
-        GetComponent<AudioSource>().Play();
-        GetComponent<AudioSource>().loop = looped;
+        audioSource.clip = _clip;
+        audioSource.Play();
+        audioSource.loop = looped;
     }
     void OnGamePaused(bool paused)
     {
         if(paused)
-            GetComponent<AudioSource>().Stop();
+            audioSource.Stop();
         else
-            GetComponent<AudioSource>().Play();
+            audioSource.Play();
     }
     void OnInterfacesStart()
     {
@@ -60,7 +70,7 @@ public class MusicManager : MonoBehaviour {
     }
     void stopAllSounds()
     {
-        GetComponent<AudioSource>().Stop();
+        audioSource.Stop();
     }
 
     float nextHeartSoundTime;
@@ -68,7 +78,7 @@ public class MusicManager : MonoBehaviour {
     {
         if (Time.time >= nextHeartSoundTime)
         {
-          GetComponent<AudioSource>().PlayOneShot(heartClip);
+          audioSource.PlayOneShot(heartClip);
           nextHeartSoundTime = Time.time + heartsDelay;
         }
     }

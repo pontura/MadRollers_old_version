@@ -3,46 +3,49 @@ using System.Collections;
 
 public class GameCamera : MonoBehaviour 
 {
-    private states state;
-    private enum states
+    public states state;
+    public  enum states
     {
         START,
         PLAYING,
         END
     }
     private CharactersManager charactersManager;	
-
-    //public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, 0.2f);
-    //public private float rotationX = 40;
-
+    
 	public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, -0.2f);
     public float rotationX = 40;
-
-	private float newRotationX;
-	private Vector3 newCameraOrientationVector;
-	private float speed = 0.005f;
-	private bool onExplotion;
+    public Vector3 newCameraOrientationVector;
+    public bool onExplotion;
 	float explotionForce = 0.25f;
-    private Vector3 startingPosition;
-	private bool scrollingY;
-    private Quaternion localRotation;
 
     void Start()
     {
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         if (Data.Instance.mode == Data.modes.ACCELEROMETER)
-        {
 			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
-        }
     }
     void OnDestroy()
     {
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
     }
+
     public void Init() 
 	{
+        try
+        {
+             iTween.Stop();
+        } catch
+        {
+
+        }
+
+        rotationX = 40;
+        Vector3 pos = transform.position;
+        pos.x = 0;
+        pos.y = 0;
+        transform.position = pos;
         //if (Application.platform == RuntimePlatform.Android)
         //{
         //    GetComponent<Vignetting>().enabled = false;
@@ -66,13 +69,8 @@ public class GameCamera : MonoBehaviour
 	public void explote(float explotionForce)
 	{
 		this.explotionForce = explotionForce*1.5f;
-		//onExplotion = true;
 		StartCoroutine (DoExplote ());
 	}
-    private void startCamera()
-    {
-        state = states.PLAYING;
-    }
 	public IEnumerator DoExplote () {	
 
 		float delay = 0.03f;

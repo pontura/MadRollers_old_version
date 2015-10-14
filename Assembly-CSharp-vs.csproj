@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\About.cs" />
      <Compile Include="Assets\AddFacebookAccount.cs" />
+     <Compile Include="Assets\AdvisesManager.cs" />
      <Compile Include="Assets\AreaSet.cs" />
      <Compile Include="Assets\Bomb.cs" />
      <Compile Include="Assets\Breakable.cs" />
@@ -61,7 +62,6 @@
      <Compile Include="Assets\CheckPoint.cs" />
      <Compile Include="Assets\CompetitionButton.cs" />
      <Compile Include="Assets\CompetitionManager.cs" />
-     <Compile Include="Assets\CompetitionResult.cs" />
      <Compile Include="Assets\CompetitionSelection.cs" />
      <Compile Include="Assets\Competitions.cs" />
      <Compile Include="Assets\CompetitonGoalScene.cs" />
@@ -117,6 +117,7 @@
      <Compile Include="Assets\Gui.cs" />
      <Compile Include="Assets\GuiCamera.cs" />
      <Compile Include="Assets\GuiTutorial.cs" />
+     <Compile Include="Assets\HearsManager.cs" />
      <Compile Include="Assets\Hiscores.cs" />
      <Compile Include="Assets\HiscoresControlller.cs" />
      <Compile Include="Assets\IgnoreCollisions.cs" />
@@ -188,6 +189,7 @@
      <Compile Include="Assets\SocialEvents.cs" />
      <Compile Include="Assets\Stars.cs" />
      <Compile Include="Assets\Subibaja.cs" />
+     <Compile Include="Assets\Summary.cs" />
      <Compile Include="Assets\TangentSolver.cs" />
      <Compile Include="Assets\TextureChanger.cs" />
      <Compile Include="Assets\Tracker.cs" />

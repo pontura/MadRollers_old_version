@@ -33,7 +33,7 @@ public class AreasManager : MonoBehaviour {
     }
     private List<AreaSet> Randomize(List<AreaSet> toRandom)
     {
-        Random.seed = Data.Instance.competitions.GetCurrentScore();
+        Random.seed = Social.Instance.hiscores.GetMyScore();
         for (int i = 0; i < toRandom.Count; i++)
         {
             AreaSet temp = toRandom[i];
@@ -63,8 +63,8 @@ public class AreasManager : MonoBehaviour {
 	}
 	private void setNewAreaSet()
 	{
-        Random.seed = 1;
-
+        if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
+            Random.seed = Social.Instance.hiscores.GetMyScore();
         //if (areaSet.competitionsPriority == 0)
         //{
         //    activeAreaSetID = Random.Range(2, areaSets.Count - 1);

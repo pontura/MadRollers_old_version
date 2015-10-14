@@ -37,15 +37,16 @@ public class GrabbableItem : SceneObject
 			sec++;
 			Vector3 position = transform.position;
             Vector3 characterPosition = player.transform.position;
-			characterPosition.y+=1.5f;
-			characterPosition.z+=1.5f;
-			transform.position = Vector3.MoveTowards(position, characterPosition, 15 * Time.deltaTime);
-			if(sec>13)
+			characterPosition.y+=1.7f;
+			characterPosition.z+=1.7f;
+			transform.position = Vector3.MoveTowards(position, characterPosition, 16 * Time.deltaTime);
+			if(sec>12)
 			{
                 player.addEnergy(energy);
                 Data.Instance.events.OnScoreOn(Vector3.zero, 10);
-                Missions missions = Data.Instance.GetComponent<Missions>();
-				missions.SendMessage ("getHeart", energy);
+                //Missions missions = Data.Instance.GetComponent<Missions>();
+				//missions.SendMessage ("getHeart", energy);
+                Data.Instance.events.OnGrabHeart();
                 player = null;
                 Pool();
 			}

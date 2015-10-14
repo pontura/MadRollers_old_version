@@ -38,6 +38,8 @@ public class Events : MonoBehaviour {
     public void AddExplotion(Vector3 position) { OnAddExplotion(position); }
 
     public System.Action<Vector3, int> OnAddObjectExplotion = delegate { };
+    public System.Action<Vector3, int> OnAddHeartsByBreaking = delegate { };
+    
     public System.Action<Vector3, string, string> OnAddTumba = delegate { };  
 
     public System.Action<Vector3> OnAddWallExplotion = delegate { };
@@ -68,4 +70,9 @@ public class Events : MonoBehaviour {
     public System.Action<int> OnCurvedWorldTurn = delegate { };
 
     public System.Action<int> OnSetNewAreaSet = delegate { };
+    public System.Action<int> OnUseHearts = delegate { };
+    
+
+    public System.Action OnGrabHeart = delegate { };
+    public System.Action<string> AdvisesOn = delegate { };
 }
