@@ -5,13 +5,13 @@ using System.Collections;
 public class HearsManager : MonoBehaviour {
 
     public Text label;
-    public int total = 0;
+    public int total;
     public int newHearts = 0;
     public Animation anim;
 
 	void Start () {
         newHearts = 0;
-        total = PlayerPrefs.GetInt("hearts");
+        total = PlayerPrefs.GetInt("totalHearts");
         Data.Instance.events.OnGrabHeart += OnGrabHeart;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnUseHearts += OnUseHearts;
@@ -28,12 +28,12 @@ public class HearsManager : MonoBehaviour {
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
-        PlayerPrefs.SetInt("hearts", total);
+        PlayerPrefs.SetInt("totalHearts", total);
     }
     void OnGrabHeart()
     {
         anim["UIHeartAnim"].normalizedTime = 0;
-        anim.Play("UIHeartAnim");        
+        anim.Play("UIHeartAnim");
         newHearts++;
         total++;
         SetHearts();
