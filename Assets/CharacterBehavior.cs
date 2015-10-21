@@ -4,7 +4,8 @@ using System.Collections;
 
 public class CharacterBehavior : MonoBehaviour {
 
-	private Animation _animation;    
+	private Animation _animation;
+    public Animation _animation_hero;
     public float speed;
 	private bool walking1;
 	private bool walking2;
@@ -172,6 +173,8 @@ public class CharacterBehavior : MonoBehaviour {
 		if(state == states.RUN) return;
 		state = states.RUN;
 		_animation.Play("run");
+        if (_animation_hero)
+        _animation_hero.Play("run");
 	}
     public void JumpPressed()
     {
@@ -185,7 +188,8 @@ public class CharacterBehavior : MonoBehaviour {
     }
     void OnAvatarProgressBarEmpty()
     {
-        JetpackOff();
+        if(state == states.JETPACK)
+            JetpackOff();
     }
     public void Jetpack()
     {
@@ -194,13 +198,14 @@ public class CharacterBehavior : MonoBehaviour {
         if(_animation.clip.name != "shot")
             _animation.Play("shoot");
 
-        player.OnAvatarProgressBarStart();
+        
         floorCollitions.OnAvatarFly();
         state = states.JETPACK;
         player.transport.SetOn();
     }
     public void JetpackOff()
     {
+        print("JetpackOff");
         floorCollitions.OnAvatarFalling();
 
         if (player.transport)
@@ -235,6 +240,8 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 		
 		_animation.Play("jump");
+        if (_animation_hero)
+        _animation_hero.Play("jump");
 		state = states.JUMP;
 		return;
 	}
@@ -308,6 +315,8 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<Rigidbody>().freezeRotation = false;
         //removeColliders();
         _animation.Play("Crash");
+        if (_animation_hero)
+        _animation_hero.Play("hit");
         Invoke("CrashReal", 0.3f);
     }
     void CrashReal()
@@ -341,7 +350,7 @@ public class CharacterBehavior : MonoBehaviour {
 	
 	public void burned(float damage)
 	{
-        player.removeEnergy(damage);
+        //player.removeEnergy(damage);
 		SuperJump( jumpHeight );
 	}
 	

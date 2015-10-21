@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Missions : MonoBehaviour {
 
-    public Mission test_area;
+    public Mission test_mission;
 
 	public Mission[] missions;
     public Competitions competitions;
@@ -67,6 +67,16 @@ public class Missions : MonoBehaviour {
 
         name_txt = level.missionName;
         desc_txt = level.missionDesc;
+
+#if UNITY_EDITOR
+        if (data.DEBUG && test_mission)
+        {
+            print("___________");
+            MissionActive = test_mission;
+            MissionActive.reset();
+            return;
+        }
+#endif
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
            // MissionActiveID = 0;
@@ -74,12 +84,6 @@ public class Missions : MonoBehaviour {
             MissionActive.reset();
             MissionActiveID = 0;  
         } else
-        if (data.DEBUG && test_area)
-        {
-            MissionActive = test_area;
-            MissionActive.reset();
-        }
-        else
         {
             MissionActive = GetActualMissions()[MissionActiveID];
             MissionActive.reset();

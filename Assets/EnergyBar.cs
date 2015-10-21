@@ -8,16 +8,31 @@ public class EnergyBar : MonoBehaviour {
     public bool isOn;
 
     
-    public void Init()
+    public void Init(Color color)
     {
+        gameObject.SetActive(true);
         isOn = true;
         fillValue = 1;
         SetScale();
+        bar.GetComponentInChildren<MeshRenderer>().material.color = color;
     }
-    public void SetOff()
+
+    private float timerInterval;
+    public void SetTimer(float timerInterval)
     {
-        isOn = false;
+        this.timerInterval = timerInterval;
+        Invoke("UnFillByTime", timerInterval);
     }
+    public void UnFillByTime()
+    {
+        if (!isOn) return;
+        UnFill(0.02f);
+        Invoke("UnFillByTime", timerInterval);
+    }
+    //public void SetOff()
+    //{
+    //    isOn = false;
+    //}
     public void UnFill(float qty)
     {
         this.fillValue -= qty;
@@ -26,11 +41,15 @@ public class EnergyBar : MonoBehaviour {
     void SetScale()
     {
         if (!isOn) return;
+        
         Vector3 scale = bar.localScale;
         scale.x = fillValue;
         bar.localScale = scale;
 
         if (fillValue <= 0)
+        {
+            isOn = false;
             Data.Instance.events.OnAvatarProgressBarEmpty();
+        }
     }
 }

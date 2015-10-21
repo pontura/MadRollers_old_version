@@ -65,7 +65,7 @@ public class Breakable : MonoBehaviour {
     }
 	public void hasGravity() {
 		dontKillPlayers = true;
-		//if(!gameObject) return;
+
 		if(!gameObject.GetComponent<Rigidbody>())
 		{
 			gameObject.AddComponent<Rigidbody>();
@@ -91,39 +91,9 @@ public class Breakable : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 		GetComponent<Collider>().isTrigger = true;
 	}
-    //IEnumerator breakerTimer() {
-    //    breaker();
-    //    yield return new WaitForSeconds(0.03f);
-    //    breaker();
-    //    yield return new WaitForSeconds(0.03f);
-    //    breaker();
-    //    if(dontDieOnHit)
-    //    {
-    //        dontKillPlayers = true;
-    //    } else {
-    //        Destroy(gameObject);
-    //    }
-    //}
 	
 	private void breaker(){
 
-        Data.Instance.events.OnAddHeartsByBreaking(transform.position, (int)NumOfParticles);
-        //for (int i = 0; i < NumOfParticles/3; i++) {
-        //    position.y+=0.05f;
-        //    position.x+=Random.Range(-0.5f,0.5f);
-        //    position.z+=0.1f;
-        //    //Instantiate(particle, position, Quaternion.identity);
-        //    if (!particle) return;
-        //    SceneObject newSO = ObjectPool.instance.GetObjectForType(particle.name, true);
-        //    if (newSO)
-        //    {
-        //        newSO.Restart(position);
-        //        newSO.GetComponent<Rigidbody>().AddForce(new Vector3(0, 1000, 0), ForceMode.Impulse);
-        //    }
-        //    else
-        //    {
-        //        //Debug.Log("__________no existe la particula de breaker: " + particle.name);
-        //    }
-        //}
+        Data.Instance.events.OnAddHeartsByBreaking(transform.position, (int)NumOfParticles, 400);
 	}
 }

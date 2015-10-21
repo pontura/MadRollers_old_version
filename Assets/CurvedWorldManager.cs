@@ -21,7 +21,7 @@ public class CurvedWorldManager : MonoBehaviour {
 	}
     void OnSetNewAreaSet(int areaSet)
     {
-        print("OnSetNewAreaSet :" + areaSet);
+       // print("OnSetNewAreaSet :" + areaSet);
         if (areaSet < 2) return;
 
         Data.Instance.events.OnCurvedWorldIncreaseBend(-1);

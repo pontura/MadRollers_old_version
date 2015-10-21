@@ -38,7 +38,7 @@ public class Events : MonoBehaviour {
     public void AddExplotion(Vector3 position) { OnAddExplotion(position); }
 
     public System.Action<Vector3, int> OnAddObjectExplotion = delegate { };
-    public System.Action<Vector3, int> OnAddHeartsByBreaking = delegate { };
+    public System.Action<Vector3, int, int> OnAddHeartsByBreaking = delegate { };
     
     public System.Action<Vector3, string, string> OnAddTumba = delegate { };  
 
@@ -50,7 +50,7 @@ public class Events : MonoBehaviour {
 
     public System.Action OnResetLevel = delegate { };
 
-    public System.Action<string> OnAvatarGetItem = delegate { };
+    public System.Action<Powerup.types> OnAvatarGetItem = delegate { };
     public System.Action<Player.fxStates> OnAvatarChangeFX = delegate { };
     public System.Action<CharacterBehavior> OnAvatarCrash = delegate { };
     public System.Action<CharacterBehavior> OnAvatarFall = delegate { };

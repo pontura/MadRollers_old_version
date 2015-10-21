@@ -4,8 +4,8 @@ using System.Collections;
 
 public class GuiTutorial : MonoBehaviour {
 
-    public Image buttonJump;
-    public Image buttonShoot;
+    public GameObject buttonJump;
+    public GameObject buttonShoot;
     public Image helpSprite;
 
     public Image helpJumpSpriteKeyboard;
@@ -48,8 +48,8 @@ public class GuiTutorial : MonoBehaviour {
 
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
 
-        buttonJump.enabled = false;
-        buttonShoot.enabled = false;
+      //  buttonJump.SetActive(false);
+     //   buttonShoot.SetActive(false);
         
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarJump += OnAvatarJump;
@@ -132,12 +132,12 @@ public class GuiTutorial : MonoBehaviour {
             }
         }
 	}
-    void animateButton(Image sprite)
+    void animateButton(GameObject sprite)
     {
         float originalY = sprite.transform.position.y;
         sprite.transform.position = new Vector3(sprite.transform.position.x, originalY - 1f, 0);
 
-        sprite.enabled = true;
+        sprite.SetActive( true );
 
         Hashtable tweenData = new Hashtable();
         tweenData.Add("y", originalY);

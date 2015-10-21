@@ -18,6 +18,7 @@ public class CharacterCollisions : MonoBehaviour {
         if (characterBehavior.state == CharacterBehavior.states.CRASH) return;
         if (characterBehavior.state == CharacterBehavior.states.FALL) return;
 
+        print(other.tag);
         if (other.tag == "wall") 
 		{
             if (player.fxState == Player.fxStates.NORMAL)
@@ -31,7 +32,9 @@ public class CharacterCollisions : MonoBehaviour {
         if (other.tag == "destroyable") 
 		{
             if (player.fxState == Player.fxStates.NORMAL)
-                characterBehavior.HitWithObject(other.transform.position);
+                if (!other.GetComponent<Breakable>().dontKillPlayers) 
+                    characterBehavior.HitWithObject(other.transform.position);
+
             breakBreakable(other.GetComponent<Breakable>(), other.transform.position);
         }
         else if (other.tag == "floor" && !hitted)

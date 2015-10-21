@@ -136,25 +136,11 @@ public class Level : MonoBehaviour {
             if (explpotionEffect)
                 explpotionEffect.Restart(newPos);
         }
-    
-		newPos = position;
-		newPos.y +=0.7f;
-        for (int a = 0; a < 6; a++)
-        {
-            SceneObject newSO = ObjectPool.instance.GetObjectForType(_explotionGift, true);
-            if (newSO)
-            {
-                newSO.Restart(newPos);
-               // newPos.x += a * 0.05f;
-                newSO.transform.localEulerAngles = new Vector3(0,  a * (360 / 6), 0);
-                Vector3 direction = ((newSO.transform.forward*600) + (Vector3.up * 1600));
-                newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
-            }
-        }
+        OnAddHeartsByBreaking(position, 8, 600);
 	}
-    void OnAddHeartsByBreaking(Vector3 position, int NumOfParticles)
+    void OnAddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 400)
     {
-        position.y += 0.5f;
+        position.y += 0.7f;
         for (int a = 0; a < NumOfParticles; a++)
         {
             SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);
@@ -162,7 +148,7 @@ public class Level : MonoBehaviour {
             {
                 newSO.Restart(position);
                 newSO.transform.localEulerAngles = new Vector3(0, a * (360 / NumOfParticles), 0);
-                Vector3 direction = ((newSO.transform.forward * 400) + (Vector3.up * 1300));
+                Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
                 newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
             }
         }

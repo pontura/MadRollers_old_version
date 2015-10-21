@@ -33,9 +33,9 @@ public class SceneObject : MonoBehaviour {
 
         float distance = charactersMmanager.getDistance();
 
-        if (transform.localPosition.y < -10)
+        if (transform.localPosition.y < -14)
             Pool();
-        else if (distance > transform.position.z + size_z + 8)
+        else if (distance > transform.position.z + size_z + 12)
             Pool();
         else
             OnSceneObjectUpdate();

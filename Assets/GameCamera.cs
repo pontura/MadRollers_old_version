@@ -110,11 +110,11 @@ public class GameCamera : MonoBehaviour
         print("OnAvatarCrash");
         state = states.END;
         iTween.MoveTo(gameObject, iTween.Hash(
-            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 2.3f, transform.localPosition.z + 2.1f),
-            "time", 1.5f,
-            "easetype", iTween.EaseType.easeInCubic,
-            "looktarget", player.transform,
-            "axis", "x"
+            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 1.3f, transform.localPosition.z - 4.1f),
+            "time", 2f,
+            "easetype", iTween.EaseType.easeOutCubic,
+            "looktarget", player.transform
+           // "axis", "x"
             ));
     }
     public void OnAvatarDie(CharacterBehavior player)

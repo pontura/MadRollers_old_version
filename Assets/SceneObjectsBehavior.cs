@@ -13,6 +13,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject house3;
     public SceneObject PisoPinche;
     public SceneObject rampa;
+    public SceneObject rampaHuge;
     public SceneObject flyer;
 	public SceneObject bomb1;
     public SceneObject palm;
@@ -23,7 +24,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
     public SceneObject GrabbableJetpack;
     public SceneObject borde1;
-    public SceneObject bloodx5;
     public SceneObject enemyFrontal1;
     public SceneObject enemyFrontal2;
     public SceneObject enemyFrontal3;
@@ -182,16 +182,21 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = house3;
                 else if (go.name == "rampa")
                     clone = rampa;
+                else if (go.name == "rampaHuge")
+                    clone = rampaHuge;
                 else if (go.name == "flyer")
                     clone = flyer;
                 else if (go.name == "wallBig")
+                {
+                    addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
                     clone = wallBig;
+                }
                 else if (go.name == "wallMedium")
                     clone = wallMedium;
                 else if (go.name == "wallSmall")
                     clone = wallSmall;
                 else if (go.name == "wallSuperSmall")
-                    clone = wallSuperSmall;   
+                    clone = wallSuperSmall;
                 else if (go.name == "jumper")
                     clone = jumper;
                 else if (go.name == "bomb1")
@@ -203,7 +208,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 else if (go.name == "palm")
                 {
                     int ran = Random.Range(0, 100);
-                    if (ran <20)
+                    if (ran < 20)
                         clone = palm;
                     else if (ran < 40)
                         clone = palm2;
@@ -211,7 +216,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                         clone = palm3;
                     else if (ran < 80)
                         clone = palm4;
-                    else  
+                    else
                         clone = palm5;
 
                     //Vector3 pos2 = go.transform.localEulerAngles;
@@ -383,6 +388,12 @@ public class SceneObjectsBehavior : MonoBehaviour {
         pos.z += offset.z;
         pos.x += offset.x;
         newSceneObject.Restart(pos);
+    }
+    public void addDecorationWithRotation(string name, Vector3 pos, Vector3 rotation)
+    {
+        SceneObject newSceneObject = Pool.GetObjectForType(name, false);
+        newSceneObject.Restart(pos);
+        newSceneObject.transform.localEulerAngles = rotation;
     }
 	
 	public void deleteAll()

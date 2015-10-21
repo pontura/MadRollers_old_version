@@ -35,7 +35,7 @@ public class Player : MonoBehaviour {
         SUPER
     }
 
-    public float energy = 90;
+   // public float energy = 90;
     private Material originalMaterial;
 
  //   public EnergyBar energyBar;
@@ -72,17 +72,23 @@ public class Player : MonoBehaviour {
         particles.SetActive(false);
         OnAvatarProgressBarEmpty();
     }
-    public void OnAvatarProgressBarStart()
+    public void OnAvatarProgressBarStart(Color color)
     {
         if (progressBar.isOn) return;
-        progressBar.Init();
+        progressBar.Init(color);
         progressBar.gameObject.SetActive(true);
     }
     public void OnAvatarProgressBarEmpty()
     {
-        progressBar.SetOff();
-        print("OnAvatarProgressBarEmpty");
+
+        print("OnAvatarProgressBarEmpty " + fxState);
         progressBar.gameObject.SetActive(false);
+
+        if (fxState == fxStates.SUPER)
+        {
+            setNormalState();
+            return;
+        }
 
         foreach (Transform child in transportContainer.transform)  Destroy(child.gameObject);
 
@@ -92,14 +98,14 @@ public class Player : MonoBehaviour {
     {
         progressBar.UnFill(qty);
     }
-    private void OnAvatarGetItem(string item)
+    private void OnAvatarGetItem(Powerup.types item)
     {
-        if (item == "missile")
+        if (item == Powerup.types.MISSILE)
         {
             canShoot = true;
             weapon.setOn();
         }
-        else if (item == "jetPack")
+        else if (item == Powerup.types.JETPACK)
         {
             transport = Instantiate(transports[0] as Transport, Vector3.zero, Quaternion.identity) as Transport;
             transport.transform.parent = transportContainer.transform;
@@ -107,35 +113,19 @@ public class Player : MonoBehaviour {
             transport.transform.localEulerAngles = Vector3.zero;
             transport.transform.localScale = Vector3.one;
             Data.Instance.events.AdvisesOn("JETPACK!");
+            OnAvatarProgressBarStart(Color.green);
         }
-    }
-    public void DisableJetPack()
-    {
-
+        else if (item == Powerup.types.INVENSIBLE)
+        {
+            if (fxState == fxStates.SUPER) return;
+            setSuperState();
+            Data.Instance.events.AdvisesOn("INVENSIBLE!");
+            OnAvatarProgressBarStart(Color.blue);
+            progressBar.SetTimer(0.2f);
+        }
     }
    public void UpdateByController()
     {
-
-        if (fxState == fxStates.SUPER)
-        {
-            removeEnergy(Time.deltaTime * 6);
-            if (energy < 0)
-                setNormalState();
-        } else
-        {
-            if (energy > 100)
-            {
-                energy = 100;
-                setSuperState();
-            }
-        }
-
-        float newEnergy = energy / 100.0f;
-
-
-        //if (newEnergy != energyBar.fillValue)
-        //    energyBar.setEnergy(newEnergy);
-
     }
    private void OnListenerDispatcher(string message)
     {
@@ -197,26 +187,26 @@ public class Player : MonoBehaviour {
         //Material newMat = Resources.Load("Materials/Ropa", typeof(Material)) as Material;
         //GetComponent<MaterialsChanger>().changeMaterial(originalMaterial, newMat);
         gameObject.layer = LayerMask.NameToLayer("SuperFX");
-        GetComponent<Animation>().Play("AvatarSpecialFX");
+      //  GetComponent<Animation>().Play("AvatarSpecialFX");
         particles.SetActive(true);
     }
 
-    public void resetEnergy()
-    {
-        energy = 100;
-    }
-    public void removeEnergy(float qty)
-    {
-        energy -= qty * 2;        
-    }
-    public void addEnergy(int qty)
-    {
-        if (fxState == fxStates.SUPER)
-            energy += qty/2;
-        else
-            energy += qty;
+    //public void resetEnergy()
+    //{
+    //    energy = 100;
+    //}
+    //public void removeEnergy(float qty)
+    //{
+    //    energy -= qty * 2;        
+    //}
+    //public void addEnergy(int qty)
+    //{
+    //    if (fxState == fxStates.SUPER)
+    //        energy += qty/2;
+    //    else
+    //        energy += qty;
 
-     //  energyBar.Animate();
-    }
+    // //  energyBar.Animate();
+    //}
     
 }

@@ -13,12 +13,15 @@ public class HearsManager : MonoBehaviour {
         newHearts = 0;
         total = PlayerPrefs.GetInt("totalHearts");
         Data.Instance.events.OnGrabHeart += OnGrabHeart;
-        Data.Instance.events.OnAvatarDie += OnAvatarDie;
+        Data.Instance.events.OnAvatarFall += OnAvatarDie;
+        Data.Instance.events.OnAvatarCrash += OnAvatarDie;
         Data.Instance.events.OnUseHearts += OnUseHearts;
+        SetHearts();
 	}
     void OnDestroy () {
         Data.Instance.events.OnGrabHeart -= OnGrabHeart;
-        Data.Instance.events.OnAvatarDie -= OnAvatarDie;
+        Data.Instance.events.OnAvatarFall -= OnAvatarDie;
+        Data.Instance.events.OnAvatarCrash -= OnAvatarDie;
         Data.Instance.events.OnUseHearts -= OnUseHearts;
 	}
     void OnUseHearts(int qty)
@@ -28,6 +31,7 @@ public class HearsManager : MonoBehaviour {
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
+        //print("GRABA__________totalHearts" + total);
         PlayerPrefs.SetInt("totalHearts", total);
     }
     void OnGrabHeart()

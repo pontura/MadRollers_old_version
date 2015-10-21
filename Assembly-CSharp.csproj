@@ -68,6 +68,7 @@
      <Compile Include="Assets\Continue.cs" />
      <Compile Include="Assets\CurvedWorldManager.cs" />
      <Compile Include="Assets\Data.cs" />
+     <Compile Include="Assets\DataController.cs" />
      <Compile Include="Assets\Decoration.cs" />
      <Compile Include="Assets\DecorationManager.cs" />
      <Compile Include="Assets\DestroyByTags.cs" />
@@ -108,12 +109,10 @@
      <Compile Include="Assets\FollowCharacter.cs" />
      <Compile Include="Assets\FriendButton.cs" />
      <Compile Include="Assets\FullRotation.cs" />
-     <Compile Include="Assets\GUI\levelSelector\LevelsButton.cs" />
      <Compile Include="Assets\Game.cs" />
      <Compile Include="Assets\GameBackground.cs" />
      <Compile Include="Assets\GameCamera.cs" />
      <Compile Include="Assets\GameMenu.cs" />
-     <Compile Include="Assets\GrabbableMissile.cs" />
      <Compile Include="Assets\Gui.cs" />
      <Compile Include="Assets\GuiCamera.cs" />
      <Compile Include="Assets\GuiTutorial.cs" />
@@ -170,6 +169,9 @@
      <Compile Include="Assets\PincheDientes.cs" />
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\PlayerBehavior.cs" />
+     <Compile Include="Assets\Powerup.cs" />
+     <Compile Include="Assets\PowerupsManager.cs" />
+     <Compile Include="Assets\Prefabs\GUI\levelSelector\LevelsButton.cs" />
      <Compile Include="Assets\ProfilePicture.cs" />
      <Compile Include="Assets\ProgressBar.cs" />
      <Compile Include="Assets\Projectil.cs" />
@@ -221,9 +223,7 @@
      <Compile Include="Assets\iTween\Sample\SampleInfo.cs" />
      <Compile Include="Assets\sceneObjects\scripts\Bumper.cs" />
      <Compile Include="Assets\sceneObjects\scripts\GrabbableItem.cs" />
-     <Compile Include="Assets\sceneObjects\scripts\GrabbableJetPAck.cs" />
      <Compile Include="Assets\sceneObjects\scripts\MoveObject.cs" />
-     <Compile Include="Assets\social\DataController.cs" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Bump_Specular_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Cutout_Specular_Global.shader" />
      <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />

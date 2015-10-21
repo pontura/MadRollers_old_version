@@ -57,8 +57,8 @@ public class Game : MonoBehaviour {
         CharacterBehavior cb = level.charactersManager.character;
         
         Vector3 pos = cb.transform.position;
-        pos.y = 10;
-        pos.x = 1;
+        pos.y = 40;
+        pos.x = 0;
         cb.transform.position = pos;
 
         cb.Revive();
