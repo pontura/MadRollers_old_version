@@ -20,7 +20,7 @@ public class GameCamera : MonoBehaviour
 
     void Start()
     {
-        Data.Instance.events.OnAvatarDie += OnAvatarDie;
+        Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         if (Data.Instance.mode == Data.modes.ACCELEROMETER)
 			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
@@ -28,7 +28,7 @@ public class GameCamera : MonoBehaviour
     void OnDestroy()
     {
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnAvatarDie -= OnAvatarDie;
+        Data.Instance.events.OnAvatarFall -= OnAvatarFall;
     }
 
     public void Init() 
@@ -117,10 +117,10 @@ public class GameCamera : MonoBehaviour
            // "axis", "x"
             ));
     }
-    public void OnAvatarDie(CharacterBehavior player)
+    public void OnAvatarFall(CharacterBehavior player)
 	{
         if (state == states.END) return;
-        print("OnAvatarDie");
+        print("OnAvatarFall");
         state = states.END;
         iTween.MoveTo(gameObject, iTween.Hash(
             "position", new Vector3(transform.localPosition.x, transform.localPosition.y+3f, transform.localPosition.z-3.5f),
@@ -130,10 +130,10 @@ public class GameCamera : MonoBehaviour
             "axis", "x"
             ));
 	}
-    public void OnAvatarFall(CharacterBehavior player)
-    {
-        state = states.END;
-    }
+    //public void OnAvatarFall(CharacterBehavior player)
+    //{
+    //    state = states.END;
+    //}
 	public void setOrientation(Vector3 vector, float rotation)
 	{
 	}

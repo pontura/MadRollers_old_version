@@ -142,6 +142,8 @@ public class Hiscores : MonoBehaviour {
     {
         string facebookID = Data.Instance.userData.facebookId;
 
+        if (levels[0].hiscore.Count == 0) return null;
+
         Hiscore lastHiscore = levels[0].hiscore[0];
 
         foreach (Hiscore hiscore in levels[0].hiscore)

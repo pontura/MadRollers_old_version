@@ -106,7 +106,15 @@ public class CharacterBehavior : MonoBehaviour {
         {
             print("no hay projectil");
         }
+        Invoke("ResetShoot", 0.3f);
 	}
+    void ResetShoot()
+    {
+        if (floorCollitions.state == CharacterFloorCollitions.states.ON_FLOOR)
+            Run();
+        else
+            state = states.DOUBLEJUMP;
+    }
 	public void UpdateByController () {
         Vector3 goTo = Vector3.forward * speedRun * Time.deltaTime;
 
@@ -293,11 +301,6 @@ public class CharacterBehavior : MonoBehaviour {
         //_animation.Play("Crash");
         //Invoke("CrashReset", 1f);
     }
-    void CrashReset()
-    {
-        Run();
-    }
-
     public void Hit()
     {
         SaveDistance();

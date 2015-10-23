@@ -112,6 +112,15 @@ ModelImporter:
     100212: Vfdgfgf_005
     100214: Vfdgfgf_006
     100216: Vfdgfgf_1
+    100218: cintura
+    100220: cuerpo
+    100222: guiaDerecha
+    100224: guiaIZquierda
+    100226: mano_suelta
+    100228: manos
+    100230: misil
+    100232: mochila
+    100234: pie_Derecho
     400000: CATRigHub002
     400002: CATRigHub003
     400004: CATRigLArm1
@@ -221,6 +230,15 @@ ModelImporter:
     400212: Vfdgfgf_005
     400214: Vfdgfgf_006
     400216: Vfdgfgf_1
+    400218: cintura
+    400220: cuerpo
+    400222: guiaDerecha
+    400224: guiaIZquierda
+    400226: mano_suelta
+    400228: manos
+    400230: misil
+    400232: mochila
+    400234: pie_Derecho
     2300000: ChamferBox001
     2300002: ChamferBox002
     2300004: ChamferBox003
@@ -289,6 +307,7 @@ ModelImporter:
     2300130: Vfdgfgf_005
     2300132: Vfdgfgf_006
     2300134: Vfdgfgf_1
+    2300136: mano_suelta
     3300000: ChamferBox001
     3300002: ChamferBox002
     3300004: ChamferBox003
@@ -357,6 +376,7 @@ ModelImporter:
     3300130: Vfdgfgf_005
     3300132: Vfdgfgf_006
     3300134: Vfdgfgf_1
+    3300136: mano_suelta
     4300000: Skin_ZSphere_1
     4300002: ChamferCyl002
     4300004: ChamferCyl003
@@ -429,6 +449,10 @@ ModelImporter:
     4300138: Line005
     4300140: Line002
     4300142: Line004
+    4300144: pie_Derecho
+    4300146: manos
+    4300148: cuerpo
+    4300150: mano_suelta
     7400000: run
     7400002: jump
     7400004: hit
@@ -438,6 +462,9 @@ ModelImporter:
     13700002: Skin_ZSphere2_004
     13700004: Skin_ZSphere2_3
     13700006: Skin_ZSphere4_1
+    13700008: cuerpo
+    13700010: manos
+    13700012: pie_Derecho
   materials:
     importMaterials: 1
     materialName: 2

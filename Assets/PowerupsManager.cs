@@ -23,7 +23,7 @@ public class PowerupsManager : MonoBehaviour {
             newSO.Restart(pos);
             newSO.transform.localEulerAngles = Vector3.zero;
             Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force * 1.8f)));
-            newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+            newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Acceleration);
         }
     }
 }

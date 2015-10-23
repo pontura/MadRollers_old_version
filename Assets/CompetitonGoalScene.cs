@@ -18,14 +18,18 @@ public class CompetitonGoalScene : MonoBehaviour {
         Data.Instance.events.OnGamePaused(true);
 
         Hiscores.Hiscore goalHiscore = Social.Instance.hiscores.GetMyNextGoal();
-        
-        username1.text = goalHiscore.username;
-        score1.text = goalHiscore.score.ToString() + " Mts";
-        avatar1.SetPicture(goalHiscore.facebookID);
 
-        username2.text = Data.Instance.userData.username;
-        score2.text = Social.Instance.hiscores.GetMyScore().ToString();
-        avatar2.SetPicture(Data.Instance.userData.facebookId);
+        if (goalHiscore != null)
+        {
+
+            username1.text = goalHiscore.username;
+            score1.text = goalHiscore.score.ToString() + " Mts";
+            avatar1.SetPicture(goalHiscore.facebookID);
+
+            username2.text = Data.Instance.userData.username;
+            score2.text = Social.Instance.hiscores.GetMyScore().ToString();
+            avatar2.SetPicture(Data.Instance.userData.facebookId);
+        }
 
         Invoke("StartGame", 3.5f);
 	}

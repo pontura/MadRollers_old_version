@@ -6,13 +6,12 @@ public class CharacterFloorCollitions : MonoBehaviour {
     private CharacterBehavior characterBehavior;
     private Vector3 offset = new Vector3(0, 2f, 0);
     private int skip = ~((1 << 9) | (1 << 10) | (1 << 11) | (1 << 12) | (1 << 13) | (1 << 14) | (1 << 15) | (1 << 16) | (1 << 17) | (1 << 18) | (1 << 19));
-    private states state;
+    public states state;
     private Rigidbody rigidbody;
-    private enum states
+    public enum states
     {
         ON_FLOOR,
         ON_AIR,
-        SHOOTING,
         ON_FLY
     }
 
@@ -21,12 +20,10 @@ public class CharacterFloorCollitions : MonoBehaviour {
         characterBehavior = gameObject.transform.parent.GetComponent<CharacterBehavior>();
         rigidbody = characterBehavior.GetComponent<Rigidbody>();
         Data.Instance.events.OnAvatarJump += OnAvatarJump;
-        Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
 	}
     public void OnDestroy()
     {
         Data.Instance.events.OnAvatarJump -= OnAvatarJump;
-        Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
     }
     public void OnAvatarFly()
     {
@@ -43,11 +40,6 @@ public class CharacterFloorCollitions : MonoBehaviour {
         state = states.ON_AIR;
         characterBehavior.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
-    public void OnAvatarShoot()
-    {
-        state = states.SHOOTING;
-    }
-    private int resetShooting;
     void Update ()
     {
         if (characterBehavior.state == CharacterBehavior.states.DEAD 
@@ -75,16 +67,6 @@ public class CharacterFloorCollitions : MonoBehaviour {
                 rigidbody.transform.up = Vector3.Lerp(rigidbody.transform.up, hit.normal, 20 * Time.deltaTime);
                // characterBehavior.transform.localEulerAngles = new Vector3(characterBehavior.transform.localEulerAngles.x, RotationY, RotationZ);
             }
-            resetShooting = 0;
-        }
-        if (state == states.SHOOTING)
-        {
-            resetShooting++;
-            if (resetShooting > 20)
-            {
-                state = states.ON_FLOOR;
-                characterBehavior.Run();
-            }
         }
     }
     
@@ -102,14 +84,14 @@ public class CharacterFloorCollitions : MonoBehaviour {
         {
             state = states.ON_FLOOR;
             characterBehavior.Run();
-          //  characterBehavior.setRotation(other.transform.localEulerAngles);
         }
         else
         {
             if (other.tag == "enemy")
             {
                 if (characterBehavior.state == CharacterBehavior.states.JUMP ||
-                    characterBehavior.state == CharacterBehavior.states.DOUBLEJUMP)
+                    characterBehavior.state == CharacterBehavior.states.DOUBLEJUMP ||
+                    characterBehavior.state == CharacterBehavior.states.SHOOT)
                 {
                     other.GetComponent<MmoCharacter>().Die();
                     characterBehavior.SuperJumpByBumped(900);
