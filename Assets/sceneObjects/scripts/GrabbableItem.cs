@@ -32,6 +32,11 @@ public class GrabbableItem : SceneObject
 
         base.OnRestart(pos);
         hitted = false;
+        transform.localEulerAngles = new Vector3(0, 0, 0);
+
+        if (rigidbody && !rigidbody.isKinematic)
+            rigidbody.velocity = Vector3.zero;
+
         sec = 0;
     }
     public override void OnPool()

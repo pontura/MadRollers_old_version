@@ -136,7 +136,11 @@ public class Level : MonoBehaviour {
             if (explpotionEffect)
                 explpotionEffect.Restart(newPos);
         }
-        OnAddHeartsByBreaking(position, 8, 600);
+
+        if (Random.Range(0, 100) < 50)
+            OnAddHeartsByBreaking(position, 8, 450);
+        else
+            Data.Instance.events.OnAddPowerUp(position);
 	}
     void OnAddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 400)
     {

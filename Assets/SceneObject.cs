@@ -19,6 +19,8 @@ public class SceneObject : MonoBehaviour {
     [HideInInspector]
     public CharactersManager charactersMmanager;
 
+    public int distanceFromCharacter;
+
     private Transform[] childs;
 
     void Start()
@@ -31,25 +33,19 @@ public class SceneObject : MonoBehaviour {
         if (!charactersMmanager) return;
         if (charactersMmanager.getDistance() == 0) return;
 
+       
         float distance = charactersMmanager.getDistance();
+        distanceFromCharacter = (int)transform.position.z - (int)distance;
 
         if (transform.localPosition.y < -14)
             Pool();
         else if (distance > transform.position.z + size_z + 12)
             Pool();
-        else
+        else if (distance > transform.position.z - 45)
             OnSceneObjectUpdate();
     }
     public void Restart(Vector3 pos)
     {
-       // characterTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
-        //if (shadow)
-        //{
-        //    SceneObject shadowNew = ObjectPool.instance.GetObjectForType(shadow.name, false);
-        //    shadowNew.Restart(pos);
-        //    shadowNew.GetComponent<Shadow>().Init(this);
-        //}
         OnRestart(pos);
     }
     public void setRotation(Vector3 rot)

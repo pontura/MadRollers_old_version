@@ -7,12 +7,10 @@ public class EnemyPathRunnerBehavior : MonoBehaviour {
     public float randomSpeedDiff  = 0;
     public Vector3[] paths;
     private int pathID;
-
     private float realSpeed;
-    private MmoCharacter mmoCharacter;
-    
+    private MmoCharacter mmoCharacter;    
 
-    public void OnSceneObjectRestarted()
+    public void Start()
     {
         pathID = 0;
         if (randomSpeedDiff != 0)
@@ -23,8 +21,16 @@ public class EnemyPathRunnerBehavior : MonoBehaviour {
         mmoCharacter = GetComponent<MmoCharacter>();
 
         changeDirection();
-        
+
+        if (Mathf.Abs(realSpeed) > 3)
+            mmoCharacter.run();
+        else
+            mmoCharacter.walk();        
 	}
+    void OnDisable()
+    {
+        Destroy(gameObject.GetComponent("EnemyPathRunnerBehavior"));
+    }
     public void changeDirection()
     {
         if (pathID == paths.Length)
@@ -32,12 +38,6 @@ public class EnemyPathRunnerBehavior : MonoBehaviour {
 
         if (paths[pathID].x < transform.localPosition.x) mmoCharacter.setRotation(new Vector3(0, 90, 0));
         else  mmoCharacter.setRotation(new Vector3(0, -90, 0));
-
-        if (Mathf.Abs(realSpeed) > 3)
-            mmoCharacter.run();
-        else
-            mmoCharacter.walk();
-
         
     }
 

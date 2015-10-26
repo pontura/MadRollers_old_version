@@ -10,19 +10,19 @@ public class EnemyRunnerBehavior : MonoBehaviour {
     private float realSpeed;
     private MmoCharacter mmoCharacter;
 
-    public void OnSceneObjectRestarted()
+    void Start()
     {
         if (randomSpeedDiff != 0)
             realSpeed = speed + Random.Range(0, randomSpeedDiff);
         else
             realSpeed = speed;
-
-
         mmoCharacter = GetComponent<MmoCharacter>();
-
         OnReachFloor();
-        
 	}
+    void OnDisable()
+    {
+        Destroy(gameObject.GetComponent("EnemyRunnerBehavior"));
+    }
     public void OnReachFloor()
     {
         if (realSpeed > 0)
@@ -37,6 +37,8 @@ public class EnemyRunnerBehavior : MonoBehaviour {
     }
     public void OnSceneObjectUpdated()
     {
+        
+        if (!mmoCharacter) return;
         if (mmoCharacter.state == MmoCharacter.states.DEAD) return;
 
         transform.Translate(-Vector3.forward * Mathf.Abs(realSpeed) * Time.deltaTime);

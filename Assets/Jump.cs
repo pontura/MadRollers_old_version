@@ -9,17 +9,22 @@ public class Jump : MonoBehaviour {
    // private float sec = 0;
     private MmoCharacter mmoCharacter;
 
-  //  private int lastState;
-
-    void OnSceneObjectRestarted()
+    public void Start()
     {
         mmoCharacter = GetComponent<MmoCharacter>();
         mmoCharacter.waitToJump();
+    }
+    void OnDisable()
+    {
+        Destroy(gameObject.GetComponent("Jump"));
+    }
+    void OnSceneObjectRestarted()
+    {
+        
 	}
-
     public void OnSceneObjectUpdated()
 	{
-        if (mmoCharacter.state != MmoCharacter.states.JUMP && mmoCharacter.charactersMmanager.getPosition().z > transform.position.z - distanceFromAvatar)
+        if (mmoCharacter.state != MmoCharacter.states.JUMP && mmoCharacter.distanceFromCharacter < distanceFromAvatar)
         {
             mmoCharacter.jump();
             GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight * 100, 0), ForceMode.Impulse);

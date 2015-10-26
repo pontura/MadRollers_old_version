@@ -5,7 +5,7 @@ public class Subibaja : MonoBehaviour
 {
     public float duration = 1.5f;
     
-    public void OnSceneObjectRestarted()
+    void Start()
     {
         iTween.RotateBy(gameObject, iTween.Hash("x", -transform.rotation.x, "easeType", "linear", "time", duration, "looptype", iTween.LoopType.pingPong));
     }

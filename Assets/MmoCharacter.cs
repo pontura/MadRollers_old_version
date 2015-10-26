@@ -23,13 +23,22 @@ public class MmoCharacter : SceneObject
     private ObjectPool ObjectPool;
 
 	// Use this for initialization
-    public override void OnRestart(Vector3 pos)
+   // public override void OnRestart(Vector3 pos)
+    void Start()
+    {
+        ObjectPool = Data.Instance.sceneObjectsPool;
+    }
+    void OnEnable()
     {
         _animation = GetComponentInChildren<Animation>();
-        base.OnRestart(pos);
-        ObjectPool = Data.Instance.sceneObjectsPool;
+        
+    }
+    public override void OnRestart(Vector3 pos)
+    {
         gameObject.GetComponent<Collider>().enabled = true;
-	}
+        base.OnRestart(pos);
+        state = states.IDLE;
+    }
 	public void Die() {
 		if(state== states.DEAD) return;
 
@@ -94,8 +103,8 @@ public class MmoCharacter : SceneObject
 	}
     public void reachFloor()
     {
-        run();
-        SendMessage("OnReachFloor", SendMessageOptions.DontRequireReceiver);
+        //run();
+        //SendMessage("OnReachFloor", SendMessageOptions.DontRequireReceiver);
     }
 	// Update is called once per frame
     public override void OnSceneObjectUpdate()

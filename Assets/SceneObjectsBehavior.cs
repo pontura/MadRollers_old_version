@@ -24,9 +24,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
     public SceneObject GrabbableJetpack;
     public SceneObject borde1;
-    public SceneObject enemyFrontal1;
-    public SceneObject enemyFrontal2;
-    public SceneObject enemyFrontal3;
+   // public SceneObject enemyFrontal1;
     
     public SceneObject fences;
     public SceneObject rainbow;
@@ -112,9 +110,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 case "Coin":
                 case "bloodx1":
                 case "Yuyo":
+                case "enemyFrontal":
                     
-
                     sceneObject = Pool.GetObjectForType(go.name + "_real", false);
+
+                   
 
                     //HACK creo que esto arregla que desaparezca cada tanto un objeto, sino es asi borrame!
                     sceneObject.isActive = false;
@@ -123,6 +123,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     {
                         sceneObject.Restart(pos);
                         sceneObject.transform.rotation = go.transform.rotation;
+
 
                         if (go.GetComponent<MaterialsChanger>())
                         {
@@ -239,7 +240,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 {
                     // int random = Random.Range(1, 4);
                     //if (random < 2)
-                    clone = enemyFrontal1;
+                   // clone = enemyFrontal1;
                     //else if (random < 3)
                     //    clone = enemyFrontal2;
                     //else
@@ -278,84 +279,77 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
                 if (clone)
                 {
-                    SceneObject newSO = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
-                    
-                    if (go.GetComponent<MoveObject>())
-                    {
-                        MoveObject mo = go.GetComponent<MoveObject>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<Dropper>())
-                    {
-                        Dropper mo = go.GetComponent<Dropper>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<EnemyPathRunnerBehavior>())
-                    {
-                        EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<EnemyRunnerBehavior>())
-                    {
-                        EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<Subibaja>())
-                    {
-                        Subibaja mo = go.GetComponent<Subibaja>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<Jump>())
-                    {
-                        Jump mo = go.GetComponent<Jump>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<ListenerDispatcher>())
-                    {
-                        ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<FollowCharacter>())
-                    {
-                        FollowCharacter mo = go.GetComponent<FollowCharacter>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<FlyingBehavior>())
-                    {
-                        FlyingBehavior mo = go.GetComponent<FlyingBehavior>();
-                        CopyComponent(mo, newSO.gameObject);
-                    } 
-                    if (go.GetComponent<FullRotation>())
-                    {
-                        FullRotation mo = go.GetComponent<FullRotation>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<Bumper>())
-                    {
-                        Bumper mo = go.GetComponent<Bumper>();
-                        CopyComponent(mo, newSO.gameObject);
-                    }
-                    if (go.GetComponent<MaterialsChanger>())
-                    {
-                        MaterialsChanger mo = go.GetComponent<MaterialsChanger>();
-                        CopyComponent(mo, newSO.gameObject);
-                    } 
-                    if (go.GetComponent<RandomPosition>())
-                    {
-                        RandomPosition mo = go.GetComponent<RandomPosition>();
-                        pos = mo.getPosition(pos);
-                    } 
+                    sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
+                    sceneObject.transform.parent = Pool.Scene.transform;
+                    sceneObject.transform.rotation = go.transform.rotation;
+                    sceneObject.Restart(pos);
+                }
 
-                    
-
-
-                    newSO.transform.parent = Pool.Scene.transform;
-                    newSO.transform.rotation = go.transform.rotation;
-                    newSO.Restart(pos);
-                    
+                if (go.GetComponent<MoveObject>())
+                {
+                    MoveObject mo = go.GetComponent<MoveObject>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<Dropper>())
+                {
+                    Dropper mo = go.GetComponent<Dropper>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<RandomPosition>())
+                {
+                    RandomPosition mo = go.GetComponent<RandomPosition>();
+                    pos = mo.getPosition(pos);
                 }
 
 
+                if (go.GetComponent<EnemyPathRunnerBehavior>())
+                {
+                    EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<EnemyRunnerBehavior>())
+                {
+                    EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<Jump>())
+                {
+                    Jump mo = go.GetComponent<Jump>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+
+
+                if (go.GetComponent<Subibaja>())
+                {
+                    Subibaja mo = go.GetComponent<Subibaja>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+
+                if (go.GetComponent<ListenerDispatcher>())
+                {
+                    ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<FollowCharacter>())
+                {
+                    FollowCharacter mo = go.GetComponent<FollowCharacter>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<FlyingBehavior>())
+                {
+                    FlyingBehavior mo = go.GetComponent<FlyingBehavior>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<FullRotation>())
+                {
+                    FullRotation mo = go.GetComponent<FullRotation>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<Bumper>())
+                {
+                    Bumper mo = go.GetComponent<Bumper>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
 			
 	    }
 	}

@@ -7,18 +7,18 @@ public class PowerupsManager : MonoBehaviour {
 
     void Start()
     {
-	    Data.Instance.events.OnAddExplotion += OnAddExplotion;
+        Data.Instance.events.OnAddPowerUp += OnAddPowerUp;
     }    
     public void OnDestroy()
     {
-        Data.Instance.events.OnAddExplotion -= OnAddExplotion;
+        Data.Instance.events.OnAddPowerUp -= OnAddPowerUp;
     }
-    void OnAddExplotion(Vector3 pos)
+    void OnAddPowerUp(Vector3 pos)
     {
         SceneObject newSO = ObjectPool.instance.GetObjectForType(Invencible.name, true);
         if (newSO)
         {
-            int force = 800;
+            int force = 600;
             pos.y += 1.2f;
             newSO.Restart(pos);
             newSO.transform.localEulerAngles = Vector3.zero;
