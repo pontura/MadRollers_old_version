@@ -93,7 +93,6 @@ public class Breakable : MonoBehaviour {
 	}
 	
 	private void breaker(){
-
-        Data.Instance.events.OnAddHeartsByBreaking(transform.position, (int)NumOfParticles, 400);
+         Data.Instance.events.OnAddHeartsByBreaking(transform.position, (int)NumOfParticles, 400);
 	}
 }

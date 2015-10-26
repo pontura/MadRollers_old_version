@@ -16,6 +16,9 @@ public class EnemyRunnerBehavior : MonoBehaviour {
             realSpeed = speed + Random.Range(0, randomSpeedDiff);
         else
             realSpeed = speed;
+
+        speed *= 2;
+
         mmoCharacter = GetComponent<MmoCharacter>();
         OnReachFloor();
 	}

@@ -145,6 +145,7 @@ public class Level : MonoBehaviour {
     void OnAddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 400)
     {
         position.y += 0.7f;
+        if (NumOfParticles > 10) NumOfParticles = 10;
         for (int a = 0; a < NumOfParticles; a++)
         {
             SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);

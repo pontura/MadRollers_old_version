@@ -8,18 +8,9 @@ public class MoveObject : MonoBehaviour {
     public Vector2 coords;
     public int initialCoordId = 0;
 
-    private MmoCharacter mmoCharacter;
-
-
-    public void OnSceneObjectRestarted()
+    public void Start()
     {
-        if (GetComponent<MmoCharacter>())
-        {
-            mmoCharacter = GetComponent<MmoCharacter>();
-        }
-
-        loop();
-        
+        loop();        
 	}
     private void loop()
     {
@@ -49,39 +40,4 @@ public class MoveObject : MonoBehaviour {
         else initialCoordId = 0;
 
     }
-
-    //public void OnSceneObjectUpdated()
-    //{
-    //    float positionX = 0;
-    //    if (rotateOnMovement)
-    //    {
-    //        if (moveLeft)
-    //            transform.rotation = Quaternion.Euler(0, 90, 0);
-    //        else
-    //            transform.rotation = Quaternion.Euler(0, -90, 0);
-    //    }
-    //    if (destX != 0)
-    //    {
-    //        if (!moveLeft)
-    //            positionX += speed * Time.deltaTime;
-    //        else
-    //            positionX += -1 * speed * Time.deltaTime;
-
-    //        if (moveLeft && transform.position.x < destX)
-    //        {
-    //            moveLeft = false;
-    //            destX = initialX;
-    //        }
-    //        else if (!moveLeft && transform.position.x > destX)
-    //        {
-    //            moveLeft = !moveLeft;
-    //        }
-    //        else
-    //        {
-
-    //        }
-    //    }
-
-    //    transform.position = new Vector3(transform.position.x + positionX, transform.position.y, transform.position.z);
-    //}
 }

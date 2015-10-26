@@ -3,9 +3,8 @@ using System.Collections;
 
 public class Bomb : SceneObject {
 
-	public float start_Y = 5;
-	public float speed = 0.2f;
-    public int activationArea = 100;
+	private float start_Y = 15;
+    private float speed = 8.2f;
 
     public Breakable breakable;
 
@@ -56,8 +55,6 @@ public class Bomb : SceneObject {
 
         if (transform.localPosition.y < 5.5f && !GetComponent<AudioSource>().isPlaying)
             startAudio();
-
-        if (charactersMmanager.getDistance() + activationArea < transform.position.z) return;
        
         //if(alive)
         //{

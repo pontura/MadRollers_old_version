@@ -189,7 +189,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = flyer;
                 else if (go.name == "wallBig")
                 {
-                    addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
+                  //  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
                     clone = wallBig;
                 }
                 else if (go.name == "wallMedium")
