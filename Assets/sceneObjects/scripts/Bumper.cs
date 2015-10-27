@@ -23,7 +23,7 @@ public class Bumper : MonoBehaviour {
                 if (lastCharacterJumped == ch) return;
                 lastCharacterJumped = ch;
 
-                ch.SuperJumpByBumped(force*100);
+                ch.SuperJumpByBumped(force*100, 0.5f, true);
 
                 //if (animationClip)
                 //{

@@ -459,6 +459,7 @@ ModelImporter:
     7400006: doubleJump
     7400008: rebota
     7400010: shoot
+    7400012: superJump
     9500000: //RootNode
     11100000: //RootNode
     13700000: Ffffff_1
@@ -1221,7 +1222,7 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 165
       lastFrame: 191
-      wrapMode: 0
+      wrapMode: 1
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -1321,7 +1322,7 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 202
       lastFrame: 226
-      wrapMode: 0
+      wrapMode: 1
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -1421,7 +1422,7 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 229
       lastFrame: 240
-      wrapMode: 0
+      wrapMode: 1
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -1443,6 +1444,106 @@ ModelImporter:
       - path: 
         weight: 1
       - path: cintura
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: superJump
+      takeName: Take 001
+      firstFrame: 240
+      lastFrame: 283
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cintura
+        weight: 1
+      - path: cintura/CATRigLArmCollarbone
+        weight: 1
+      - path: cintura/CATRigLArmCollarbone/CATRigLArm1
+        weight: 1
+      - path: cintura/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2
+        weight: 1
+      - path: cintura/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm
+        weight: 1
+      - path: cintura/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm/CATRigLArmDigit11
+        weight: 1
+      - path: cintura/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm/CATRigLArmDigit21
+        weight: 1
+      - path: cintura/CATRigLArmCollarbone/CATRigLArm1/CATRigLArm2/CATRigLArmPalm/CATRigLArmDigit31
+        weight: 1
+      - path: cintura/CATRigLLeg1
+        weight: 1
+      - path: cintura/CATRigLLeg1/CATRigLLeg2
+        weight: 1
+      - path: cintura/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle
+        weight: 1
+      - path: cintura/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/Vfdgfgf_1
+        weight: 1
+      - path: cintura/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/Vfdgfgf_002
+        weight: 1
+      - path: cintura/CATRigLLeg1/CATRigLLeg2/CATRigLLegAnkle/Vfdgfgf_003
+        weight: 1
+      - path: cintura/CATRigRArmCollarbone
+        weight: 1
+      - path: cintura/CATRigRArmCollarbone/CATRigRArm1
+        weight: 1
+      - path: cintura/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2
+        weight: 1
+      - path: cintura/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm
+        weight: 1
+      - path: cintura/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm/CATRigRArmDigit11
+        weight: 1
+      - path: cintura/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm/CATRigRArmDigit21
+        weight: 1
+      - path: cintura/CATRigRArmCollarbone/CATRigRArm1/CATRigRArm2/CATRigRArmPalm/CATRigRArmDigit31
+        weight: 1
+      - path: cintura/CATRigRLeg1
+        weight: 1
+      - path: cintura/CATRigRLeg1/CATRigRLeg2
+        weight: 1
+      - path: cintura/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle
+        weight: 1
+      - path: cintura/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/Vfdgfgf_004
+        weight: 1
+      - path: cintura/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/Vfdgfgf_005
+        weight: 1
+      - path: cintura/CATRigRLeg1/CATRigRLeg2/CATRigRLegAnkle/Vfdgfgf_006
+        weight: 1
+      - path: cintura/CATRigSpine
+        weight: 1
+      - path: cintura/CATRigSpine/CATRigHub003
+        weight: 1
+      - path: cintura/CATRigSpine/Skin_ZSphere_1
+        weight: 1
+      - path: cuerpo
+        weight: 1
+      - path: guiaDerecha
+        weight: 1
+      - path: guiaIZquierda
+        weight: 1
+      - path: manos
+        weight: 1
+      - path: pie_Derecho
+        weight: 1
+      - path: Skin_ZSphere2_3
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

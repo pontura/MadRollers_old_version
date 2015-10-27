@@ -48,7 +48,7 @@ public class CharacterCollisions : MonoBehaviour {
             else
             {
                 hitted = true;
-                characterBehavior.SuperJumpByBumped(1200, 0.5f);
+                characterBehavior.SuperJumpByBumped(1200, 0.5f, false);
                 Invoke("resetHits", 1);
             }
             if (other.GetComponent<WeakPlatform>())

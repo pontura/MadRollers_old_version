@@ -259,7 +259,8 @@ public class CharacterBehavior : MonoBehaviour {
 		state = states.DOUBLEJUMP;
 		return;
 	}
-	public void SuperJumpByBumped(int force = 1600, float offsetY = 0.5f)
+
+	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
 	{
         data.events.AvatarJump();
         Vector3 pos = transform.localPosition;
@@ -270,7 +271,10 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<AudioSource>().clip = jump3Clip;
         GetComponent<AudioSource>().Play();
 
-        _animation_hero.Play("rebota");
+        if (!dir_forward)
+            _animation_hero.Play("rebota");
+        else
+            _animation_hero.Play("superJump");
 
 	}
     public void Fall()

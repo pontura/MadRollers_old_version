@@ -20,7 +20,7 @@ public class Breakable : MonoBehaviour {
     public System.Action OnBreak = delegate { };
     public int score;
 
-    public void Start()
+    public void OnEnable()
     {               
         isOn = true;
     }
