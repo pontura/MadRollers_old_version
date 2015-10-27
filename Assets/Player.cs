@@ -156,15 +156,11 @@ public class Player : MonoBehaviour {
    }
    private void setStartingState()
    {
-      // Data.Instance.events.OnAvatarChangeFX(Player.fxStates.SUPER);
        fxState = fxStates.SUPER;
-       Material oldMat = Resources.Load("Materials/Piel", typeof(Material)) as Material;
-       GetComponent<MaterialsChanger>().changeMaterial(oldMat, originalMaterial);
        gameObject.layer = LayerMask.NameToLayer("SuperFX");
    }
    private void setStartingState2()
    {
-       // Data.Instance.events.OnAvatarChangeFX(Player.fxStates.SUPER);
        fxState = fxStates.NORMAL;
        gameObject.layer = LayerMask.NameToLayer("Character");
        GetComponent<Animation>().Stop();
@@ -174,8 +170,6 @@ public class Player : MonoBehaviour {
         transform.localScale = _scale;
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.NORMAL);
         fxState = fxStates.NORMAL;
-       // Material oldMat = Resources.Load("Materials/Ropa", typeof(Material)) as Material;     
-       // GetComponent<MaterialsChanger>().changeMaterial(oldMat, originalMaterial);
         gameObject.layer = LayerMask.NameToLayer("Character");
         GetComponent<Animation>().Stop();
         particles.SetActive(false);
@@ -184,10 +178,7 @@ public class Player : MonoBehaviour {
     {
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.SUPER);
         fxState = fxStates.SUPER;
-        //Material newMat = Resources.Load("Materials/Ropa", typeof(Material)) as Material;
-        //GetComponent<MaterialsChanger>().changeMaterial(originalMaterial, newMat);
         gameObject.layer = LayerMask.NameToLayer("SuperFX");
-      //  GetComponent<Animation>().Play("AvatarSpecialFX");
         particles.SetActive(true);
     }
 

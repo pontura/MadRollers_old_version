@@ -41,10 +41,16 @@ public class Summary : MonoBehaviour {
         Data.Instance.events.OnAvatarFall -= Init;
         Data.Instance.events.OnAvatarCrash -= Init;
     }
-	void Init (CharacterBehavior cb) {
+    void Init(CharacterBehavior cb)
+    {
+        Invoke("SetOn", 1);
+        meters.text = (int)cb.distance + " mts";
+    }
+    void SetOn()
+    {
         panel.SetActive(true);
         panela.SetActive(true);
-        meters.text = (int)cb.distance + " mts";
+        
         totalHearts = GetComponent<HearsManager>().total;
         
         newHearts = GetComponent<HearsManager>().newHearts;
@@ -56,7 +62,6 @@ public class Summary : MonoBehaviour {
         heartsTotal3.text = totalHearts.ToString();
 
         Invoke("CountDown", 0.5f);
-       // panel.GetComponent<Animator>().Play("summaryAnim");
 
         StartCoroutine(Play(anim, "popupOpen", false, null));
 

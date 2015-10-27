@@ -94,7 +94,7 @@ public class CharacterFloorCollitions : MonoBehaviour {
                     characterBehavior.state == CharacterBehavior.states.SHOOT)
                 {
                     other.GetComponent<MmoCharacter>().Die();
-                    characterBehavior.SuperJumpByBumped(900);
+                    characterBehavior.SuperJumpByBumped(1200);
                 }
             }
         }

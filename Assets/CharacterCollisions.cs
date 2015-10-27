@@ -37,7 +37,7 @@ public class CharacterCollisions : MonoBehaviour {
                 if (!other.GetComponent<Breakable>().dontKillPlayers) 
                     characterBehavior.HitWithObject(other.transform.position);
 
-            breakBreakable(other.GetComponent<Breakable>(), other.transform.position);
+          //  breakBreakable(other.GetComponent<Breakable>(), other.transform.position);
         }
         else if (other.tag == "floor" && !hitted)
         {
@@ -48,7 +48,7 @@ public class CharacterCollisions : MonoBehaviour {
             else
             {
                 hitted = true;
-                characterBehavior.SuperJumpByBumped(1000, 0.5f);
+                characterBehavior.SuperJumpByBumped(1200, 0.5f);
                 Invoke("resetHits", 1);
             }
             if (other.GetComponent<WeakPlatform>())

@@ -4,7 +4,6 @@ using System.Collections;
 
 public class CharacterBehavior : MonoBehaviour {
 
-	private Animation _animation;
     public Animation _animation_hero;
     public float speed;
 	private bool walking1;
@@ -54,15 +53,12 @@ public class CharacterBehavior : MonoBehaviour {
     public GameObject model;
 	public Data data;
     private Missions missions;
-
-    public TextureChanger textureChanger;
 	
 	// Use this for initialization
 	void Start () {
         data = Data.Instance;       
         missions = Data.Instance.GetComponent<Missions>();
 		player = GetComponent<Player>();
-        _animation = model.GetComponent<Animation>();
 
         data.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
         data.events.OncharacterCheer += OncharacterCheer;
@@ -85,7 +81,9 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if(!player.canShoot) return;
 
-        _animation.Play("shoot");
+        if (_animation_hero)
+            _animation_hero.Play("shoot");
+
         state = states.SHOOT;
             
         player.weapon.Shoot();
@@ -180,8 +178,6 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if(state == states.RUN) return;
 		state = states.RUN;
-		_animation.Play("run");
-        if (_animation_hero)
         _animation_hero.Play("run");
 	}
     public void JumpPressed()
@@ -203,8 +199,7 @@ public class CharacterBehavior : MonoBehaviour {
     {
         if (state == states.JETPACK) return;
 
-        if(_animation.clip.name != "shot")
-            _animation.Play("shoot");
+        _animation_hero.Play("shoot");
 
         
         floorCollitions.OnAvatarFly();
@@ -246,9 +241,7 @@ public class CharacterBehavior : MonoBehaviour {
         data.events.AvatarJump();
 
         GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
-		
-		_animation.Play("jump");
-        if (_animation_hero)
+
         _animation_hero.Play("jump");
 		state = states.JUMP;
 		return;
@@ -259,7 +252,8 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<AudioSource>().clip = jump2Clip;
         GetComponent<AudioSource>().Play();
         data.events.AvatarJump();
-        _animation.Play("doubleJump");
+
+            _animation_hero.Play("doubleJump");
 
         GetComponent<Rigidbody>().AddForce(new Vector3(0, (_superJumpHeight ) - (GetComponent<Rigidbody>().velocity.y * (jumpHeight / 10)), 0), ForceMode.Impulse);
 		state = states.DOUBLEJUMP;
@@ -276,7 +270,8 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<AudioSource>().clip = jump3Clip;
         GetComponent<AudioSource>().Play();
 
-        _animation.Play("Rebota");
+        _animation_hero.Play("rebota");
+
 	}
     public void Fall()
     {
@@ -305,8 +300,6 @@ public class CharacterBehavior : MonoBehaviour {
     {
         SaveDistance();
 
-        textureChanger.Dead();
-
         GetComponent<AudioSource>().clip = FXCrash;
         GetComponent<AudioSource>().Play();
 
@@ -317,8 +310,7 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<Rigidbody>().AddForce(new Vector3(0, 1500, 0), ForceMode.Impulse);
         GetComponent<Rigidbody>().freezeRotation = false;
         //removeColliders();
-        _animation.Play("Crash");
-        if (_animation_hero)
+
         _animation_hero.Play("hit");
         Invoke("CrashReal", 0.3f);
     }
@@ -347,7 +339,7 @@ public class CharacterBehavior : MonoBehaviour {
         SaveDistance();
 
 		state = states.DEAD;
-        _animation.Play("FallDown");
+       // _animation.Play("FallDown");
 	}
 	
 	
