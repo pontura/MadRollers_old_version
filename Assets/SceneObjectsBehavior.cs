@@ -8,6 +8,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     [HideInInspector]
     public Area area;
 
+    public SceneObject FloorSurface;
     public SceneObject house1;
     public SceneObject house2;
     public SceneObject house3;
@@ -172,7 +173,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
                 SceneObject clone = null;
 
-				
+
+                if (go.name == "FloorSurface")
+                    clone = FloorSurface;
                 if (go.name == "PisoPinche")
                     clone = PisoPinche;
                 else if (go.name == "house1")

@@ -41,7 +41,7 @@ public class CharacterCollisions : MonoBehaviour {
         }
         else if (other.tag == "floor" && !hitted)
         {
-            if (transform.position.y - other.transform.position.y < 0.5f)
+            if (transform.position.y - other.transform.position.y < 0.7f)
             {
                 characterBehavior.Hit();
             }

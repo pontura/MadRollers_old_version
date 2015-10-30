@@ -4,19 +4,19 @@ using System.Collections;
 public class CharacterFloorCollitions : MonoBehaviour {
 
     private CharacterBehavior characterBehavior;
-    private Vector3 offset = new Vector3(0, 2f, 0);
+    private Vector3 offset = new Vector3(0, 3f, 0);
     private int skip = ~((1 << 9) | (1 << 10) | (1 << 11) | (1 << 12) | (1 << 13) | (1 << 14) | (1 << 15) | (1 << 16) | (1 << 17) | (1 << 18) | (1 << 19));
     public states state;
     private Rigidbody rigidbody;
     public enum states
     {
         ON_FLOOR,
+        ON_START_JUMPING,
         ON_AIR,
         ON_FLY
     }
 
-	void Start () {
-        
+	void Start () {        
         characterBehavior = gameObject.transform.parent.GetComponent<CharacterBehavior>();
         rigidbody = characterBehavior.GetComponent<Rigidbody>();
         Data.Instance.events.OnAvatarJump += OnAvatarJump;
@@ -37,11 +37,18 @@ public class CharacterFloorCollitions : MonoBehaviour {
     }
     public void OnAvatarJump()
     {
-        state = states.ON_AIR;
+        state = states.ON_START_JUMPING;
         characterBehavior.transform.localEulerAngles = new Vector3(0, 0, 0);
+        Invoke("resetStartJumping", 0.3f);
+    }
+    void resetStartJumping()
+    {
+        state = states.ON_AIR;
     }
     void Update ()
     {
+        if (state == states.ON_START_JUMPING) return;
+
         if (characterBehavior.state == CharacterBehavior.states.DEAD 
             || characterBehavior.state == CharacterBehavior.states.CRASH
             || characterBehavior.state == CharacterBehavior.states.FALL) 
@@ -56,15 +63,14 @@ public class CharacterFloorCollitions : MonoBehaviour {
 
             if (Physics.Raycast(pos + offset, -Vector3.up, out hit, offset.y, skip))
             {
-                Vector3 newPos = characterBehavior.transform.localPosition;
-                newPos.y = hit.point.y;
-                characterBehavior.transform.localPosition = newPos;
                 rigidbody.velocity = Vector3.zero;
-
                 //float RotationY = characterBehavior.transform.localEulerAngles.y;
                 //float RotationZ = characterBehavior.transform.localEulerAngles.z;
-               // characterBehavior.transform.up = hit.normal;
-                rigidbody.transform.up = Vector3.Lerp(rigidbody.transform.up, hit.normal, 20 * Time.deltaTime);
+                //characterBehavior.transform.up = hit.normal;
+
+                if(characterBehavior.transform.up != hit.normal)
+                    rigidbody.transform.up = Vector3.Lerp(rigidbody.transform.up, hit.normal, 40 * Time.deltaTime);
+
                // characterBehavior.transform.localEulerAngles = new Vector3(characterBehavior.transform.localEulerAngles.x, RotationY, RotationZ);
             }
         }
@@ -73,6 +79,7 @@ public class CharacterFloorCollitions : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
+        if (state == states.ON_START_JUMPING) return;
         if (characterBehavior.state == CharacterBehavior.states.DEAD
             || characterBehavior.state == CharacterBehavior.states.CRASH
             || characterBehavior.state == CharacterBehavior.states.FALL)

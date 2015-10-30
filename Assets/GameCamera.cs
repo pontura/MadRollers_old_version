@@ -22,6 +22,7 @@ public class GameCamera : MonoBehaviour
     {
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
+        Data.Instance.events.OnChangeMood += OnChangeMood;
         if (Data.Instance.mode == Data.modes.ACCELEROMETER)
 			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
     }
@@ -29,8 +30,13 @@ public class GameCamera : MonoBehaviour
     {
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarFall;
+        Data.Instance.events.OnChangeMood -= OnChangeMood;
     }
-
+    void OnChangeMood(int id)
+    {
+        Color cameraColor = Game.Instance.moodManager.GetMood(id).cameraColor;
+        GetComponent<Camera>().backgroundColor = cameraColor;
+    }
     public void Init() 
 	{
         try

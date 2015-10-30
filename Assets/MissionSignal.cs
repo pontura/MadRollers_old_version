@@ -7,8 +7,6 @@ public class MissionSignal : MonoBehaviour {
 	public Image bg;
     public Text field;
     private Missions AllMissions;
-
-    public AudioClip FXVictory;
     private bool isClosing;
 
 	// Use this for initialization
@@ -21,14 +19,22 @@ public class MissionSignal : MonoBehaviour {
 
         AllMissions = Data.Instance.GetComponent<Missions>();
 
+        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
+        Data.Instance.events.OnAvatarFall += OnAvatarCrash;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         SetOff();
 	}
     void OnDestroy()
     {
+        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
+        Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+    }
+    void OnAvatarCrash(CharacterBehavior cb)
+    {
+        SetOff();
     }
     private void OnMissionComplete(int levelID)
     {
@@ -47,10 +53,9 @@ public class MissionSignal : MonoBehaviour {
     private IEnumerator MissionComplete()
     {
         Open("MISSION COMPLETE!");
-        yield return new WaitForSeconds(1);
-        GetComponent<AudioSource>().clip = FXVictory;
+        yield return new WaitForSeconds(1.5f);
         GetComponent<AudioSource>().Play();
-        CloseAfter(2);
+        CloseAfter(1);
 	}
     private void OnListenerDispatcher(string message)
     {
@@ -63,30 +68,31 @@ public class MissionSignal : MonoBehaviour {
     private void MissionSignalOn()
     {
         Open("MISSION " + AllMissions.MissionActiveID);
-        CloseAfter(2);
+        CloseAfter(1.5f);
     }
     private void ShowMissionName()
     {
         Open(AllMissions.missions[AllMissions.MissionActiveID - 1].description.ToUpper());
-        CloseAfter(4);
+        CloseAfter(3);
     }
     private void Open(string text)
     {
         SetOn();
-        GetComponent<Animation>().Play("missionsAlertOpen");
-        GetComponent<Animation>()["missionsAlertOpen"].normalizedTime = 0;
+        GetComponent<Animation>().Play("missionOpen");
+        GetComponent<Animation>()["missionOpen"].normalizedTime = 0;
         field.text = text;		
 	}
-    void CloseAfter(int delay)
+    void CloseAfter(float delay)
     {
         isClosing = true;
         Invoke("Close", delay);
 	}
     public void Close()
     {
-        if (!isClosing) return;
-        isClosing = false;
-        GetComponent<Animation>().Play("missionsAlertClose");
-        GetComponent<Animation>()["missionsAlertClose"].normalizedTime = 0;
+        //if (!isClosing) return;
+        //isClosing = false;
+        SetOff();
+        GetComponent<Animation>().Play("missionClose");
+        GetComponent<Animation>()["missionClose"].normalizedTime = 0;
     }
 }

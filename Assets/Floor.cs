@@ -16,12 +16,26 @@ public class Floor : MonoBehaviour
         isMoving = true;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
+        Data.Instance.events.OnChangeMood += OnChangeMood;
         this.charactersManager = charactersManager;
     }
-    void OnDEstroy()
+    void OnDestroy()
     {
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
+        Data.Instance.events.OnChangeMood -= OnChangeMood;
+    }
+    void OnChangeMood(int id)
+    {
+        print("OnChangeMood " + id);
+        string texture = Game.Instance.moodManager.GetMood(id).floorTexture;
+        
+        foreach (GameObject area in areas)
+        {
+            Material mat = Resources.Load("Materials/Floors/" + texture, typeof(Material)) as Material;
+            area.GetComponent<MeshRenderer>().material = mat;
+        }
+
     }
     void OnAvatarCrash(CharacterBehavior cb)
     {

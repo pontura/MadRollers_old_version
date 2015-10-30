@@ -244,11 +244,22 @@ public class CharacterBehavior : MonoBehaviour {
 
         _animation_hero.Play("jump");
 		state = states.JUMP;
+        ResetColliders();
 		return;
 	}
+    void ResetColliders()
+    {
+        collider.enabled = false;
+        Invoke("ResetCollidersBack", 0.5f);
+    }
+    void ResetCollidersBack()
+    {
+        collider.enabled = true;
+    }
 	public void SuperJump(float _superJumpHeight)
 	{
         if (!player.canJump) return;
+        floorCollitions.OnAvatarJump();
         GetComponent<AudioSource>().clip = jump2Clip;
         GetComponent<AudioSource>().Play();
         data.events.AvatarJump();
@@ -262,6 +273,8 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
 	{
+        ResetColliders();
+        floorCollitions.OnAvatarJump();
         data.events.AvatarJump();
         Vector3 pos = transform.localPosition;
         pos.y += offsetY;

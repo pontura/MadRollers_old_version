@@ -33,6 +33,7 @@ public class GuiTutorial : MonoBehaviour {
 
     private bool isMobile()
     {
+        return true;
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
             return true;
         return false;
@@ -48,8 +49,8 @@ public class GuiTutorial : MonoBehaviour {
 
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
 
-      //  buttonJump.SetActive(false);
-     //   buttonShoot.SetActive(false);
+        buttonJump.SetActive(false);
+        buttonShoot.SetActive(false);
         
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarJump += OnAvatarJump;
@@ -88,7 +89,7 @@ public class GuiTutorial : MonoBehaviour {
             Invoke("setOn", 2);
         else if (state != states.HIDE && message == "ShowMissionId")
             if(state == states.SHOOT)
-                Invoke("setOn", 3.5f);
+                Invoke("setOn", 3.55f);
             else
                 Invoke("setOn", 2.2f);
         else if (state != states.READY && state != states.HIDE && message == "ShowMissionName")
@@ -122,30 +123,30 @@ public class GuiTutorial : MonoBehaviour {
         if (isMobile())
         {
             if (state == states.JUMP || state == states.DOUBLEJUMP)
-                animateButton(buttonJump);
+                buttonJump.SetActive( true );
             else 
             {
-                animateButton(buttonJump);
-                animateButton(buttonShoot);
+                buttonJump.SetActive( true );
+                buttonShoot.SetActive( true );
                 if (state == states.READY)
                     Reset();
             }
         }
 	}
-    void animateButton(GameObject sprite)
-    {
-        float originalY = sprite.transform.position.y;
-        sprite.transform.position = new Vector3(sprite.transform.position.x, originalY - 1f, 0);
+    //void animateButton(GameObject sprite)
+    //{
+    //    float originalY = sprite.transform.position.y;
+    //    sprite.transform.position = new Vector3(sprite.transform.position.x, originalY - 1f, 0);
 
-        sprite.SetActive( true );
+    //    sprite.SetActive( true );
 
-        Hashtable tweenData = new Hashtable();
-        tweenData.Add("y", originalY);
-        tweenData.Add("time", 1.5f);
-        tweenData.Add("easeType", iTween.EaseType.easeOutQuad);
+    //    Hashtable tweenData = new Hashtable();
+    //    tweenData.Add("y", originalY);
+    //    tweenData.Add("time", 1.5f);
+    //    tweenData.Add("easeType", iTween.EaseType.easeOutQuad);
 
-        iTween.MoveTo(sprite.gameObject, tweenData);
-    }
+    //    iTween.MoveTo(sprite.gameObject, tweenData);
+    //}
     void OnDestroy()
     {
         Reset();

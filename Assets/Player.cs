@@ -26,9 +26,6 @@ public class Player : MonoBehaviour {
     public bool canJump = true;
     public bool canShoot = true;
 
-    private Vector3 _scale;
-    
-
     public enum fxStates
     {
         NORMAL,
@@ -49,7 +46,6 @@ public class Player : MonoBehaviour {
     }
     public void Init(int id)
     {
-        _scale = transform.localScale;
         if (id == 0)
             originalMaterial = Resources.Load("Materials/BolaHead", typeof(Material)) as Material;
         else
@@ -163,19 +159,18 @@ public class Player : MonoBehaviour {
    {
        fxState = fxStates.NORMAL;
        gameObject.layer = LayerMask.NameToLayer("Character");
-       GetComponent<Animation>().Stop();
    }
     private void setNormalState()
     {
-        transform.localScale = _scale;
+        Data.Instance.events.OnChangeMood(1);
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.NORMAL);
         fxState = fxStates.NORMAL;
         gameObject.layer = LayerMask.NameToLayer("Character");
-        GetComponent<Animation>().Stop();
-        particles.SetActive(false);
+        particles.SetActive(false);        
     }
     private void setSuperState()
     {
+        Data.Instance.events.OnChangeMood(2);
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.SUPER);
         fxState = fxStates.SUPER;
         gameObject.layer = LayerMask.NameToLayer("SuperFX");

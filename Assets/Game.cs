@@ -13,6 +13,8 @@ public class Game : MonoBehaviour {
 	private bool paused;
 	private bool unpaused;
 
+    public MoodManager moodManager;
+
 
     public Level level;
 

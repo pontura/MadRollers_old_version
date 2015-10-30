@@ -34,7 +34,8 @@ public class Level : MonoBehaviour {
 	private Data data;
     private bool playing;
     private int areasX;
-    public CharactersManager charactersManager; 
+    public CharactersManager charactersManager;
+    private PowerupsManager powerupsManager;
    
 
     private void Awake()
@@ -53,6 +54,7 @@ public class Level : MonoBehaviour {
 		//rainManager = GetComponent<RainManager>();
         charactersManager = game.GetComponent<CharactersManager>();
         floorManager = GetComponent<FloorManager>();
+        powerupsManager = GetComponent<PowerupsManager>();
         floorManager.Init(charactersManager);
         missions.Init(data.missionActive, this);
         areasManager = missions.getAreasManager();
@@ -137,7 +139,7 @@ public class Level : MonoBehaviour {
                 explpotionEffect.Restart(newPos);
         }
 
-        if (Random.Range(0, 100) < 50)
+        if (!powerupsManager.CanBeThrown() || Random.Range(0, 100) < 50)
             OnAddHeartsByBreaking(position, 8, 450);
         else
             Data.Instance.events.OnAddPowerUp(position);

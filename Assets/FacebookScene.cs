@@ -13,7 +13,7 @@ public class FacebookScene : MonoBehaviour {
     public GameObject ButtonCompite;
     public GameObject ButtonPlay;
 
-    public Text hiscore;
+   // public Text hiscore;
     private List<object> scoresList = null;
 
     [SerializeField] FriendButton friendButton;
@@ -39,7 +39,7 @@ public class FacebookScene : MonoBehaviour {
         MyAvatar.SetActive(true);
 
         FB_Username.GetComponent<Text>().text = Data.Instance.userData.username;
-        hiscore.text = Data.Instance.userData.hiscore.ToString();
+      //  hiscore.text = Data.Instance.userData.hiscore.ToString();
         profilePicture.SetPicture(Data.Instance.userData.facebookId);
 
     }

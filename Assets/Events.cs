@@ -33,6 +33,7 @@ public class Events : MonoBehaviour {
     public System.Action<Vector3, int> OnSetFinalScore = delegate { };
     public System.Action<Vector3, int> OnScoreOn = delegate { };
     public void ScoreSignalOn(Vector3 position, int score) { OnScoreOn(position, score); }
+    public System.Action<int> OnChangeMood = delegate { };
 
     public System.Action<Vector3> OnAddPowerUp = delegate { };
     public System.Action<Vector3> OnAddExplotion = delegate { };

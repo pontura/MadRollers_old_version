@@ -34,21 +34,28 @@ public class Gui : MonoBehaviour {
         Data.Instance.events.OnSetFinalScore += OnSetFinalScore;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
+        Data.Instance.events.OnAvatarFall += OnAvatarCrash;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnSetFinalScore -= OnSetFinalScore;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
+        Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
 
         events = null;
         levelComplete = null;
         scoreLabel = null;
     }
+    void OnAvatarCrash(CharacterBehavior cb)
+    {
+        levelComplete.gameObject.SetActive(false); 
+    }
     void OnListenerDispatcher(string message)
     {
-       // if (message == "ShowMissionName")
-            levelComplete.gameObject.SetActive(false);  
+        levelComplete.gameObject.SetActive(false);  
     }
     void OnMissionComplete(int num)
     {

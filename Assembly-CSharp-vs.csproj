@@ -159,6 +159,7 @@
      <Compile Include="Assets\Missions.cs" />
      <Compile Include="Assets\MissionsTopPanel.cs" />
      <Compile Include="Assets\MmoCharacter.cs" />
+     <Compile Include="Assets\MoodManager.cs" />
      <Compile Include="Assets\Mortal.cs" />
      <Compile Include="Assets\MusicManager.cs" />
      <Compile Include="Assets\NewHiscore.cs" />
@@ -224,6 +225,7 @@
      <Compile Include="Assets\sceneObjects\scripts\Bumper.cs" />
      <Compile Include="Assets\sceneObjects\scripts\GrabbableItem.cs" />
      <Compile Include="Assets\sceneObjects\scripts\MoveObject.cs" />
+     <Compile Include="Assets\xxx.cs" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Bump_Specular_Global.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Global\ODL_Cutout_Specular_Global.shader" />
      <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />

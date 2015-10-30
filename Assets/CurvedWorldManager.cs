@@ -18,7 +18,13 @@ public class CurvedWorldManager : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnCurvedWorldIncreaseBend += OnCurvedWorldIncreaseBend;
         Data.Instance.events.OnSetNewAreaSet += OnSetNewAreaSet;
+        Data.Instance.events.OnChangeMood += OnChangeMood;
 	}
+    void OnChangeMood(int id)
+    {
+        Color color = Game.Instance.moodManager.GetMood(id).fogColor;
+        VacuumShaders.CurvedWorld.CurvedWorld_GlobalController.get._V_CW_Fog_Color_GLOBAL = color;
+    }
     void OnSetNewAreaSet(int areaSet)
     {
        // print("OnSetNewAreaSet :" + areaSet);
