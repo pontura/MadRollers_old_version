@@ -40,9 +40,9 @@ public class Breakable : MonoBehaviour {
 
         Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
         
-		foreach (Breakable breakable  in childs)
+		foreach (Breakable breakable in childs)
 		{
-			if(breakable) breakable.hasGravity();
+            if (breakable && breakable.isOn) breakable.hasGravity();
 		}
 		this.position = position;
 
@@ -64,6 +64,7 @@ public class Breakable : MonoBehaviour {
             Data.Instance.events.OnScoreOn(transform.position, score);
     }
 	public void hasGravity() {
+        isOn = false;
 		dontKillPlayers = true;
 
 		if(!gameObject.GetComponent<Rigidbody>())
@@ -75,6 +76,9 @@ public class Breakable : MonoBehaviour {
 
         Vector3 newPosition = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.5f, 1.1f), Random.Range(0, 0.9f));
         gameObject.GetComponent<Rigidbody>().AddForce((Time.deltaTime * newPosition) * 2000, ForceMode.Impulse);
+
+        Vector3 rot = new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), Random.Range(-20, 20));
+        gameObject.transform.localEulerAngles += rot;
 		
 		StartCoroutine(makeItTrigger());
 		
@@ -82,13 +86,13 @@ public class Breakable : MonoBehaviour {
 		{
 			foreach (Breakable breakable  in childs)
 			{
-				if(breakable)
+                if (breakable && breakable.isOn)
 					breakable.hasGravity();
 			}
 		}
 	}
 	IEnumerator makeItTrigger() {
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.9f);
 		GetComponent<Collider>().isTrigger = true;
 	}
 	

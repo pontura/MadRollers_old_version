@@ -167,7 +167,7 @@ public class GuiTutorial : MonoBehaviour {
          DoubleJumpHelpSprite.enabled = false;
          helpJumpSpriteKeyboard.enabled = false;
 
-         Game.Instance.UnPause();
+         Data.Instance.events.OnGamePaused(false);
          //Data.Instance.events.OnAvatarJump -= OnAvatarJump;
     }
     private void OnAvatarShoot()
@@ -180,7 +180,7 @@ public class GuiTutorial : MonoBehaviour {
         ShootHelpSprite.enabled = false;
         helpShootSpriteKeyboard.enabled = false;
 
-        Game.Instance.UnPause();
+        Data.Instance.events.OnGamePaused(false);
         //Data.Instance.events.OnAvatarJump -= OnAvatarJump;
     }
     
@@ -207,7 +207,7 @@ public class GuiTutorial : MonoBehaviour {
 
             //if (ready) yield break;
 
-            Game.Instance.Pause();
+            Data.Instance.events.OnGamePaused(true);
 
             if (isMobile())
             {

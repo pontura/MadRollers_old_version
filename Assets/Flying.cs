@@ -16,7 +16,6 @@ public class Flying : SceneObject {
     }
     private void OnBreak()
     {
-        GetComponent<AudioSource>().Stop();
         setScore();
         Missions missions = Data.Instance.GetComponent<Missions>();
         missions.killPlane();

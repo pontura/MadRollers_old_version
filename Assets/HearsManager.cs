@@ -8,8 +8,10 @@ public class HearsManager : MonoBehaviour {
     public int total;
     public int newHearts = 0;
     public Animation anim;
+    public ParticleSystem particles;
 
 	void Start () {
+        particles.gameObject.SetActive(false);
         newHearts = 0;
         total = PlayerPrefs.GetInt("totalHearts");
         Data.Instance.events.OnGrabHeart += OnGrabHeart;
@@ -26,8 +28,16 @@ public class HearsManager : MonoBehaviour {
 	}
     void OnUseHearts(int qty)
     {
+        particles.gameObject.SetActive(true);
+
+        particles.Play();
         total -= qty;
         SetHearts();
+        Invoke("SetOff", 1);
+    }
+    void SetOff()
+    {
+        particles.gameObject.SetActive(false);
     }
     void OnAvatarDie(CharacterBehavior cb)
     {

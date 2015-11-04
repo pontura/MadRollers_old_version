@@ -59,6 +59,8 @@ public class Events : MonoBehaviour {
     public System.Action<CharacterBehavior> OnAvatarDie = delegate { };
     public System.Action OnAvatarProgressBarEmpty = delegate { };
 
+    public System.Action<string> OnSoundFX = delegate { };    
+
     public System.Action OncharacterCheer = delegate { };
 
     public System.Action OnAvatarJump = delegate { };

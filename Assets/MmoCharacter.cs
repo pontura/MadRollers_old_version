@@ -3,8 +3,7 @@ using System.Collections;
 
 public class MmoCharacter : SceneObject
 {
-    public AudioClip FXDeath;
-    public AudioClip FXActive;
+    public GameObject weaponContainer;
 
     public enum states
     {
@@ -22,8 +21,6 @@ public class MmoCharacter : SceneObject
     private Animation _animation;
     private ObjectPool ObjectPool;
 
-	// Use this for initialization
-   // public override void OnRestart(Vector3 pos)
     void Start()
     {
         ObjectPool = Data.Instance.sceneObjectsPool;
@@ -42,8 +39,7 @@ public class MmoCharacter : SceneObject
 	public void Die() {
 		if(state== states.DEAD) return;
 
-        GetComponent<AudioSource>().clip = FXDeath;
-        GetComponent<AudioSource>().Play();
+        Data.Instance.events.OnSoundFX("enemyDead");
 
         setScore();
 
@@ -90,14 +86,18 @@ public class MmoCharacter : SceneObject
         _animation.Play("enemyIdle");
         state = states.IDLE;
 	}
+    public void Shoot()
+    {
+        _animation.Play("enemyShoot");
+        state = states.IDLE;
+    }
     public void waitToJump()
     {
         _animation.Play("enemyWaitJump");
         state = states.WAIT_TO_JUMP;
     }
 	public void jump() {
-        GetComponent<AudioSource>().clip = FXActive;
-        GetComponent<AudioSource>().Play();
+        Data.Instance.events.OnSoundFX("enemyShout");
         _animation.Play("enemyJump");
         state = states.JUMP;
 	}

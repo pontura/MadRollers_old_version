@@ -7,7 +7,11 @@ public class MusicManager : MonoBehaviour {
     public AudioClip MainTheme;
     public AudioClip IndestructibleFX;
     public AudioClip heartClip;
+    public AudioClip consumeHearts;
     public AudioClip deathFX;
+    public AudioClip enemyShout;
+    public AudioClip enemyDead;
+    
 
     private float heartsDelay = 0.1f;
     private AudioSource audioSource;
@@ -25,7 +29,17 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.SetVolume += SetVolume;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
+        Data.Instance.events.OnSoundFX += OnSoundFX;
 	}
+    void OnSoundFX(string name)
+    {
+        switch (name)
+        {
+            case "enemyShout": audioSource.PlayOneShot(enemyShout); break;
+            case "enemyDead": audioSource.PlayOneShot(enemyDead); break;
+            case "consumeHearts": audioSource.PlayOneShot(consumeHearts); break;
+        }
+    }
     void OnAvatarCrash(CharacterBehavior cb)
     {
         audioSource.Stop();
@@ -44,6 +58,7 @@ public class MusicManager : MonoBehaviour {
     }
     void OnGamePaused(bool paused)
     {
+        print("OnGamePaused" + paused);
         if(paused)
             audioSource.Stop();
         else

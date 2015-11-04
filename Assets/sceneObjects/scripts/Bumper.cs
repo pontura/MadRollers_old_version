@@ -7,6 +7,7 @@ public class Bumper : MonoBehaviour {
     public int force = 16;
     private CharacterBehavior lastCharacterJumped;
     public AnimationClip animationClip;
+    public bool backwardJump;
 
 	void Start()
 	{
@@ -23,7 +24,7 @@ public class Bumper : MonoBehaviour {
                 if (lastCharacterJumped == ch) return;
                 lastCharacterJumped = ch;
 
-                ch.SuperJumpByBumped(force*100, 0.5f, true);
+                ch.SuperJumpByBumped(force * 100, 0.5f, backwardJump);
 
                 //if (animationClip)
                 //{

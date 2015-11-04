@@ -43,6 +43,8 @@ public class Data : MonoBehaviour {
         JOYSTICK
     }
     public bool playingTutorial;
+    public bool hasContinueOnce;
+    public bool SummaryHasBeenDisplayedOnce;
 
     public static Data Instance
     {

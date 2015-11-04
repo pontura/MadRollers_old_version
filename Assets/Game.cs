@@ -41,19 +41,23 @@ public class Game : MonoBehaviour {
     }
     void Start()
     {
+        Data.Instance.events.OnGamePaused += OnGamePaused;
         Data.Instance.events.OnGameStart();
         Init();
         Data.Instance.GetComponent<Tracker>().TrackScreen("Game Screen");
     }
-
+    void OnDestroy()
+    {
+        Data.Instance.events.OnGamePaused -= OnGamePaused;
+    }
 	private void Init()
 	{
         Data.Instance.events.MissionStart(Data.Instance.missionActive);
-        UnPause();
+        Data.Instance.events.OnGamePaused(false);
 	}
     public void Revive()
     {
-        UnPause();
+        Data.Instance.events.OnGamePaused(false);
         gameCamera.Init();
         
         CharacterBehavior cb = level.charactersManager.character;
@@ -93,19 +97,20 @@ public class Game : MonoBehaviour {
     //    Application.LoadLevel("Game");
     //}
 
-	public void Pause () {
-        Time.timeScale = 0;
-        Data.Instance.events.OnGamePaused(true);
-	}
-    public void UnPause()
+    public void OnGamePaused(bool paused)
     {
-        if (Time.timeScale == 1) return;
-        Time.timeScale = 1;
-        Data.Instance.events.OnGamePaused(false);
+        if (paused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
     public void GotoLevelSelector()
     {
-        Pause();
+       // Pause();
         Data.Instance.events.OnResetLevel();
        // Application.LoadLevel("LevelSelector");
         Time.timeScale = 1;
@@ -113,14 +118,14 @@ public class Game : MonoBehaviour {
     }
     public void GotoMainMenu()
     {
-        Pause();
+      //  Pause();
         Data.Instance.events.OnResetLevel();
         Time.timeScale = 1;
         Data.Instance.LoadLevel("MainMenu");
     }
     public void GotoContinue()
     {
-        Pause();
+       // Pause();
         Data.Instance.events.OnResetLevel();
         Time.timeScale = 1;
         Data.Instance.LoadLevel("Continue");

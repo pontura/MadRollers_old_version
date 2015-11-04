@@ -3,15 +3,17 @@ using System.Collections;
 
 public class MissionsTopPanel : MonoBehaviour
 {
+    private Animation anim;
     void Start()
     {
+        anim =  GetComponent<Animation>();
         if (Data.Instance.playMode == Data.PlayModes.STORY)
         {
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
             Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-            GetComponent<Animation>().Play("MissionTopOff");
+            anim.Play("MissionTopOff");
         } else
-            GetComponent<Animation>().Play("MissionTopOpen");
+            anim.Play("MissionTopOpen");
     }
     void OnDisable()
     {
@@ -20,11 +22,11 @@ public class MissionsTopPanel : MonoBehaviour
     }
     private void OnMissionComplete(int levelID)
     {
-        GetComponent<Animation>().Play("MissionTopClose");
+        anim.Play("MissionTopClose");
     }
     private void OnListenerDispatcher(string message)
     {
        if (message == "ShowMissionName" )
-            GetComponent<Animation>().Play("MissionTopOpen");
+           anim.Play("MissionTopOpen");
     }
 }

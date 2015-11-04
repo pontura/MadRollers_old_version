@@ -12,6 +12,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject house1;
     public SceneObject house2;
     public SceneObject house3;
+    public SceneObject house4;
     public SceneObject PisoPinche;
     public SceneObject rampa;
     public SceneObject rampaHuge;
@@ -29,7 +30,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
     
     public SceneObject fences;
     public SceneObject rainbow;
-    public SceneObject resorte;
     public SceneObject Listener;
     
     public SceneObject tunel1;
@@ -184,6 +184,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = house2;
                 else if (go.name == "house3")
                     clone = house3;
+                else if (go.name == "house4")
+                    clone = house4;
                 else if (go.name == "rampa")
                     clone = rampa;
                 else if (go.name == "rampaHuge")
@@ -308,6 +310,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 if (go.GetComponent<EnemyPathRunnerBehavior>())
                 {
                     EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
+                    CopyComponent(mo, sceneObject.gameObject);
+                }
+                if (go.GetComponent<EnemyShooter>())
+                {
+                    EnemyShooter mo = go.GetComponent<EnemyShooter>();
                     CopyComponent(mo, sceneObject.gameObject);
                 }
                 if (go.GetComponent<EnemyRunnerBehavior>())

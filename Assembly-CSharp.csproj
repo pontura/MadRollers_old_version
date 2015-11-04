@@ -81,6 +81,7 @@
      <Compile Include="Assets\EnemyPart.cs" />
      <Compile Include="Assets\EnemyPathRunnerBehavior.cs" />
      <Compile Include="Assets\EnemyRunnerBehavior.cs" />
+     <Compile Include="Assets\EnemyShooter.cs" />
      <Compile Include="Assets\EnemyTankBehavior.cs" />
      <Compile Include="Assets\EnergyBar.cs" />
      <Compile Include="Assets\Events.cs" />

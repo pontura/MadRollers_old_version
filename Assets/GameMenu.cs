@@ -28,7 +28,8 @@ public class GameMenu : MonoBehaviour {
     public void Init()
     {
         Data.Instance.events.OnFadeALittle(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        Data.Instance.events.OnGamePaused(true);
         popup.SetActive(true);
         StartCoroutine(Play(anim, "GameMenuOpen", false, null));
 	}
@@ -36,7 +37,7 @@ public class GameMenu : MonoBehaviour {
     {
         if(sounds)
         {
-            soundsLabel.text = "ENCENDEME!";
+            soundsLabel.text = "MÚSICA!";
             soundOn.SetActive(false);
             soundOff.SetActive(true);
             Data.Instance.events.SetVolume(0);
@@ -51,6 +52,7 @@ public class GameMenu : MonoBehaviour {
     }
     public void Close()
     {
+        Data.Instance.events.OnGamePaused(false);
         Data.Instance.events.OnFadeALittle(false);
         StartCoroutine(Play(anim, "GameMenuClose", false, Reset));
     }
@@ -59,10 +61,8 @@ public class GameMenu : MonoBehaviour {
     {
         Data.Instance.events.OnResetLevel();
         SocialEvents.OnGetHiscores(1);
-        Time.timeScale = 1;
         Data.Instance.LoadLevel("MainMenu");
         Close();
-     //   Game.Instance.GotoLevelSelector();
     }
     public void OpenResetPopup()
     {

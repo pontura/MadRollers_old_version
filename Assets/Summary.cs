@@ -42,16 +42,24 @@ public class Summary : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash -= Init;
     }
     void Init(CharacterBehavior cb)
-    {
+    {        
         Invoke("SetOn", 1);
         meters.text = (int)cb.distance + " mts";
     }
     void SetOn()
     {
+        totalHearts = GetComponent<HearsManager>().total;
+        if (heartsToReviveNum > totalHearts && Data.Instance.SummaryHasBeenDisplayedOnce)
+        {
+            Game.Instance.ResetLevel();
+            return;
+        }
+        Data.Instance.SummaryHasBeenDisplayedOnce = true;
+
         panel.SetActive(true);
         panela.SetActive(true);
         
-        totalHearts = GetComponent<HearsManager>().total;
+        
         
         newHearts = GetComponent<HearsManager>().newHearts;
         heartsToRevive.text = "x" + heartsToReviveNum.ToString();
@@ -82,7 +90,15 @@ public class Summary : MonoBehaviour {
     {
         cancelCountDown = true;
         if (heartsToReviveNum < totalHearts)
-            ladoB();
+            if (Data.Instance.hasContinueOnce)
+            {
+                ReviveConfirma();
+            }
+            else
+            {
+                Data.Instance.hasContinueOnce = true;
+                ladoB();
+            }
         else
             ladoC();
     }
@@ -115,11 +131,19 @@ public class Summary : MonoBehaviour {
     public void ReviveConfirma()
     {
         Data.Instance.events.OnUseHearts(heartsToReviveNum);
-        Game.Instance.Revive();
+        Data.Instance.events.OnSoundFX("consumeHearts");
+        
         panela.SetActive(false);
         panelb.SetActive(false);
         panelc.SetActive(false);
         panel.SetActive(false);
+
+        Invoke("ReviveTimeOut", 1);
+
+    }
+    void ReviveTimeOut()
+    {
+        Game.Instance.Revive();
     }
     private IEnumerator Play(this Animation animation, string clipName, bool useTimeScale, Action onComplete)
     {
