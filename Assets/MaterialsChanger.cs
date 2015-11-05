@@ -11,4 +11,8 @@ public class MaterialsChanger : MonoBehaviour {
     {
         skinnedMeshRenderer.material.SetTexture(0, materialNew.mainTexture);           
     }
+    public void Init()
+    {
+
+    }
 }

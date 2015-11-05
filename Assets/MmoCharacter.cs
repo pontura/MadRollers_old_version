@@ -32,9 +32,29 @@ public class MmoCharacter : SceneObject
     }
     public override void OnRestart(Vector3 pos)
     {
+        
         gameObject.GetComponent<Collider>().enabled = true;
         base.OnRestart(pos);
         state = states.IDLE;
+        Invoke("ResetMaterials", 1);
+        
+    }
+    private Color clothColor;
+    void ResetMaterials()
+    {
+       
+        if (GetComponent<Jump>())
+        {
+            ChangeSkinMaterial(Resources.Load("Materials/EnemyHead_Lila", typeof(Material)) as Material);            
+            ChangeClothesColor( Color.black);
+            ChangeSkinColor(Color.black);
+        }
+        else if (clothColor == Color.black)
+        {
+            ChangeSkinMaterial( Resources.Load("Materials/EnemyHead", typeof(Material)) as Material );
+            ChangeClothesColor( Color.red);
+            ChangeSkinColor(Color.yellow);
+        }
     }
 	public void Die() {
 		if(state== states.DEAD) return;
@@ -93,7 +113,7 @@ public class MmoCharacter : SceneObject
     }
     public void waitToJump()
     {
-        _animation.Play("enemyWaitJump");
+        _animation.Play("enemyIdle");
         state = states.WAIT_TO_JUMP;
     }
 	public void jump() {
@@ -112,4 +132,28 @@ public class MmoCharacter : SceneObject
         base.OnSceneObjectUpdate();
         SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
 	}
+    public void ChangeSkinMaterial(Material material)
+    {
+        SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+        if (skinnedMesh)
+             skinnedMesh.material = material;
+    }
+    public void ChangeClothesColor(Color color)
+    {
+        clothColor = color;
+        SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+        if (skinnedMesh)
+        {
+            skinnedMesh.materials[1].color = color;
+            skinnedMesh.materials[4].color = color;
+        }
+    }
+    public void ChangeSkinColor(Color color)
+    {
+        SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+        if (skinnedMesh)
+        {
+            skinnedMesh.materials[2].color = color;
+        }
+    }
 }

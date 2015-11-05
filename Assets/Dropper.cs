@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Dropper : MonoBehaviour
 {
-    public float delay = 2;
+    public float delay = 1;
     public float delayRandom = 0;
     public GameObject[] projectiles;
 
@@ -23,7 +23,7 @@ public class Dropper : MonoBehaviour
     {
         if (sec > delay + delayRandom)
         {
-            Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            Vector3 pos = transform.position;
             GameObject _projectil = getRandomObject();
             GameObject projectil = Instantiate(_projectil, pos, Quaternion.identity) as GameObject;
             projectil.GetComponent<SceneObject>().Restart(pos);            

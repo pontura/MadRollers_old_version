@@ -53,6 +53,7 @@ public class CharacterBehavior : MonoBehaviour {
     public GameObject model;
 	public Data data;
     private Missions missions;
+    public int jumpsNumber;
 	
 	// Use this for initialization
 	void Start () {
@@ -177,9 +178,15 @@ public class CharacterBehavior : MonoBehaviour {
 	public void Run()
 	{
 		if(state == states.RUN) return;
+        jumpsNumber = 0;
 		state = states.RUN;
         _animation_hero.Play("run");
 	}
+    public void Slide()
+    {
+        print("SLIDE:");
+        _animation_hero.Play("slide");
+    }
     public void JumpPressed()
     {
         if (player.transport != null)
@@ -219,6 +226,9 @@ public class CharacterBehavior : MonoBehaviour {
 	public void Jump()
 	{
         if (player.transport != null)   return;
+
+        jumpsNumber++;
+        if (jumpsNumber > 4) return;
 
         if (state == states.JUMP)
         {

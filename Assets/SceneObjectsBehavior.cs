@@ -94,6 +94,12 @@ public class SceneObjectsBehavior : MonoBehaviour {
             pos.z += areasLength;
             pos.x += areasX;
 
+            if (go.GetComponent<RandomPosition>())
+            {
+                RandomPosition mo = go.GetComponent<RandomPosition>();
+                pos = mo.getPosition(pos);
+            }
+
             if (!nubesOn)
             {
                 nubesOn = true;
@@ -277,10 +283,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = sombrilla;
                 else if (go.name == "GrabbableMissile")
                     clone = GrabbableMissile;
-            
-            
 
-                
 
                 if (clone)
                 {
@@ -300,12 +303,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     Dropper mo = go.GetComponent<Dropper>();
                     CopyComponent(mo, sceneObject.gameObject);
                 }
-                if (go.GetComponent<RandomPosition>())
-                {
-                    RandomPosition mo = go.GetComponent<RandomPosition>();
-                    pos = mo.getPosition(pos);
-                }
-
 
                 if (go.GetComponent<EnemyPathRunnerBehavior>())
                 {

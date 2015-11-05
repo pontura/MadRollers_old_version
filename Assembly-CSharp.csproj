@@ -54,6 +54,7 @@
      <Compile Include="Assets\Breakable.cs" />
      <Compile Include="Assets\BreakableFloor.cs" />
      <Compile Include="Assets\BurnableItem.cs" />
+     <Compile Include="Assets\CharacterAnimationForcer.cs" />
      <Compile Include="Assets\CharacterBehavior.cs" />
      <Compile Include="Assets\CharacterCollisions.cs" />
      <Compile Include="Assets\CharacterControls.cs" />

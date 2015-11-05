@@ -87,6 +87,15 @@ public class CharacterFloorCollitions : MonoBehaviour {
 
         if (state == states.ON_FLY) return;
 
+        if (other.tag == "destroyable")
+        {
+            if (other.GetComponent<CharacterAnimationForcer>())
+                switch (other.GetComponent<CharacterAnimationForcer>().characterAnimation)
+                {
+                    case CharacterAnimationForcer.animate.SLIDE: characterBehavior.Slide(); break;
+                }
+        }
+
         if (other.tag == "floor" && state != states.ON_FLOOR)
         {
             state = states.ON_FLOOR;
