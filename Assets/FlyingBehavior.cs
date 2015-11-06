@@ -11,7 +11,7 @@ public class FlyingBehavior : MonoBehaviour
 
     private GameObject inventory;
 
-    public void OnSceneObjectRestarted()
+    void Start()
     {
         if (randomSpeedDiff != 0)
             realSpeed = speed + Random.Range(0, randomSpeedDiff);
@@ -26,6 +26,7 @@ public class FlyingBehavior : MonoBehaviour
     //}
     public void OnSceneObjectUpdated()
     {
+        print("OnSceneObjectUpdated" + realSpeed);
         transform.Translate(-Vector3.forward * realSpeed * Time.deltaTime);
     }
 

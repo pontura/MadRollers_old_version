@@ -51,8 +51,8 @@ public class Player : MonoBehaviour {
         else
             originalMaterial = Resources.Load("Materials/Piel2", typeof(Material)) as Material;
 
-        setStartingState();
-        Invoke("setStartingState2", 1);
+       // setStartingState();
+      //  Invoke("setStartingState2", 1);
 
         Data.Instance.events.OnMissionStart += OnMissionStart;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;

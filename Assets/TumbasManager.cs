@@ -25,6 +25,8 @@ public class TumbasManager : MonoBehaviour {
     {
         if (!isCompetition) return;
         if (hiscore.Count == 0) return;
+        if (hiscore.Count <= hiscoreID) return;
+        if (hiscore[hiscoreID].score == null) return;
         if (characterBehavior.distance + offset > hiscore[hiscoreID].score)
         {
             hiscoreID--;
