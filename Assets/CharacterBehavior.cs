@@ -34,7 +34,7 @@ public class CharacterBehavior : MonoBehaviour {
         JETPACK_OFF
     }
 
-    private int MAX_JETPACK_HEIGHT = 20;
+    private int MAX_JETPACK_HEIGHT = 25;
     private float speedRun = 18f;
     private int heightToFall = -5;
 	private float jumpHeight = 1300;
@@ -128,7 +128,9 @@ public class CharacterBehavior : MonoBehaviour {
 
             if (pos.y < MAX_JETPACK_HEIGHT)
             {
-                pos.y += 6 * Time.deltaTime;
+               // pos.y += 6 * Time.deltaTime;
+                pos.y += (MAX_JETPACK_HEIGHT-pos.y) * Time.deltaTime;
+                
                 transform.position = pos;
             }
         }
@@ -206,8 +208,8 @@ public class CharacterBehavior : MonoBehaviour {
     {
         if (state == states.JETPACK) return;
 
-        _animation_hero.Play("shoot");
-
+        _animation_hero.transform.localEulerAngles = new Vector3(40, 0, 0);
+        _animation_hero.Play("jetPack");
         
         floorCollitions.OnAvatarFly();
         state = states.JETPACK;
@@ -215,17 +217,19 @@ public class CharacterBehavior : MonoBehaviour {
     }
     public void JetpackOff()
     {
+        _animation_hero.transform.localEulerAngles = new Vector3(20, 0, 0);
         print("JetpackOff");
         floorCollitions.OnAvatarFalling();
 
         if (player.transport)
             player.transport.SetOff();
 
-        state = states.FALL;
+        jumpsNumber = 0;
+        Run();
     }
 	public void Jump()
 	{
-        if (player.transport != null)   return;
+        if (player.transport != null && player.transport.isOn) return;
 
         jumpsNumber++;
         if (jumpsNumber > 4) return;

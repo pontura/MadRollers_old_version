@@ -3,8 +3,13 @@ using System.Collections;
 
 public class TumbaAvatar : SceneObject {
 
+    public TextMesh field;
     public Renderer renderer;
 
+    public void SetField(string content)
+    {
+       // field.text = content;
+    }
     public void SetPicture(string facebookID)
     {
         Texture2D texture2d = Social.Instance.hiscores.GetPicture(facebookID);

@@ -36,20 +36,26 @@ public class MmoCharacter : SceneObject
         gameObject.GetComponent<Collider>().enabled = true;
         base.OnRestart(pos);
         state = states.IDLE;
-        Invoke("ResetMaterials", 1);
+        Invoke("ResetMaterials", 0.2f);
         
+    }
+    public void EmptyWeapons()
+    {
+        foreach (Transform child in weaponContainer.transform) Destroy(child.gameObject);
     }
     private Color clothColor;
     void ResetMaterials()
     {
-       
-        if (GetComponent<Jump>())
+        if (!GetComponent<EnemyShooter>() && weaponContainer.GetComponentsInChildren<Transform>().Length>0)
+            EmptyWeapons();
+
+        if (GetComponent<Jump>() && clothColor != Color.black)
         {
             ChangeSkinMaterial(Resources.Load("Materials/EnemyHead_Lila", typeof(Material)) as Material);            
             ChangeClothesColor( Color.black);
             ChangeSkinColor(Color.black);
         }
-        else if (clothColor == Color.black)
+        else if (clothColor != Color.red)
         {
             ChangeSkinMaterial( Resources.Load("Materials/EnemyHead", typeof(Material)) as Material );
             ChangeClothesColor( Color.red);

@@ -26,6 +26,8 @@ public class Player : MonoBehaviour {
     public bool canJump = true;
     public bool canShoot = true;
 
+    private CharacterBehavior characterBehavior;
+
     public enum fxStates
     {
         NORMAL,
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour {
     }
     public void Init(int id)
     {
+        characterBehavior = GetComponent<CharacterBehavior>();
         if (id == 0)
             originalMaterial = Resources.Load("Materials/BolaHead", typeof(Material)) as Material;
         else
@@ -70,7 +73,7 @@ public class Player : MonoBehaviour {
     }
     public void OnAvatarProgressBarStart(Color color)
     {
-        if (progressBar.isOn) return;
+        //if (progressBar.isOn) return;
         progressBar.Init(color);
         progressBar.gameObject.SetActive(true);
     }
@@ -96,6 +99,8 @@ public class Player : MonoBehaviour {
     }
     private void OnAvatarGetItem(Powerup.types item)
     {
+
+
         if (item == Powerup.types.MISSILE)
         {
             canShoot = true;
@@ -103,16 +108,23 @@ public class Player : MonoBehaviour {
         }
         else if (item == Powerup.types.JETPACK)
         {
-            transport = Instantiate(transports[0] as Transport, Vector3.zero, Quaternion.identity) as Transport;
-            transport.transform.parent = transportContainer.transform;
-            transport.transform.localPosition = Vector3.zero;
-            transport.transform.localEulerAngles = Vector3.zero;
-            transport.transform.localScale = Vector3.one;
-            Data.Instance.events.AdvisesOn("JETPACK!");
+            if (fxState == fxStates.SUPER) setNormalState();
+            if (characterBehavior.state != CharacterBehavior.states.JETPACK)
+            {
+                transport = Instantiate(transports[0] as Transport, Vector3.zero, Quaternion.identity) as Transport;
+                transport.transform.parent = transportContainer.transform;
+                transport.transform.localPosition = Vector3.zero;
+                transport.transform.localEulerAngles = Vector3.zero;
+                transport.transform.localScale = Vector3.one;
+                Data.Instance.events.AdvisesOn("JETPACK!");
+            }
             OnAvatarProgressBarStart(Color.green);
         }
         else if (item == Powerup.types.INVENSIBLE)
         {
+
+            if (characterBehavior.state == CharacterBehavior.states.JETPACK) return;
+
             if (fxState == fxStates.SUPER) return;
             setSuperState();
             Data.Instance.events.AdvisesOn("INVENSIBLE!");
@@ -176,23 +188,4 @@ public class Player : MonoBehaviour {
         gameObject.layer = LayerMask.NameToLayer("SuperFX");
         particles.SetActive(true);
     }
-
-    //public void resetEnergy()
-    //{
-    //    energy = 100;
-    //}
-    //public void removeEnergy(float qty)
-    //{
-    //    energy -= qty * 2;        
-    //}
-    //public void addEnergy(int qty)
-    //{
-    //    if (fxState == fxStates.SUPER)
-    //        energy += qty/2;
-    //    else
-    //        energy += qty;
-
-    // //  energyBar.Animate();
-    //}
-    
 }

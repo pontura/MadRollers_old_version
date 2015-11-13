@@ -4,7 +4,7 @@ using System.Collections;
 
 public class ScoreSignal : SceneObject
 {
-    public Text field;
+    public TextMesh field;
 
     public override void OnRestart(Vector3 pos)
     {
@@ -22,7 +22,5 @@ public class ScoreSignal : SceneObject
     public void SetScore(int qty)
     {
         field.text = "+" + qty.ToString();
-        if(qty>100)
-            field.color = Color.yellow;
     }
 }

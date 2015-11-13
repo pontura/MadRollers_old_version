@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Transport : MonoBehaviour
 {
-    private bool isOn;
+    public bool isOn;
 
     public void SetOn()
     {

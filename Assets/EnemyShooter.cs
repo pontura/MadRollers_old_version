@@ -49,7 +49,9 @@ public class EnemyShooter : MonoBehaviour {
         
         ready = true;
 
-        foreach (Transform child in mmoCharacter.weaponContainer.transform) Destroy(child.gameObject);
+        mmoCharacter.EmptyWeapons();
+
+        
 
         OnDisable();
 

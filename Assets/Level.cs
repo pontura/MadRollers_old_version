@@ -225,11 +225,11 @@ public class Level : MonoBehaviour {
 
         if (onLeft)
         {
-            newPos.x = -6;
+            newPos.x = -8;
         }
         else
         {
-            newPos.x = 6;
+            newPos.x = 8;
         }
 
         SceneObject obj = ObjectPool.instance.GetObjectForType("Tumba_real", true);
@@ -237,6 +237,7 @@ public class Level : MonoBehaviour {
         {
             obj.Restart(newPos);
             obj.GetComponent<TumbaAvatar>().SetPicture(facebookID);
+            obj.GetComponent<TumbaAvatar>().SetField(username);
             if (onLeft)
                 obj.transform.localEulerAngles = new Vector3(0, 0, 0);
             else
