@@ -99,7 +99,9 @@ public class CharacterBehavior : MonoBehaviour {
         if (projectil)
         {
             projectil.Restart(pos);
-            projectil.transform.localEulerAngles = transform.localEulerAngles;
+            Vector3 rot = transform.localEulerAngles;
+            rot.x -= 4;
+            projectil.transform.localEulerAngles = rot;
         }
         else
         {
