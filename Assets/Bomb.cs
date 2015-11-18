@@ -10,14 +10,16 @@ public class Bomb : SceneObject {
 
     public AudioClip soundFX;
     private bool alive;
+    private TrailRenderer trailRenderer;
+
 
     public override void OnRestart(Vector3 pos)
     {
+        trailRenderer = GetComponent<TrailRenderer>();
         pos.y = start_Y;
         base.OnRestart(pos);
         breakable.OnBreak += OnBreak;
-        alive = true;
-        
+        alive = true;        
     }
     private void OnBreak()
     {
@@ -31,27 +33,25 @@ public class Bomb : SceneObject {
             StartCoroutine(waitToPool());
 
         isActive = false;
-
     }
     IEnumerator waitToPool()
     {
-        GetComponent<TrailRenderer>().enabled = false;
+        trailRenderer.time = 0;
         yield return new WaitForSeconds(3);
-        if (isActive)
+        //if (isActive)
             Pool();
     }
     public override void onDie()
     {
-        if (!alive) return;
-        if (!isActive) return;
-        
-        addExplotion(0.2f);
-        
+        trailRenderer.time = 0;
+        addExplotion(0.2f);        
         Pool();
     }
     public override void OnSceneObjectUpdate()
     {
         if (!isActive) return;
+
+        trailRenderer.time = 10;
 
         if (transform.localPosition.y < 5.5f && !GetComponent<AudioSource>().isPlaying)
             startAudio();
@@ -74,6 +74,7 @@ public class Bomb : SceneObject {
     public override void OnPool()
     {
         GetComponent<AudioSource>().Stop();
+        trailRenderer.time = 0;
     }
     private void startAudio()
     {

@@ -11,7 +11,7 @@ public class Level : MonoBehaviour {
 	public SceneObject explotionGift;
 	public Area startingArea;
 	public GameObject limitObject;
-    public ScoreSignal scoreSignal;
+  //  public ScoreSignal scoreSignal;
 
     public ProgressBar missionBar;
     public Text missionName;
@@ -19,7 +19,6 @@ public class Level : MonoBehaviour {
 
 	private AreasManager areasManager;
 	private FloorManager floorManager;
-	//private RainManager rainManager;
 	
 	private float lastDistanceToLoadLevel; 
 	static Area areaActive;
@@ -51,7 +50,6 @@ public class Level : MonoBehaviour {
 		data = Data.Instance;
         game = Game.Instance;
         missions = data.GetComponent<Missions>(); 		
-		//rainManager = GetComponent<RainManager>();
         charactersManager = game.GetComponent<CharactersManager>();
         floorManager = GetComponent<FloorManager>();
         powerupsManager = GetComponent<PowerupsManager>();
@@ -203,10 +201,10 @@ public class Level : MonoBehaviour {
     }
     public void OnSetFinalScore(Vector3 position, int score)
     {
-        if (position == Vector3.zero) return;
-        SceneObject newSO = Instantiate(scoreSignal, position, Quaternion.identity) as SceneObject;
-        newSO.Restart(position);
-        newSO.GetComponent<ScoreSignal>().SetScore(score);
+        //if (position == Vector3.zero) return;
+        //SceneObject newSO = Instantiate(scoreSignal, position, Quaternion.identity) as SceneObject;
+        //newSO.Restart(position);
+        //newSO.GetComponent<ScoreSignal>().SetScore(score);
     }
     public void addSceneObjectToScene(SceneObject _so, Vector3 position)
     {

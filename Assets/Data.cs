@@ -112,7 +112,6 @@ public class Data : MonoBehaviour {
         //print("MODE: " + playMode + " Set NEW mission " + num + "   levelUnlockedID: " + levelUnlockedID);
         replays = 0;
 
-        levelUnlockedID = num - 1;
         missionActive = num;
 
         if (playMode == PlayModes.COMPETITION)
@@ -123,6 +122,7 @@ public class Data : MonoBehaviour {
         {
             if (num > levelUnlockedID)
             {
+                levelUnlockedID = num - 1;
                 PlayerPrefs.SetInt("levelUnlocked", num - 1);
             }
         }

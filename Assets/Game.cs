@@ -81,9 +81,10 @@ public class Game : MonoBehaviour {
         }else
         if (Data.Instance.userData.hiscore < Data.Instance.userData.score)
         {
-            Data.Instance.userData.OnHiscore(Data.Instance.userData.score);            
-            Application.LoadLevel("NewHiscore");
+           // Data.Instance.userData.OnHiscore(Data.Instance.userData.score);            
+           // Application.LoadLevel("NewHiscore");
             Data.Instance.replays = 0;
+            Data.Instance.LoadLevel("Game");
         } 
         //else if (Data.Instance.replays == Data.Instance.totalReplays)
         //    GotoContinue();

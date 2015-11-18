@@ -88,6 +88,7 @@ public class SceneObject : MonoBehaviour {
     }
     public virtual void onDie()
     {
+
     }
     public virtual void setScore()
     {
