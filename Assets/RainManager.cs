@@ -23,7 +23,7 @@ public class RainManager : MonoBehaviour {
     void Update()
     {
         if (!isCompetition) return;
-        print(characterBehavior.distance);
+
         if (characterBehavior.distance > distanceToAdd)
         {
             distanceToAdd = characterBehavior.distance + (offset * 2);

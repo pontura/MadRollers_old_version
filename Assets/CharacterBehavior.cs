@@ -85,6 +85,11 @@ public class CharacterBehavior : MonoBehaviour {
         if (_animation_hero)
             _animation_hero.Play("shoot");
 
+        if (state != states.RUN && state != states.SHOOT && transform.localPosition.y<6)
+        {
+            GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight/3, 0), ForceMode.Impulse);
+        }
+
         state = states.SHOOT;
             
         player.weapon.Shoot();
@@ -275,6 +280,9 @@ public class CharacterBehavior : MonoBehaviour {
 	public void SuperJump(float _superJumpHeight)
 	{
         if (!player.canJump) return;
+
+        rigidbody.velocity = Vector3.zero;
+
         floorCollitions.OnAvatarJump();
         GetComponent<AudioSource>().clip = jump2Clip;
         GetComponent<AudioSource>().Play();
@@ -289,6 +297,8 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
 	{
+        
+
         ResetColliders();
         floorCollitions.OnAvatarJump();
         data.events.AvatarJump();
@@ -304,6 +314,9 @@ public class CharacterBehavior : MonoBehaviour {
             _animation_hero.Play("rebota");
         else
             _animation_hero.Play("superJump");
+
+        //lo hago para resetear el doble salto:
+        state = states.JUMP;
 
 	}
     public void Fall()

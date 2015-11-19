@@ -98,7 +98,7 @@ public class AreasManager : MonoBehaviour {
         }
 		Area area;
 
-        print(areaSet + "areaSets.Length: " + areaSets.Count + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
+      //  print(areaSet + "areaSets.Length: " + areaSets.Count + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
 
         if (startingArea)
 		{

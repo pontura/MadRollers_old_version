@@ -190,6 +190,8 @@
      <Compile Include="Assets\Shadow.cs" />
      <Compile Include="Assets\Shooter.cs" />
      <Compile Include="Assets\SimpleLogin.cs" />
+     <Compile Include="Assets\SliderEffect.cs" />
+     <Compile Include="Assets\SliderFloor.cs" />
      <Compile Include="Assets\Social.cs" />
      <Compile Include="Assets\SocialEvents.cs" />
      <Compile Include="Assets\Stars.cs" />

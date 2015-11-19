@@ -100,6 +100,10 @@ public class CharacterFloorCollitions : MonoBehaviour {
         {
             state = states.ON_FLOOR;
             characterBehavior.Run();
+        } else  if (other.tag == "floor" && !other.GetComponent<SliderFloor>())
+        {
+            if (transform.parent.gameObject.GetComponent<SliderEffect>())
+                transform.parent.gameObject.GetComponent<SliderEffect>().speed = 0;
         }
         else
         {
@@ -114,6 +118,5 @@ public class CharacterFloorCollitions : MonoBehaviour {
                 }
             }
         }
-		
 	}
 }

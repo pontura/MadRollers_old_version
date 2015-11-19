@@ -8,6 +8,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     [HideInInspector]
     public Area area;
 
+    public SceneObject FloorSlider;
     public SceneObject FloorSurface;
     public SceneObject house1;
     public SceneObject house2;
@@ -283,6 +284,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = sombrilla;
                 else if (go.name == "GrabbableMissile")
                     clone = GrabbableMissile;
+                else if (go.name == "FloorSlider")
+                    clone = FloorSlider;
 
 
                 if (clone)
@@ -292,7 +295,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     sceneObject.transform.rotation = go.transform.rotation;
                     sceneObject.Restart(pos);
                 }
-
                 if (go.GetComponent<MoveObject>())
                 {
                     MoveObject mo = go.GetComponent<MoveObject>();
