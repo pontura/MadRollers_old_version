@@ -6,10 +6,11 @@ public class SliderFloor : MonoBehaviour {
 
     public float scrollSpeed = 0.5F;
     public Renderer rend;
-
+    private float scroll;
     void Start()
     {
-        if (transform.parent.transform.localEulerAngles.y > 90) scrollSpeed *= -1;
+        scroll = scrollSpeed;
+        if (transform.parent.transform.localEulerAngles.y > 90) scroll *= -1;
     }
     void Update()
     {
@@ -30,13 +31,14 @@ public class SliderFloor : MonoBehaviour {
                 go = other.gameObject;
             }
             if (go == null) return;
+            
             if (go.GetComponent<SliderEffect>())
             {
-                go.GetComponent<SliderEffect>().speed = scrollSpeed;
+                go.GetComponent<SliderEffect>().speed = scroll;
             }
             else
             {
-                go.AddComponent<SliderEffect>().speed = scrollSpeed;
+                go.AddComponent<SliderEffect>().speed = scroll;
             }
         }
     }
@@ -47,11 +49,11 @@ public class SliderFloor : MonoBehaviour {
             GameObject go = other.gameObject;
             if (go.GetComponent<SliderEffect>())
             {
-                go.GetComponent<SliderEffect>().speed = scrollSpeed;
+                go.GetComponent<SliderEffect>().speed = scroll;
             }
             else
             {
-                go.AddComponent<SliderEffect>().speed = scrollSpeed;
+                go.AddComponent<SliderEffect>().speed = scroll;
             }
         }
     }
