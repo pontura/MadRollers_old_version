@@ -19,7 +19,12 @@ public class GameMenu : MonoBehaviour {
         popupReset.SetActive(false);
         popup.SetActive(false);
         button.SetActive(false);
-        soundsLabel.text = "SHHHH!!!";
+        soundsLabel.text = "OFF!";
+        Data.Instance.events.SetSettingsButtonStatus += SetSettingsButtonStatus;
+    }
+    public void SetSettingsButtonStatus(bool show)
+    {
+        button.SetActive(show);
     }
     public void SetOn()
     {
@@ -37,12 +42,12 @@ public class GameMenu : MonoBehaviour {
     {
         if(sounds)
         {
-            soundsLabel.text = "MÚSICA!";
+            soundsLabel.text = "ON!";
             soundOn.SetActive(false);
             soundOff.SetActive(true);
             Data.Instance.events.SetVolume(0);
         }else{
-            soundsLabel.text = "SHHHH!!!";
+            soundsLabel.text = "OFF!";
             soundOn.SetActive(true);
             soundOff.SetActive(false);
             Data.Instance.events.SetVolume(1);
@@ -56,7 +61,21 @@ public class GameMenu : MonoBehaviour {
         Data.Instance.events.OnFadeALittle(false);
         StartCoroutine(Play(anim, "GameMenuClose", false, Reset));
     }
-    
+    public void Compite()
+    {
+        Data.Instance.playMode = Data.PlayModes.COMPETITION;
+        Data.Instance.events.OnResetLevel();
+        SocialEvents.OnGetHiscores(1);
+        Data.Instance.LoadLevel("Competitions");
+        Close();
+    }
+    public void Misiones()
+    {
+        Data.Instance.playMode = Data.PlayModes.STORY;
+        Data.Instance.events.OnResetLevel();
+        Data.Instance.LoadLevel("LevelSelector");
+        Close();
+    }
     public void ChangeLevels()
     {
         Data.Instance.events.OnResetLevel();
@@ -67,7 +86,7 @@ public class GameMenu : MonoBehaviour {
     public void OpenResetPopup()
     {
         popupReset.SetActive(true);
-        popup.SetActive(false);
+       // popup.SetActive(false);
         StartCoroutine(Play(popupReset.animation, "GameMenuOpen", false, Reset));
     }
     public void ResetGame()

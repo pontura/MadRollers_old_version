@@ -62,7 +62,6 @@ public class Hiscores : MonoBehaviour {
             levels[a-1].myScore = myScore;
         }
     }
-
     void OnFinalDistance(float score)
     {
         if (Data.Instance.playMode == Data.PlayModes.STORY) return;

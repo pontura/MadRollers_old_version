@@ -115,6 +115,7 @@ public class Missions : MonoBehaviour {
             print("____TERMINO LA MISION EN MODO COMPETENCIA");
             MissionActiveID = 0;
             MissionActive.reset();
+            desc_txt.text = "CORRE ";
             return;
         }
         else
@@ -129,6 +130,10 @@ public class Missions : MonoBehaviour {
     private void activateMissionByListener()
     {
         state = states.ACTIVE;
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+        {
+            desc_txt.text = "CORRE " + MissionActive.distance + " METROS";
+        } else 
         if (MissionActive.Hiscore > 0)
         {
             name_txt.text = MissionActive.avatarHiscore;

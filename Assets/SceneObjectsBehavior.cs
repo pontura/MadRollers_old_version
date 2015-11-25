@@ -155,14 +155,14 @@ public class SceneObjectsBehavior : MonoBehaviour {
                                 if (decorationName != "")
                                     addDecoration(decorationName, pos, Vector3.zero);
 
-                                if (go.GetComponent<DecorationManager>())
-                                {
-                                    addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
-                                    addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, 3));
-                                    addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, -3));
-                                    addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, -3));
-                                }
                             }
+                        }
+                        if (go.GetComponent<DecorationManager>())
+                        {
+                            addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
+                            addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, 3));
+                            addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, -3));
+                            addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, -3));
                         }
 
                         

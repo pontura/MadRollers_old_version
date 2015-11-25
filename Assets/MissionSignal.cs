@@ -52,7 +52,7 @@ public class MissionSignal : MonoBehaviour {
     }
     private IEnumerator MissionComplete()
     {
-        Open("MISSION COMPLETE!");
+        Open("MISIóN COMPLETA!");
         yield return new WaitForSeconds(1.5f);
         GetComponent<AudioSource>().Play();
         CloseAfter(1);
@@ -67,7 +67,7 @@ public class MissionSignal : MonoBehaviour {
     }
     private void MissionSignalOn()
     {
-        Open("MISSION " + AllMissions.MissionActiveID);
+        Open("MISIóN " + AllMissions.MissionActiveID);
         CloseAfter(1.5f);
     }
     private void ShowMissionName()

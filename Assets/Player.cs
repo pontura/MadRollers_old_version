@@ -174,6 +174,7 @@ public class Player : MonoBehaviour {
    }
     private void setNormalState()
     {
+        print("____setNormalState_setNormalState_setNormalState_setNormalState");
         Data.Instance.events.OnChangeMood(1);
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.NORMAL);
         fxState = fxStates.NORMAL;

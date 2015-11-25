@@ -137,7 +137,7 @@ public class Level : MonoBehaviour {
                 explpotionEffect.Restart(newPos);
         }
 
-        if (!powerupsManager.CanBeThrown() || Random.Range(0, 100) < 50)
+        if ((Data.Instance.playMode == Data.PlayModes.STORY && Data.Instance.missionActive<7) ||  !powerupsManager.CanBeThrown() || Random.Range(0, 100) < 50)
             OnAddHeartsByBreaking(position, 8, 450);
         else
             Data.Instance.events.OnAddPowerUp(position);

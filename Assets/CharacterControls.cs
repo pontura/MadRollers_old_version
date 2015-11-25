@@ -100,7 +100,7 @@ public class CharacterControls : MonoBehaviour {
 
 
         if (Time.deltaTime == 0) return;
-        transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 100, rotationZ);
+        transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 50, rotationZ);
        // transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
 
     }

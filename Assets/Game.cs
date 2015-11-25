@@ -45,6 +45,7 @@ public class Game : MonoBehaviour {
         Data.Instance.events.OnGameStart();
         Init();
         Data.Instance.GetComponent<Tracker>().TrackScreen("Game Screen");
+        Data.Instance.events.SetSettingsButtonStatus(false);
     }
     void OnDestroy()
     {

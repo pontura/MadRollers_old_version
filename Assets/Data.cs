@@ -133,7 +133,7 @@ public class Data : MonoBehaviour {
         PlayerPrefs.DeleteAll();
         levelUnlockedID = 0;
         userData.resetProgress();
-        Social.Instance.hiscores.Reset();        
+        Social.Instance.hiscores.Reset();  
     }
     public void LoadLevel(string levelName)
     {

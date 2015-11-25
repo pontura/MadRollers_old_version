@@ -22,10 +22,12 @@ public class MissionsTopPanel : MonoBehaviour
     }
     private void OnMissionComplete(int levelID)
     {
+        print("_____________OnMissionComplete");
         anim.Play("MissionTopClose");
     }
     private void OnListenerDispatcher(string message)
     {
+        print("_______________ShowMissionName");
        if (message == "ShowMissionName" )
            anim.Play("MissionTopOpen");
     }

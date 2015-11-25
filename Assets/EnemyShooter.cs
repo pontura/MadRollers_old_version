@@ -36,7 +36,6 @@ public class EnemyShooter : MonoBehaviour {
     void Shoot()
     {
         mmoCharacter.Shoot();
-        print("SHOOT");
         SceneObject projectil = ObjectPool.instance.GetObjectForType(myProjectile.name, true);
 
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 4f);

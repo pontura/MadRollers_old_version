@@ -11,7 +11,7 @@ public class Gui : MonoBehaviour {
     LevelComplete levelComplete;
 
     public GameObject[] hideOnCompetitions;
-
+    public GameObject helpPanel;
 	private Data data;   
 
 	private int barWidth = 200;
@@ -66,5 +66,9 @@ public class Gui : MonoBehaviour {
     void OnSetFinalScore(Vector3 pos, int _score)
     {
         scoreLabel.text = _score.ToString();
+    }
+    public void Settings()
+    {
+        Data.Instance.GetComponent<GameMenu>().Init();
     }
 }

@@ -118,6 +118,8 @@ public class CharacterBehavior : MonoBehaviour {
     {
         if (floorCollitions.state == CharacterFloorCollitions.states.ON_FLOOR)
             Run();
+        else if(jumpsNumber<2)
+            state = states.JUMP;
         else
             state = states.DOUBLEJUMP;
     }
@@ -234,9 +236,17 @@ public class CharacterBehavior : MonoBehaviour {
         jumpsNumber = 0;
         Run();
     }
+    public void ResetJump()
+    {
+        print("ResetJump");
+        state = states.JUMP;
+        jumpsNumber = 0;
+    }
 	public void Jump()
 	{
         if (player.transport != null && player.transport.isOn) return;
+
+        print("jumpsNumber" + jumpsNumber);
 
         jumpsNumber++;
         if (jumpsNumber > 4) return;

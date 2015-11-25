@@ -4,15 +4,19 @@ using System.Collections;
 
 public class GuiTutorial : MonoBehaviour {
 
+    public GameObject helpPanel;
+    public MissionSignal MissionSignal;
     public GameObject buttonJump;
     public GameObject buttonShoot;
-    public Image helpSprite;
+    
+    public GameObject helpMove;
+    public GameObject helpJump;
+    public GameObject helpShoot;
 
-    public Image helpJumpSpriteKeyboard;
-    public Image helpShootSpriteKeyboard;
+    public GameObject[] helps;
 
-    public Image DoubleJumpHelpSprite;
-    public Image ShootHelpSprite;
+    public Text jumpTitle;
+    public Text jumpSubtitle;
 
     private bool ready;
     private int jumpLevel = 2;
@@ -22,7 +26,7 @@ public class GuiTutorial : MonoBehaviour {
     public states state;
     public enum states
     {
-        HIDE,
+        MOVE,
         JUMP,
         DOUBLEJUMP,
         SHOOT,
@@ -40,14 +44,16 @@ public class GuiTutorial : MonoBehaviour {
     }
 	void Start () 
     {
-        
-        DoubleJumpHelpSprite.enabled = false;
-        helpSprite.enabled = false;       
-        helpJumpSpriteKeyboard.enabled = false;
-        ShootHelpSprite.enabled = false;
-        helpShootSpriteKeyboard.enabled = false;
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+        {
+            Destroy(helpPanel);
+            print("________________destroy tutorial ___________");
+            return;
+        }
 
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
+        foreach (GameObject go in helps)
+            go.SetActive(false);
+       
 
         buttonJump.SetActive(false);
         buttonShoot.SetActive(false);
@@ -58,6 +64,52 @@ public class GuiTutorial : MonoBehaviour {
 
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 	}
+    public void Help()
+    {
+        if (Time.timeScale == 1)
+        {
+            foreach (GameObject go in helps)
+                go.SetActive(true);
+
+            helpMove.SetActive(false);
+
+            if (Data.Instance.playMode == Data.PlayModes.STORY)
+            {
+                if (Data.Instance.missionActive == 1)
+                {
+                    helpMove.SetActive(true);
+                    helpJump.SetActive(false);
+                    helpShoot.SetActive(false);
+                }
+                else if (Data.Instance.missionActive == 2)
+                {
+                    helpJump.SetActive(false);
+                    helpShoot.SetActive(false);
+                }
+                else if (Data.Instance.missionActive == 3)
+                {
+                    helpJump.SetActive(true);
+                    helpShoot.SetActive(false);
+                }
+                else if (Data.Instance.missionActive > 3)
+                {
+                    helpJump.SetActive(true);
+                    helpShoot.SetActive(true);
+                }
+            }
+
+           
+
+            MissionSignal.Close();
+            Time.timeScale = 0;
+        }
+    }
+    public void CloseHelp()
+    {
+        Time.timeScale = 1;
+        foreach (GameObject go in helps)
+            go.SetActive(false);
+    }
     private bool canDisplaySignal()
     {
         if (charactersManager.getMainCharacter() == null
@@ -73,50 +125,59 @@ public class GuiTutorial : MonoBehaviour {
     {
         if (!canDisplaySignal())
             return;
-        
+
         if (Data.Instance.missionActive == 1)
-            state = states.HIDE;
+        {
+            state = states.MOVE;
+
+            if(message != "ShowMissionName")
+                Invoke("showHelp", 1);
+        }
         else if (Data.Instance.missionActive == jumpLevel)
             state = states.JUMP;
-        else if (Data.Instance.missionActive == doubleJumpLevel) 
+        else if (Data.Instance.missionActive == doubleJumpLevel)
             state = states.DOUBLEJUMP;
         else if (Data.Instance.missionActive == shootLevel)
             state = states.SHOOT;
         else
+        {
             state = states.READY;
-
-        if (state == states.READY && message == "ShowMissionId")
-            Invoke("setOn", 2);
-        else if (state != states.HIDE && message == "ShowMissionId")
-            if(state == states.SHOOT)
-                Invoke("setOn", 3.55f);
-            else
-                Invoke("setOn", 2.2f);
-        else if (state != states.READY && state != states.HIDE && message == "ShowMissionName")
+            showButtons();
+        }
+        if (state != states.MOVE && state != states.READY && message == "ShowMissionName")
             showHelp();
     }
     private void showHelp()
     {
+
         if (isMobile())
         {
-            if (state == states.JUMP)
-                StartCoroutine(Play(helpSprite.GetComponent<Animation>(), "HelpSignalOn", false));
-            else if (state == states.DOUBLEJUMP)
-                StartCoroutine(Play(DoubleJumpHelpSprite.GetComponent<Animation>(), "HelpSignalOn", false));
-            else
-                StartCoroutine(Play(ShootHelpSprite.GetComponent<Animation>(), "HelpSignalOn", false));
+            
         }
         else
         {
-            if (state == states.JUMP)
-                StartCoroutine(Play(helpJumpSpriteKeyboard.GetComponent<Animation>(), "HelpSignalOn", false));
-            else if (state == states.DOUBLEJUMP)
-                StartCoroutine(Play(helpJumpSpriteKeyboard.GetComponent<Animation>(), "HelpSignalOn", false));
-            else if (state == states.SHOOT)
-                StartCoroutine(Play(helpShootSpriteKeyboard.GetComponent<Animation>(), "HelpSignalOn", false));
+        }
+        if (state == states.MOVE)
+        {
+            MissionSignal.Close();
+            helpMove.SetActive(true);
+            helpMove.GetComponent<Animation>().Play( "MoveOn" );
+            Invoke("OnDeviceMovedOver", 3);
+        }
+        else if (state == states.JUMP)
+        {
+            StartCoroutine(Play(helpJump.GetComponent<Animation>(), "JumpOn", false));
+        }
+        else if (state == states.DOUBLEJUMP)
+        {
+            StartCoroutine(Play(helpJump.GetComponent<Animation>(), "JumpOn", false));
+        }
+        else
+        {
+            StartCoroutine(Play(helpShoot.GetComponent<Animation>(), "ShootOn", false));
         }
     }
-	public void setOn () 
+	public void showButtons () 
     {
         if (!canDisplaySignal()) return;
 
@@ -124,29 +185,15 @@ public class GuiTutorial : MonoBehaviour {
         {
             if (state == states.JUMP || state == states.DOUBLEJUMP)
                 buttonJump.SetActive( true );
-            else 
+            else  if (state != states.MOVE)
             {
                 buttonJump.SetActive( true );
-                buttonShoot.SetActive( true );
-                if (state == states.READY)
-                    Reset();
+                buttonShoot.SetActive( true );                
             }
+            if (state == states.READY)
+                Reset();
         }
 	}
-    //void animateButton(GameObject sprite)
-    //{
-    //    float originalY = sprite.transform.position.y;
-    //    sprite.transform.position = new Vector3(sprite.transform.position.x, originalY - 1f, 0);
-
-    //    sprite.SetActive( true );
-
-    //    Hashtable tweenData = new Hashtable();
-    //    tweenData.Add("y", originalY);
-    //    tweenData.Add("time", 1.5f);
-    //    tweenData.Add("easeType", iTween.EaseType.easeOutQuad);
-
-    //    iTween.MoveTo(sprite.gameObject, tweenData);
-    //}
     void OnDestroy()
     {
         Reset();
@@ -157,15 +204,18 @@ public class GuiTutorial : MonoBehaviour {
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
     }
+    private void OnDeviceMovedOver()
+    {
+        helpMove.SetActive(false);
+        Data.Instance.events.OnGamePaused(false);
+    }
     private void OnAvatarJump()
     {
          if (!ready) return;
          if (state == states.SHOOT) return;
          ready = false;
 
-         helpSprite.enabled = false;
-         DoubleJumpHelpSprite.enabled = false;
-         helpJumpSpriteKeyboard.enabled = false;
+         helpJump.SetActive(false);
 
          Data.Instance.events.OnGamePaused(false);
          //Data.Instance.events.OnAvatarJump -= OnAvatarJump;
@@ -177,9 +227,7 @@ public class GuiTutorial : MonoBehaviour {
         if (state != states.SHOOT) return;
         ready = false;
 
-        ShootHelpSprite.enabled = false;
-        helpShootSpriteKeyboard.enabled = false;
-
+        helpShoot.SetActive(false);
         Data.Instance.events.OnGamePaused(false);
         //Data.Instance.events.OnAvatarJump -= OnAvatarJump;
     }
@@ -191,15 +239,20 @@ public class GuiTutorial : MonoBehaviour {
         if (canDisplaySignal())
         {
             if (state == states.JUMP)
-                yield return new WaitForSeconds(1.2f);
+                yield return new WaitForSeconds(1.9f);
             else if (state == states.SHOOT)
-                yield return new WaitForSeconds(1.8f);
+                yield return new WaitForSeconds(2.4f);
             else if (state == states.DOUBLEJUMP)
             {
-                yield return new WaitForSeconds(2.2f);
+                yield return new WaitForSeconds(2.9f);
                 charactersManager.getMainCharacter().state = CharacterBehavior.states.JUMP;
             }
         }
+
+        animation.gameObject.SetActive(true);
+        MissionSignal.Close();
+        showButtons();
+
         if (canDisplaySignal())
         {
 
@@ -208,22 +261,23 @@ public class GuiTutorial : MonoBehaviour {
             //if (ready) yield break;
 
             Data.Instance.events.OnGamePaused(true);
+            charactersManager.character.ResetJump();
 
             if (isMobile())
             {
-                if (state == states.JUMP)
-                    helpSprite.enabled = true;
-                else if (state == states.DOUBLEJUMP)
-                    DoubleJumpHelpSprite.enabled = true;
-                else if (state == states.SHOOT)
-                    ShootHelpSprite.enabled = true;
+                //if (state == states.JUMP)
+                //    helpSprite.enabled = true;
+                //else if (state == states.DOUBLEJUMP)
+                //    DoubleJumpHelpSprite.enabled = true;
+                //else if (state == states.SHOOT)
+                //    ShootHelpSprite.enabled = true;
             }
-            else if (state == states.JUMP)
-                helpJumpSpriteKeyboard.enabled = true;
-            else if (state == states.DOUBLEJUMP)
-                helpJumpSpriteKeyboard.enabled = true;
-            else if (state == states.SHOOT)
-                helpShootSpriteKeyboard.enabled = true;
+            //else if (state == states.JUMP)
+            //    helpJumpSpriteKeyboard.enabled = true;
+            //else if (state == states.DOUBLEJUMP)
+            //    helpJumpSpriteKeyboard.enabled = true;
+            //else if (state == states.SHOOT)
+            //    helpShootSpriteKeyboard.enabled = true;
 
             //We Don't want to use timeScale, so we have to animate by frame..
             if (!useTimeScale)

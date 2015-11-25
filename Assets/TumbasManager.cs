@@ -27,16 +27,22 @@ public class TumbasManager : MonoBehaviour {
         if (hiscore.Count == 0) return;
         if (hiscore.Count <= hiscoreID) return;
         if (hiscore[hiscoreID].score == null) return;
-        if (characterBehavior.distance + offset > hiscore[hiscoreID].score)
+        try
         {
-            hiscoreID--;
-            if (hiscoreID <= 0)
+            if (characterBehavior.distance + offset > hiscore[hiscoreID].score)
             {
-                hiscoreID = 0;
-                Debug.Log("GAMASTE");
-                return;
+                hiscoreID--;
+                if (hiscoreID <= 0)
+                {
+                    hiscoreID = 0;
+                    Debug.Log("GAMASTE");
+                    return;
+                }
+                Data.Instance.events.OnAddTumba(new Vector3(0, 0, characterBehavior.distance + offset), hiscore[hiscoreID].username, hiscore[hiscoreID].facebookID);
             }
-            Data.Instance.events.OnAddTumba(new Vector3(0, 0, characterBehavior.distance + offset), hiscore[hiscoreID].username, hiscore[hiscoreID].facebookID);
+        } catch
+        {
+            Debug.Log("NO hay records");
         }
     }
 }

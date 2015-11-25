@@ -42,12 +42,17 @@ public class Summary : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash -= Init;
     }
     void Init(CharacterBehavior cb)
-    {        
+    {
         Invoke("SetOn", 1);
         meters.text = (int)cb.distance + " mts";
     }
     void SetOn()
     {
+        if (Data.Instance.playMode == Data.PlayModes.STORY)
+        {
+            Restart();
+            return;
+        }
         totalHearts = GetComponent<HearsManager>().total;
         if (heartsToReviveNum > totalHearts && Data.Instance.SummaryHasBeenDisplayedOnce)
         {
