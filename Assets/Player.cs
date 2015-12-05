@@ -117,6 +117,7 @@ public class Player : MonoBehaviour {
                 transport.transform.localEulerAngles = Vector3.zero;
                 transport.transform.localScale = Vector3.one;
                 Data.Instance.events.AdvisesOn("JETPACK!");
+                Data.Instance.events.VoiceFromResources("jetpack_Activado");
             }
             OnAvatarProgressBarStart(Color.green);
         }

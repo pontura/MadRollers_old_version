@@ -12,7 +12,7 @@ public class Events : MonoBehaviour {
 
     //public System.Action<int> OnHiscore = delegate { };   
 
-
+    public System.Action<string> VoiceFromResources = delegate { };
     public System.Action<float> SetVolume = delegate { };
     public System.Action<bool> OnFadeALittle = delegate { };
     public System.Action OnInterfacesStart = delegate { };

@@ -25,19 +25,24 @@ public class VoicesManager : MonoBehaviour
     public AudioClip invencibleOn;
     public AudioClip invencibleOff;
 
+    private AudioSource audioSource;
+
     // Use this for initialization
     public void Init()
     {
+        audioSource = GetComponent<AudioSource>();
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
         Data.Instance.events.SetVolume += SetVolume;
+        Data.Instance.events.VoiceFromResources += VoiceFromResources;
+        
     }
     void SetVolume(float vol)
     {
-        GetComponent<AudioSource>().volume = vol;
+        audioSource.volume = vol;
     }
     private void OnMissionComplete(int id)
     {
@@ -45,7 +50,11 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnAvatarCrash(CharacterBehavior cb)
     {
-        PlayRandom(avatarCrash);
+        print("Game.Instance.level.charactersManager.getDistance() " + Game.Instance.level.charactersManager.getDistance());
+        if (Game.Instance && Game.Instance.level.charactersManager.getDistance() < 100)
+            VoiceFromResources("eres_muy _principiante");
+        else
+            PlayRandom(avatarCrash);
     }
     private void OnAvatarFall(CharacterBehavior cb)
     {
@@ -117,10 +126,26 @@ public class VoicesManager : MonoBehaviour
         }
         if (!exists) Debug.LogError("No esta agregado la voz: " + clip_name + " en " + clipLibrary);
     }
+    public void ComiendoCorazones()
+    {
+        if (audioSource.isPlaying) return;
+        VoiceFromResources("ricos");
+    }
+    public void VoiceSecondaryFromResources(string name)
+    {
+        if (audioSource.isPlaying) return;
+        AudioClip audioClip = Resources.Load("Sound/voices/" + name) as AudioClip;
+        PlayClip(audioClip);
+    }
+    public void VoiceFromResources(string name)
+    {
+        AudioClip audioClip = Resources.Load("Sound/voices/" + name) as AudioClip;
+        PlayClip(audioClip);
+    }
     void PlayClip(AudioClip audioClip)
     {
        // print("______voice CLIP : " + audioClip.name);
-        GetComponent<AudioSource>().clip = audioClip;
-        GetComponent<AudioSource>().Play();
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 }

@@ -9,6 +9,7 @@ public class MainMenuActions : MonoBehaviour {
     private bool rankingLoaded;
 
 	void Start () {
+     //   Data.Instance.events.VoiceFromResources("welcome");
       //  DebugText.text = "username: " + Data.Instance.userData.username + " - id: " + Data.Instance.userData.facebookId + " - id: " + Data.Instance.userData.userId;
         Data.Instance.GetComponent<Tracker>().TrackScreen("Main Menu");
         Data.Instance.events.OnInterfacesStart();

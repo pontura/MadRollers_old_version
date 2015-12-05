@@ -47,13 +47,13 @@ public class GrabbableItem : SceneObject
     {
 		if(hitted)
 		{
-			sec++;
+            sec += Time.deltaTime*100;
 			Vector3 position = transform.position;
             Vector3 characterPosition = player.transform.position;
-			characterPosition.y+=1.7f;
-			characterPosition.z+=1.7f;
+			characterPosition.y+=1f;
+			characterPosition.z+=1.2f;
 			transform.position = Vector3.MoveTowards(position, characterPosition, 18 * Time.deltaTime);
-			if(sec>12)
+			if(sec>20)
 			{
                 Data.Instance.events.OnScoreOn(Vector3.zero, 10);
                 Data.Instance.events.OnGrabHeart();

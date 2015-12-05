@@ -11,8 +11,19 @@ public class Ranking : MonoBehaviour {
 
 	void Start () 
     {
+        if(Random.Range(0,10)>5)
+            Data.Instance.events.VoiceFromResources("asi_que_quieres_competir");
+        else
+            Data.Instance.events.VoiceFromResources("competir_estais_preparado");
+
+        Invoke("RankingVoice", 5);        
         int levelID = Data.Instance.competitions.current;
 	}
+    void RankingVoice()
+    {
+        if (GetComponent<CompetitionSelection>().popup.activeSelf) return;
+        Data.Instance.voicesManager.VoiceSecondaryFromResources("suenas_con_estar_en_el_ranking");
+    }
     void Update()
     {
         if (rankingLoaded) return;

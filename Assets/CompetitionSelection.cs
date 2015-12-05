@@ -27,6 +27,7 @@ public class CompetitionSelection : MonoBehaviour {
         }
         else
         {
+            Data.Instance.voicesManager.VoiceSecondaryFromResources("registrate_o_tienes_miedo");
             popup.SetActive(true);
             popup.animation.Play("GameMenuOpen");
         }

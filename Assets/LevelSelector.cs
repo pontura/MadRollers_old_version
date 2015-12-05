@@ -20,7 +20,8 @@ public class LevelSelector : MonoBehaviour {
 
 
 	void Start () {
-        
+
+        Data.Instance.events.VoiceFromResources("juega_solo_asi_te_quedaras");
         Data.Instance.events.OnInterfacesStart();
 
 		data = GameObject.Find("data").GetComponent<Data>();		

@@ -16,6 +16,7 @@ public class CompetitonGoalScene : MonoBehaviour {
 	void Start () {
 
         Data.Instance.events.OnGamePaused(true);
+        Data.Instance.events.VoiceFromResources("gana_algo_quieres_alguna_vez_en_tu_vida");
 
         Hiscores.Hiscore goalHiscore = Social.Instance.hiscores.GetMyNextGoal();
 

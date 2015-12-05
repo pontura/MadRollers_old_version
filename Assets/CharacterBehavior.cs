@@ -145,6 +145,9 @@ public class CharacterBehavior : MonoBehaviour {
         }
         else
         {
+            if (transform.position.y > 20 && Random.Range(0,10)<4)
+                Data.Instance.voicesManager.VoiceSecondaryFromResources("que_vertigo_no");
+
             rigidbody.mass = 100;
             rigidbody.useGravity = true;
         }
@@ -308,7 +311,6 @@ public class CharacterBehavior : MonoBehaviour {
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
 	{
         
-
         ResetColliders();
         floorCollitions.OnAvatarJump();
         data.events.AvatarJump();
@@ -321,9 +323,13 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<AudioSource>().Play();
 
         if (!dir_forward)
+        {
             _animation_hero.Play("rebota");
+        }
         else
-            _animation_hero.Play("superJump");
+        {
+            _animation_hero.Play("superJump");            
+        }
 
         //lo hago para resetear el doble salto:
         state = states.JUMP;

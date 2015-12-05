@@ -95,6 +95,10 @@ public class MusicManager : MonoBehaviour {
         {
           audioSource.PlayOneShot(heartClip);
           nextHeartSoundTime = Time.time + heartsDelay;
+          if (Random.Range(0, 500) > 490)
+          {
+              Data.Instance.voicesManager.ComiendoCorazones();
+          }
         }
     }
 }
